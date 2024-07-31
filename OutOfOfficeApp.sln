@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutOfOfficeWPF", "OutOfOfficeWPF\OutOfOfficeWPF.csproj", "{824D22A0-82DE-45E1-A0BF-A4BF9026E7F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutOfOfficeDomain", "OutOfOfficeDomain\OutOfOfficeDomain.csproj", "{A78BBC97-94A9-4088-8F4C-D534F2689001}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{824D22A0-82DE-45E1-A0BF-A4BF9026E7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{824D22A0-82DE-45E1-A0BF-A4BF9026E7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{824D22A0-82DE-45E1-A0BF-A4BF9026E7F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A78BBC97-94A9-4088-8F4C-D534F2689001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A78BBC97-94A9-4088-8F4C-D534F2689001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A78BBC97-94A9-4088-8F4C-D534F2689001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A78BBC97-94A9-4088-8F4C-D534F2689001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
