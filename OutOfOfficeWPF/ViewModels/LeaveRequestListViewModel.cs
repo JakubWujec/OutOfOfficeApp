@@ -15,7 +15,17 @@ namespace OutOfOfficeWPF.ViewModels
         {
             LeaveRequests = new ObservableCollection<LeaveRequestItemViewModel>();
 
-            LeaveRequests.Add(new LeaveRequestItemViewModel("No reason"));
+            LeaveRequestService service = new LeaveRequestService();
+            IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
+
+            foreach (var request in requests)
+            {
+                LeaveRequests.Add(
+                    new LeaveRequestItemViewModel(request.Comment)
+                );
+            }
+            
+       
         }
     }
 }
