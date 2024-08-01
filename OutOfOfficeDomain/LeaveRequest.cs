@@ -8,8 +8,9 @@ namespace OutOfOfficeDomain
 {
     public class LeaveRequest
     {
-        //public DateOnly StartDate { get; set; }
-        //public DateOnly EndDate { get; set; }
+        public Guid Id { get; set; }
+        public DateOnly StartDate { get; set; }
+        public DateOnly EndDate { get; set; }
         public string Comment { get; set; }
     }
 }

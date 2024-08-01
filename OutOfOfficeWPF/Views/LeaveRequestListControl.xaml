@@ -11,7 +11,11 @@
         <ListView ItemsSource="{Binding LeaveRequests}" Name="ProductListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="20"/>
                     <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding Comment}" Width="150"/>
+                    <GridViewColumn Header="StartDate" DisplayMemberBinding="{Binding StartDate}" Width="70"/>
+                    <GridViewColumn Header="EndDate" DisplayMemberBinding="{Binding EndDate}" Width="70"/>
+                
                 </GridView>
             </ListView.View>
         </ListView>

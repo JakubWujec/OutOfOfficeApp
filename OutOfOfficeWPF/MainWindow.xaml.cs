@@ -24,13 +24,14 @@ namespace OutOfOfficeWPF
         {
             InitializeComponent();
 
-            SqlLeaveRequestRepository repository = new SqlLeaveRequestRepository();
+            OutOfOfficeContext context = new OutOfOfficeContext();
+            SqlLeaveRequestRepository repository = new SqlLeaveRequestRepository(context);
             LeaveRequestService service = new LeaveRequestService(repository);
             IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
 
             ViewModel = new LeaveRequestListViewModel(
                 from request in requests
-                select new LeaveRequestItemViewModel(request.Comment)
+                select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id)
             );
 
             DataContext = ViewModel;

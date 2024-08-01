@@ -9,24 +9,38 @@ namespace OutOfOfficeEF
 {
     public class SqlLeaveRequestRepository : ILeaveRequestRepository
     {
+        private readonly OutOfOfficeContext context;
+
+        public SqlLeaveRequestRepository( OutOfOfficeContext context)
+        {
+            this.context = context;
+        }
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests()
         {
-            //TODO replace with db query
-            return new List<LeaveRequest>()
+            var result = context.LeaveRequests.ToList();
+
+            if (result.Count == 0)
             {
-                new LeaveRequest()
+                context.LeaveRequests.Add(new LeaveRequest
                 {
-                    Comment = "No reason"
-                },
-                new LeaveRequest()
+                    Comment = "No reason",
+                    StartDate = DateOnly.FromDateTime(DateTime.UtcNow.Date),
+                    EndDate = DateOnly.FromDateTime(DateTime.UtcNow.Date),
+                });
+
+                context.LeaveRequests.Add(new LeaveRequest
                 {
-                    Comment = "Idk"
-                },
-                 new LeaveRequest()
-                {
-                    Comment = "Joe"
-                }
-            };
+                    Comment = "Idk",
+                    StartDate = DateOnly.FromDateTime(DateTime.UtcNow.Date),
+                    EndDate = DateOnly.FromDateTime(DateTime.UtcNow.Date.AddDays(2)),
+                });
+
+                context.SaveChanges();
+
+                result = context.LeaveRequests.ToList();
+            }
+
+            return result;
         }
     }
 }

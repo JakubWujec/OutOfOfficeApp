@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OutOfOfficeDomain;
 
 namespace OutOfOfficeEF
 {
@@ -17,5 +18,7 @@ namespace OutOfOfficeEF
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
+
+        public DbSet<LeaveRequest> LeaveRequests { get; set; }
     }
 }
