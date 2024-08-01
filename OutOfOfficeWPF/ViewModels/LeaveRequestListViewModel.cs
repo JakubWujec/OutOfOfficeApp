@@ -1,31 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OutOfOfficeDomain;
+
 
 namespace OutOfOfficeWPF.ViewModels
 {
     public class LeaveRequestListViewModel
     {
-        public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests { get; set; }
-        public LeaveRequestListViewModel()
+        public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests { get; }
+        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests)
         {
-            LeaveRequests = new ObservableCollection<LeaveRequestItemViewModel>();
-
-            LeaveRequestService service = new LeaveRequestService();
-            IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
-
-            foreach (var request in requests)
-            {
-                LeaveRequests.Add(
-                    new LeaveRequestItemViewModel(request.Comment)
-                );
-            }
-            
-       
+            this.LeaveRequests = new ObservableCollection<LeaveRequestItemViewModel>(leaveRequests);
         }
     }
 }

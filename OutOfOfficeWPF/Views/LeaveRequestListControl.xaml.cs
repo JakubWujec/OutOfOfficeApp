@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OutOfOfficeDomain;
+using OutOfOfficeEF;
 
 namespace OutOfOfficeWPF.Views
 {
@@ -25,7 +27,16 @@ namespace OutOfOfficeWPF.Views
         public LeaveRequestListControl()
         {
             InitializeComponent();
-            ViewModel = new LeaveRequestListViewModel();
+
+            SqlLeaveRequestRepository repository = new SqlLeaveRequestRepository();
+            LeaveRequestService service = new LeaveRequestService(repository);
+            IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
+
+            ViewModel = new LeaveRequestListViewModel(
+                from request in requests
+                select new LeaveRequestItemViewModel(request.Comment)
+            );
+
             DataContext = ViewModel;
         }
     }

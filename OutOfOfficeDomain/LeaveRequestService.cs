@@ -8,18 +8,12 @@ namespace OutOfOfficeDomain
 {
     public class LeaveRequestService
     {
+        private readonly ILeaveRequestRepository repository; 
+        public LeaveRequestService(ILeaveRequestRepository leaveRequestRepository) {
+            repository = leaveRequestRepository;
+        }
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests() {
-            return new List<LeaveRequest>()
-            {
-                new LeaveRequest()
-                {
-                    Comment = "No reason"
-                },
-                new LeaveRequest()
-                {
-                    Comment = "Idk"
-                }
-            };
+            return repository.GetCurrentLeaveRequests();
         }
     }
 }

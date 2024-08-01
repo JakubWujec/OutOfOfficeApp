@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OutOfOfficeDomain\OutOfOfficeDomain.csproj" />
+    <ProjectReference Include="..\OutOfOfficeEF\OutOfOfficeEF.csproj" />
   </ItemGroup>
 
 </Project>
