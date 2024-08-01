@@ -1,4 +1,7 @@
-﻿using System.Configuration;
+﻿using OutOfOfficeDomain;
+using OutOfOfficeEF;
+using OutOfOfficeWPF.ViewModels;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -14,7 +17,19 @@ namespace OutOfOfficeWPF
         {
             base.OnStartup(e);
 
+            OutOfOfficeContext context = new OutOfOfficeContext();
+            SqlLeaveRequestRepository repository = new SqlLeaveRequestRepository(context);
+            LeaveRequestService service = new LeaveRequestService(repository);
+            IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
+
+            LeaveRequestListViewModel ViewModel = new LeaveRequestListViewModel(
+                from request in requests
+                select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id)
+            );
+
             MainWindow mainWindow = new MainWindow();
+            mainWindow.DataContext = ViewModel;
+
             mainWindow.Show();      
         }
     }
