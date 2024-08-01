@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class LeaveRequestListViewModel
+    public class LeaveRequestListViewModel: ViewModelBase
     {
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests { get; }
         public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests)

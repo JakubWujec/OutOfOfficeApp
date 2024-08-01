@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class LeaveRequestItemViewModel
+    public class LeaveRequestItemViewModel: ViewModelBase
     {
         public string Comment { get; set; }
         public DateOnly StartDate { get; set; }

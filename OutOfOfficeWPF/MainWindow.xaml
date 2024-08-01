@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OutOfOfficeWPF"
         xmlns:views="clr-namespace:OutOfOfficeWPF.Views"
+        xmlns:viewmodels="clr-namespace:OutOfOfficeWPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <views:LeaveRequestListControl></views:LeaveRequestListControl>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:LeaveRequestListViewModel}">
+                <views:LeaveRequestListControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HelloWorldViewModel}">
+                <views:HelloWorld />
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

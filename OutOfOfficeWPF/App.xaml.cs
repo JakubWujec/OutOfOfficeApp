@@ -12,7 +12,6 @@ namespace OutOfOfficeWPF
     /// </summary>
     public partial class App : Application
     {
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -22,16 +21,20 @@ namespace OutOfOfficeWPF
             LeaveRequestService service = new LeaveRequestService(repository);
             IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
 
-            LeaveRequestListViewModel ViewModel = new LeaveRequestListViewModel(
+            LeaveRequestListViewModel leaveRequestViewModel = new LeaveRequestListViewModel(
                 from request in requests
                 select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id)
             );
 
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.DataContext = ViewModel;
+            HelloWorldViewModel helloWorldViewModel = new HelloWorldViewModel();
 
+            MainViewModel mainViewModel = new MainViewModel(leaveRequestViewModel);
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.DataContext = mainViewModel;
+          
             mainWindow.Show();      
         }
     }
 
-}
+} 
