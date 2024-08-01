@@ -18,29 +18,15 @@ namespace OutOfOfficeEF
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests()
         {
             var result = context.LeaveRequests.ToList();
-
-            if (result.Count == 0)
-            {
-                context.LeaveRequests.Add(new LeaveRequest
-                {
-                    Comment = "No reason",
-                    StartDate = DateOnly.FromDateTime(DateTime.UtcNow.Date),
-                    EndDate = DateOnly.FromDateTime(DateTime.UtcNow.Date),
-                });
-
-                context.LeaveRequests.Add(new LeaveRequest
-                {
-                    Comment = "Idk",
-                    StartDate = DateOnly.FromDateTime(DateTime.UtcNow.Date),
-                    EndDate = DateOnly.FromDateTime(DateTime.UtcNow.Date.AddDays(2)),
-                });
-
-                context.SaveChanges();
-
-                result = context.LeaveRequests.ToList();
-            }
-
             return result;
         }
+
+
+        //public void CreateLeaveRequest(LeaveRequest leaveRequest)
+        //{
+        //    context.LeaveRequests.Add(leaveRequest);
+        //    context.SaveChanges(true);
+        //}
+
     }
 }
