@@ -23,21 +23,9 @@ namespace OutOfOfficeWPF.Views
     /// </summary>
     public partial class LeaveRequestListControl : UserControl
     {
-        public LeaveRequestListViewModel ViewModel { get; set; }
         public LeaveRequestListControl()
         {
             InitializeComponent();
-
-            SqlLeaveRequestRepository repository = new SqlLeaveRequestRepository();
-            LeaveRequestService service = new LeaveRequestService(repository);
-            IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
-
-            ViewModel = new LeaveRequestListViewModel(
-                from request in requests
-                select new LeaveRequestItemViewModel(request.Comment)
-            );
-
-            DataContext = ViewModel;
         }
     }
 }
