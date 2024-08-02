@@ -30,13 +30,12 @@ namespace OutOfOfficeWPF
         {
             base.OnStartup(e);
 
-            LeaveRequestListViewModel leaveRequestListViewModel = MakeLeaveRequestListViewModel();
-            HelloWorldViewModel helloWorldViewModel = MakeHelloWorldViewModel();
-            
-            navigationStore.CurrentViewModel = helloWorldViewModel;
+            LeaveRequestCreateViewModel leaveRequestCreateViewModel = MakeLeaveRequestCreateViewModel();
 
             MainViewModel mainViewModel = new MainViewModel(navigationStore);
             MainWindow mainWindow = new MainWindow();
+
+            navigationStore.CurrentViewModel = leaveRequestCreateViewModel;
 
             mainWindow.DataContext = mainViewModel;
             mainWindow.Show();      
@@ -49,13 +48,17 @@ namespace OutOfOfficeWPF
                 from request in requests
                 select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id),
                 new NavigationService(navigationStore, MakeHelloWorldViewModel)
-
             );
         }
 
         private HelloWorldViewModel MakeHelloWorldViewModel()
         {
             return new HelloWorldViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel));
+        }
+
+        private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
+        {
+            return new LeaveRequestCreateViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel));
         }
     }
 

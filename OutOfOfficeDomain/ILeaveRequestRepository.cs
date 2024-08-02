@@ -9,5 +9,6 @@ namespace OutOfOfficeDomain
     public interface ILeaveRequestRepository
     {
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests();
+        public void CreateLeaveRequest(LeaveRequest leaveRequest);
     }
 }

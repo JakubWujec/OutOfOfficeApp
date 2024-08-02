@@ -21,12 +21,11 @@ namespace OutOfOfficeEF
             return result;
         }
 
-
-        //public void CreateLeaveRequest(LeaveRequest leaveRequest)
-        //{
-        //    context.LeaveRequests.Add(leaveRequest);
-        //    context.SaveChanges(true);
-        //}
+        public void CreateLeaveRequest(LeaveRequest leaveRequest)
+        {
+            context.LeaveRequests.Add(leaveRequest);
+            context.SaveChanges(true);
+        }
 
     }
 }

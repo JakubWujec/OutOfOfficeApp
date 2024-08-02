@@ -15,5 +15,10 @@ namespace OutOfOfficeDomain
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests() {
             return repository.GetCurrentLeaveRequests();
         }
+
+        public void CreateLeaveRequest(LeaveRequest request)
+        {
+            repository.CreateLeaveRequest(request);
+        }
     }
 }
