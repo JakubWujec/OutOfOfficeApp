@@ -16,10 +16,10 @@ namespace OutOfOfficeWPF.ViewModels
     {
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests { get; }
         public ICommand NavigateToCommand { get; }
-        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests, NavigationStore navigationStore, Func<ViewModelBase> destinationViewModel)
+        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests, NavigationStore navigationStore, Func<ViewModelBase> createDestinationViewModel)
         {
             this.LeaveRequests = new ObservableCollection<LeaveRequestItemViewModel>(leaveRequests);
-            NavigateToCommand = new NavigateCommand(navigationStore, destinationViewModel);
+            NavigateToCommand = new NavigateCommand(navigationStore, createDestinationViewModel);
         }
     }
 }

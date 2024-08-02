@@ -9,9 +9,8 @@ using System.Windows.Input;
 
 namespace OutOfOfficeWPF.Commands
 {
-    public class NavigateCommand : ICommand
+    public class NavigateCommand : CommandBase
     {
-        public event EventHandler? CanExecuteChanged;
         private NavigationStore navigationStore;
         private Func<ViewModelBase> createViewModel;
 
@@ -20,12 +19,7 @@ namespace OutOfOfficeWPF.Commands
             this.navigationStore = navigationStore;
             this.createViewModel = createViewModel;
         }
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? parameter)
+        public override void Execute(object? parameter)
         {
             navigationStore.CurrentViewModel = createViewModel();
         }
