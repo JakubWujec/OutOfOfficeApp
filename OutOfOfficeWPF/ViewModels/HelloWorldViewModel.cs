@@ -1,4 +1,5 @@
 ﻿using OutOfOfficeWPF.Commands;
+using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,12 @@ namespace OutOfOfficeWPF.ViewModels
     public class HelloWorldViewModel: ViewModelBase
     {
         private NavigationStore navigationStore;
-        public ICommand NavigateToCommand { get }
-        public HelloWorldViewModel(NavigationStore navigationStore, Func<ViewModelBase> createDestinationViewModel)
+        private NavigationService navigationService;
+        public ICommand NavigateToCommand { get; }
+        public HelloWorldViewModel(NavigationService navigationService)
         {
-            this.navigationStore = navigationStore;
-            this.NavigateToCommand = new NavigateCommand(navigationStore, createDestinationViewModel);
+            this.navigationService = navigationService;
+            this.NavigateToCommand = new NavigateCommand(navigationService);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OutOfOfficeWPF.Stores;
+﻿using OutOfOfficeWPF.Services;
+using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,15 @@ namespace OutOfOfficeWPF.Commands
 {
     public class NavigateCommand : CommandBase
     {
-        private NavigationStore navigationStore;
-        private Func<ViewModelBase> createViewModel;
+        private NavigationService navigationService;
 
-        public NavigateCommand(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
+        public NavigateCommand(NavigationService navigationService)
         {
-            this.navigationStore = navigationStore;
-            this.createViewModel = createViewModel;
+            this.navigationService = navigationService;
         }
         public override void Execute(object? parameter)
         {
-            navigationStore.CurrentViewModel = createViewModel();
+            navigationService.Navigate();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeEF;
+using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
 using System.Configuration;
@@ -17,6 +18,7 @@ namespace OutOfOfficeWPF
         private LeaveRequestService leaveRequestService;
         private OutOfOfficeContext outOfOfficeContext;
         private SqlLeaveRequestRepository leaveRequestRepository;
+
         public App()
         {
             navigationStore = new NavigationStore();
@@ -46,14 +48,14 @@ namespace OutOfOfficeWPF
             return new LeaveRequestListViewModel(
                 from request in requests
                 select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id),
-                navigationStore,
-                MakeHelloWorldViewModel
+                new NavigationService(navigationStore, MakeHelloWorldViewModel)
+
             );
         }
 
         private HelloWorldViewModel MakeHelloWorldViewModel()
         {
-            return new HelloWorldViewModel(navigationStore, MakeLeaveRequestListViewModel);
+            return new HelloWorldViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel));
         }
     }
 

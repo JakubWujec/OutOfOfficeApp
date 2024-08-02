@@ -1,4 +1,5 @@
 ﻿using OutOfOfficeWPF.Commands;
+using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,14 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class LeaveRequestListViewModel: ViewModelBase
     {
+        private NavigationService navigationService;
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests { get; }
         public ICommand NavigateToCommand { get; }
-        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests, NavigationStore navigationStore, Func<ViewModelBase> createDestinationViewModel)
+        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests, NavigationService navigationService)
         {
             this.LeaveRequests = new ObservableCollection<LeaveRequestItemViewModel>(leaveRequests);
-            NavigateToCommand = new NavigateCommand(navigationStore, createDestinationViewModel);
+            this.navigationService = navigationService;
+            NavigateToCommand = new NavigateCommand(navigationService);
         }
     }
 }
