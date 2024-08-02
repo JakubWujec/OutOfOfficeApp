@@ -13,15 +13,11 @@ namespace OutOfOfficeWPF.ViewModels
     public class HelloWorldViewModel: ViewModelBase
     {
         private NavigationStore navigationStore;
-        private ViewModelBase destinationViewModel;
-        public ICommand NavigateToCommand { get;  }
-        public HelloWorldViewModel(NavigationStore navigationStore, ViewModelBase destinationViewModel)
+        public ICommand NavigateToCommand { get }
+        public HelloWorldViewModel(NavigationStore navigationStore, Func<ViewModelBase> createDestinationViewModel)
         {
             this.navigationStore = navigationStore;
-            this.destinationViewModel = destinationViewModel;
-            this.NavigateToCommand = new NavigateCommand(navigationStore, destinationViewModel);
+            this.NavigateToCommand = new NavigateCommand(navigationStore, createDestinationViewModel);
         }
-
-     
     }
 }

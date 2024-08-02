@@ -13,12 +13,12 @@ namespace OutOfOfficeWPF.Commands
     {
         public event EventHandler? CanExecuteChanged;
         private NavigationStore navigationStore;
-        private ViewModelBase viewModel;
+        private Func<ViewModelBase> createViewModel;
 
-        public NavigateCommand(NavigationStore navigationStore, ViewModelBase viewModel)
+        public NavigateCommand(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
         {
             this.navigationStore = navigationStore;
-            this.viewModel = viewModel;
+            this.createViewModel = createViewModel;
         }
         public bool CanExecute(object? parameter)
         {
@@ -27,7 +27,7 @@ namespace OutOfOfficeWPF.Commands
 
         public void Execute(object? parameter)
         {
-            navigationStore.CurrentViewModel = viewModel;
+            navigationStore.CurrentViewModel = createViewModel();
         }
     }
 }

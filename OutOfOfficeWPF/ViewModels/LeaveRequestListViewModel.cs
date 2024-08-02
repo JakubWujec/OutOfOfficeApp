@@ -1,10 +1,13 @@
-﻿using System;
+﻿using OutOfOfficeWPF.Commands;
+using OutOfOfficeWPF.Stores;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 
 namespace OutOfOfficeWPF.ViewModels
@@ -12,9 +15,11 @@ namespace OutOfOfficeWPF.ViewModels
     public class LeaveRequestListViewModel: ViewModelBase
     {
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests { get; }
-        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests)
+        public ICommand NavigateToCommand { get; }
+        public LeaveRequestListViewModel(IEnumerable<LeaveRequestItemViewModel> leaveRequests, NavigationStore navigationStore, Func<ViewModelBase> destinationViewModel)
         {
             this.LeaveRequests = new ObservableCollection<LeaveRequestItemViewModel>(leaveRequests);
+            NavigateToCommand = new NavigateCommand(navigationStore, destinationViewModel);
         }
     }
 }
