@@ -1,5 +1,6 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeEF;
+using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
 using System.Configuration;
 using System.Data;
@@ -12,28 +13,45 @@ namespace OutOfOfficeWPF
     /// </summary>
     public partial class App : Application
     {
+        private NavigationStore navigationStore;
+        private LeaveRequestService leaveRequestService;
+        private OutOfOfficeContext outOfOfficeContext;
+        private SqlLeaveRequestRepository leaveRequestRepository;
+        public App()
+        {
+            navigationStore = new NavigationStore();
+            outOfOfficeContext = new OutOfOfficeContext();
+            leaveRequestRepository = new SqlLeaveRequestRepository(outOfOfficeContext);
+            leaveRequestService = new LeaveRequestService(leaveRequestRepository);
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            OutOfOfficeContext context = new OutOfOfficeContext();
-            SqlLeaveRequestRepository repository = new SqlLeaveRequestRepository(context);
-            LeaveRequestService service = new LeaveRequestService(repository);
-            IEnumerable<LeaveRequest> requests = service.GetCurrentLeaveRequests();
+            LeaveRequestListViewModel leaveRequestListViewModel = MakeLeaveRequestListViewModel();
+            HelloWorldViewModel helloWorldViewModel = MakeHelloWorldViewModel();
+            
+            navigationStore.CurrentViewModel = helloWorldViewModel;
 
-            LeaveRequestListViewModel leaveRequestViewModel = new LeaveRequestListViewModel(
+            MainViewModel mainViewModel = new MainViewModel(navigationStore);
+            MainWindow mainWindow = new MainWindow();
+
+            mainWindow.DataContext = mainViewModel;
+            mainWindow.Show();      
+        }
+
+        private LeaveRequestListViewModel MakeLeaveRequestListViewModel()
+        {
+            IEnumerable<LeaveRequest> requests = leaveRequestService.GetCurrentLeaveRequests();
+            return new LeaveRequestListViewModel(
                 from request in requests
                 select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id)
             );
+        }
 
-            HelloWorldViewModel helloWorldViewModel = new HelloWorldViewModel();
-
-            MainViewModel mainViewModel = new MainViewModel(leaveRequestViewModel);
-
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.DataContext = mainViewModel;
-          
-            mainWindow.Show();      
+        private HelloWorldViewModel MakeHelloWorldViewModel()
+        {
+            return new HelloWorldViewModel(navigationStore, MakeLeaveRequestListViewModel());
         }
     }
 

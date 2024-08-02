@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OutOfOfficeWPF.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,18 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class MainViewModel: ViewModelBase
     {
-        public ViewModelBase CurrentViewModel { get; set; }
 
-        public MainViewModel(ViewModelBase currentViewModel) {
-            this.CurrentViewModel = currentViewModel;
+        private NavigationStore navigationStore;
+        public ViewModelBase CurrentViewModel => navigationStore.CurrentViewModel;
+
+        public MainViewModel(NavigationStore navigationStore) {
+            this.navigationStore = navigationStore;
+            this.navigationStore.CurrentViewModelChanged += NavigationStore_ViewModelChanged;
+        }
+
+        private void NavigationStore_ViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }
