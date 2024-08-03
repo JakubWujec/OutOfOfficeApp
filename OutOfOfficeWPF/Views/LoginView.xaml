@@ -9,9 +9,23 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="OutOfOffice App" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <Button x:Name="loginButton" Grid.Row="1" Width="100" Height="50" Content="Enter" Command="{Binding LoginCommand}"></Button>
+        <ComboBox Grid.Row="1" x:Name="EmployeesComboBox"  SelectedIndex="0" Width="120" ItemsSource="{Binding Path=Employees}" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock >
+                          <Run Text="{Binding FirstName}"/>
+                          <Run Text="{Binding LastName}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Grid.Row="2" x:Name="loginButton"  Width="100" Height="50" Content="Enter" Command="{Binding LoginCommand}"></Button>
+
     </Grid>
 </UserControl>

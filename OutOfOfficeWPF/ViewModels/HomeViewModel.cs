@@ -13,7 +13,6 @@ namespace OutOfOfficeWPF.ViewModels
         public HomeViewModel(IAuthStore authStore) {
             this.authStore = authStore;
         }
-
         public string Name => authStore.CurrentEmployee.FirstName + " " + authStore.CurrentEmployee.LastName;
         public int Balance => authStore.CurrentEmployee.OutOfOfficeBalance;
 

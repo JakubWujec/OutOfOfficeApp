@@ -16,8 +16,10 @@ namespace OutOfOfficeWPF
     {
         private NavigationStore navigationStore;
         private LeaveRequestService leaveRequestService;
+        private EmployeeService employeeService;
         private OutOfOfficeContext outOfOfficeContext;
         private SqlLeaveRequestRepository leaveRequestRepository;
+        private SqlEmployeeRepository employeeRepository;
         private IAuthenticator authenticator;
         private IAuthStore authStore;
 
@@ -27,6 +29,8 @@ namespace OutOfOfficeWPF
             outOfOfficeContext = new OutOfOfficeContext();
             leaveRequestRepository = new SqlLeaveRequestRepository(outOfOfficeContext);
             leaveRequestService = new LeaveRequestService(leaveRequestRepository);
+            employeeRepository = new SqlEmployeeRepository(outOfOfficeContext);
+            employeeService = new EmployeeService(employeeRepository);
             authStore = new AuthStore();
             authenticator = new Authenticator(authStore);
         }
@@ -62,9 +66,15 @@ namespace OutOfOfficeWPF
             return new HomeViewModel(authStore);
         }
         private LoginViewModel MakeLoginViewModel() {
-            return new LoginViewModel(new NavigationService(navigationStore, MakeHomeViewModel), authenticator);
+            return new LoginViewModel(new NavigationService(navigationStore, MakeEmployeeCreateViewModel), authenticator, employeeService);
         }
-        
+
+        private EmployeeCreateViewModel MakeEmployeeCreateViewModel()
+        {
+            return new EmployeeCreateViewModel(employeeService, new NavigationService(navigationStore, MakeHomeViewModel));
+        }
+
+
     }
 
 } 
