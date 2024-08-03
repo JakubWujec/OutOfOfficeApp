@@ -58,7 +58,7 @@ namespace OutOfOfficeWPF
 
         private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
         {
-            return new LeaveRequestCreateViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel));
+            return new LeaveRequestCreateViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel), leaveRequestService);
         }
     }
 

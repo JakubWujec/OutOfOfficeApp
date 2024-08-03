@@ -1,4 +1,5 @@
-﻿using OutOfOfficeWPF.Commands;
+﻿using OutOfOfficeDomain;
+using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,38 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class LeaveRequestCreateViewModel: ViewModelBase
     {
-        public DateOnly StartDate;
-        public DateOnly EndDate;
+        private DateTime startDate = DateTime.Now;
+        public DateTime StartDate
+        {
+            get
+            {
+                return startDate;
+            }
+            set
+            {
+                startDate = value;
+                OnPropertyChanged(nameof(StartDate));
+            }
+        }
+        private DateTime endDate = DateTime.Now;
+        public DateTime EndDate
+        {
+            get
+            {
+                return endDate;
+            }
+            set
+            {
+                endDate = value;
+                OnPropertyChanged(nameof(EndDate));
+            }
+        }
         public ICommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        private readonly NavigationService navigationService;
-        public LeaveRequestCreateViewModel(NavigationService navigationService)
+        public LeaveRequestCreateViewModel(NavigationService navigationService, LeaveRequestService leaveRequestService)
         {
-            this.StartDate = new DateOnly();
-            this.EndDate = new DateOnly();
-            this.navigationService = navigationService;
             this.CancelCommand = new NavigateCommand(navigationService);
-            this.SubmitCommand = new LeaveRequestCreateCommand(this, navigationService);
+            this.SubmitCommand = new LeaveRequestCreateCommand(this, navigationService, leaveRequestService);
         }
     }
 }

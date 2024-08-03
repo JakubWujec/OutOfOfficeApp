@@ -13,18 +13,21 @@ namespace OutOfOfficeWPF.Commands
     {
         private readonly LeaveRequestCreateViewModel viewModel;
         private readonly NavigationService navigationService;
-        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, NavigationService navigationService) { 
+        private readonly LeaveRequestService leaveRequestService;
+        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, NavigationService navigationService, LeaveRequestService leaveRequestService) { 
             this.viewModel = viewModel;
             this.navigationService = navigationService;
+            this.leaveRequestService = leaveRequestService;
         }
         public override void Execute(object? parameter)
         {
             LeaveRequest leaveRequest = new LeaveRequest()
             {
-                StartDate = viewModel.StartDate,
-                EndDate = viewModel.EndDate,
+                StartDate = DateOnly.FromDateTime(viewModel.StartDate),
+                EndDate = DateOnly.FromDateTime(viewModel.EndDate),
                 Comment = "no reason",
             };
+            leaveRequestService.CreateLeaveRequest(leaveRequest);
             navigationService.Navigate();
         }
     }
