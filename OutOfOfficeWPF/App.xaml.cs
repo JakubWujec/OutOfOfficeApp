@@ -30,12 +30,12 @@ namespace OutOfOfficeWPF
         {
             base.OnStartup(e);
 
-            LeaveRequestCreateViewModel leaveRequestCreateViewModel = MakeLeaveRequestCreateViewModel();
+            LoginViewModel viewModel = new LoginViewModel();
 
             MainViewModel mainViewModel = new MainViewModel(navigationStore);
             MainWindow mainWindow = new MainWindow();
 
-            navigationStore.CurrentViewModel = leaveRequestCreateViewModel;
+            navigationStore.CurrentViewModel = viewModel;
 
             mainWindow.DataContext = mainViewModel;
             mainWindow.Show();      
@@ -53,6 +53,11 @@ namespace OutOfOfficeWPF
         private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
         {
             return new LeaveRequestCreateViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel), leaveRequestService);
+        }
+
+        private LoginViewModel MakeLoginViewModel()
+        {
+            return new LoginViewModel();
         }
     }
 
