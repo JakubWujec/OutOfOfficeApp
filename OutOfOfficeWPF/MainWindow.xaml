@@ -13,9 +13,6 @@
             <DataTemplate DataType="{x:Type viewmodels:LeaveRequestListViewModel}">
                 <views:LeaveRequestListControl />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:HelloWorldViewModel}">
-                <views:HelloWorld />
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LeaveRequestCreateViewModel}">
                 <views:LeaveRequestCreateControl/>
             </DataTemplate>

@@ -47,15 +47,9 @@ namespace OutOfOfficeWPF
             return new LeaveRequestListViewModel(
                 from request in requests
                 select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id),
-                new NavigationService(navigationStore, MakeHelloWorldViewModel)
+                new NavigationService(navigationStore, MakeLeaveRequestCreateViewModel)
             );
         }
-
-        private HelloWorldViewModel MakeHelloWorldViewModel()
-        {
-            return new HelloWorldViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel));
-        }
-
         private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
         {
             return new LeaveRequestCreateViewModel(new NavigationService(navigationStore, MakeLeaveRequestListViewModel), leaveRequestService);
