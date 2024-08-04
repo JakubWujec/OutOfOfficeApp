@@ -9,12 +9,12 @@ namespace OutOfOfficeWPF.ViewModels
     public class LayoutViewModel: ViewModelBase
     {
         public NavigationBarViewModel NavigationBarViewModel;
-        public ViewModelBase CurrentViewModel;
+        public ViewModelBase ContentViewModel;
 
         public LayoutViewModel(NavigationBarViewModel navigationBarViewModel, ViewModelBase currentViewModel)
         {
             this.NavigationBarViewModel = navigationBarViewModel;
-            this.CurrentViewModel = currentViewModel;
+            this.ContentViewModel = currentViewModel;
         }
     }
 }
