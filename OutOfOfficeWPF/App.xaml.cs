@@ -66,7 +66,7 @@ namespace OutOfOfficeWPF
             return new LeaveRequestCreateViewModel(new NavigationService<LeaveRequestListViewModel>(navigationStore, MakeLeaveRequestListViewModel), leaveRequestService);
         }
         private HomeViewModel MakeHomeViewModel() {
-            return new HomeViewModel(authStore, navigationBarViewModel);
+            return new HomeViewModel(authStore);
         }
         private LoginViewModel MakeLoginViewModel() {
             return new LoginViewModel(new NavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel), authenticator, employeeService);

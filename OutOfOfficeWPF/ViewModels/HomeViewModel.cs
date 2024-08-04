@@ -10,13 +10,10 @@ namespace OutOfOfficeWPF.ViewModels
     public class HomeViewModel: ViewModelBase
     {
         private IAuthStore authStore;
-        private readonly NavigationBarViewModel _navigationBarViewModel;
-        public HomeViewModel(IAuthStore authStore, NavigationBarViewModel _navigationBarViewModel) {
-            this.authStore = authStore;
-            this._navigationBarViewModel = _navigationBarViewModel;
-        }
 
-        public NavigationBarViewModel NavigationBarViewModel => _navigationBarViewModel;
+        public HomeViewModel(IAuthStore authStore) {
+            this.authStore = authStore;
+        }
         public string Name => authStore.CurrentEmployee.FirstName + " " + authStore.CurrentEmployee.LastName;
         public int Balance => authStore.CurrentEmployee.OutOfOfficeBalance;
         public bool IsLoggedIn => authStore.CurrentEmployee != null;

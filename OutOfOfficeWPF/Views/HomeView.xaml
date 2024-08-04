@@ -8,16 +8,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}"></controls:NavigationBar>
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Home" FontSize="20"></TextBlock>
-        <TextBlock Grid.Row="2" Text="{Binding WelcomeInfo}"></TextBlock>
-        <TextBlock Grid.Row="3" Text="{Binding Name}" FontSize="20"></TextBlock>
-        <TextBlock Grid.Row="4" Text="{Binding Balance}" FontSize="20"></TextBlock>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Home" FontSize="20"></TextBlock>
+        <TextBlock Grid.Row="1" Text="{Binding WelcomeInfo}"></TextBlock>
+        <TextBlock Grid.Row="2" Text="{Binding Name}" FontSize="20"></TextBlock>
+        <TextBlock Grid.Row="3" Text="{Binding Balance}" FontSize="20"></TextBlock>
     </Grid>
 </UserControl>
