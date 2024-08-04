@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Services
 {
-    public class NavigationService
+    public class NavigationService<TViewModel> : INavigationService
+        where TViewModel : ViewModelBase
     {
         private NavigationStore navigationStore;
         private Func<ViewModelBase> createViewModel;
 
-        public NavigationService(NavigationStore navigationStore, Func<ViewModelBase> createViewModel) { 
+        public NavigationService(NavigationStore navigationStore, Func<TViewModel> createViewModel) { 
             this.navigationStore = navigationStore;
             this.createViewModel = createViewModel;
         }

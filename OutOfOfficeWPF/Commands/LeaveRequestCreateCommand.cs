@@ -12,9 +12,9 @@ namespace OutOfOfficeWPF.Commands
     public class LeaveRequestCreateCommand : CommandBase
     {
         private readonly LeaveRequestCreateViewModel viewModel;
-        private readonly NavigationService navigationService;
+        private readonly NavigationService<LeaveRequestListViewModel> navigationService;
         private readonly LeaveRequestService leaveRequestService;
-        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, NavigationService navigationService, LeaveRequestService leaveRequestService) { 
+        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, NavigationService<LeaveRequestListViewModel> navigationService, LeaveRequestService leaveRequestService) { 
             this.viewModel = viewModel;
             this.navigationService = navigationService;
             this.leaveRequestService = leaveRequestService;

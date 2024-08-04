@@ -14,12 +14,12 @@ namespace OutOfOfficeWPF.ViewModels
     public class EmployeeCreateViewModel: ViewModelBase
     {
         private readonly EmployeeService employeeService;
-        private readonly NavigationService navigationService;
-        public EmployeeCreateViewModel(EmployeeService employeeService, NavigationService navigationService) {
+        private readonly NavigationService<HomeViewModel> navigationService;
+        public EmployeeCreateViewModel(EmployeeService employeeService, NavigationService<HomeViewModel> navigationService) {
             this.employeeService = employeeService;
             this.navigationService = navigationService;
             this.SubmitCommand = new EmployeeCreateCommand(this, employeeService, navigationService);
-            this.CancelCommand = new NavigateCommand(navigationService);
+            this.CancelCommand = new NavigateCommand<HomeViewModel>(navigationService);
         }
 
         public ICommand SubmitCommand { get;}

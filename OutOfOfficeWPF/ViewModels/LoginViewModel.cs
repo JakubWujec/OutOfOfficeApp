@@ -18,10 +18,10 @@ namespace OutOfOfficeWPF.ViewModels
     public class LoginViewModel: ViewModelBase
     {
         public ICommand LoginCommand { get; }
-        private readonly NavigationService navigationService;
+        private readonly NavigationService<HomeViewModel> navigationService;
         private readonly IAuthenticator authenticator;
         private readonly EmployeeService employeeService;
-        public LoginViewModel(NavigationService navigationService, IAuthenticator authenticator, EmployeeService employeeService)
+        public LoginViewModel(NavigationService<HomeViewModel> navigationService, IAuthenticator authenticator, EmployeeService employeeService)
         {
             this.authenticator = authenticator;
             this.navigationService = navigationService;

@@ -11,10 +11,10 @@ namespace OutOfOfficeWPF.Commands
 {
     public class LoginCommand : CommandBase
     {
-        private readonly NavigationService navigationService;
+        private readonly NavigationService<HomeViewModel> navigationService;
         private readonly IAuthenticator authenticator;
         private readonly LoginViewModel viewModel;
-        public LoginCommand(LoginViewModel viewModel, IAuthenticator authenticator, NavigationService navigationService)
+        public LoginCommand(LoginViewModel viewModel, IAuthenticator authenticator, NavigationService<HomeViewModel> navigationService)
         {
             this.viewModel = viewModel;
             this.navigationService = navigationService;
