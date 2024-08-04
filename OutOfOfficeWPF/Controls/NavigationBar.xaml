@@ -7,14 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-            <RadioButton 
-                GroupName="NavigationBarGroup" 
-                Content="Home"
-            ></RadioButton>
-            <RadioButton GroupName="NavigationBarGroup" Content="Leave requests"></RadioButton>
-            <RadioButton GroupName="NavigationBarGroup" Content="Make leave request"></RadioButton>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="home" Content="Home" Command="{Binding NavigateHomeCommand}"></Button>
+            <Button x:Name="takeLR" Content="Make leave request" Command="{Binding NavigateMakeLeaveRequestCommand}"></Button>
         </StackPanel>
-       
     </Grid>
 </UserControl>

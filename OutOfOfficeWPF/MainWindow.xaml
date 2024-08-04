@@ -29,14 +29,6 @@
         </Grid.Resources>
 
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
-                <controls:NavigationBar Margin="0,0,10,0" ></controls:NavigationBar>
-            </Border>
-
             <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" />
         </Grid>
         

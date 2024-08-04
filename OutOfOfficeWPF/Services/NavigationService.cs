@@ -14,12 +14,10 @@ namespace OutOfOfficeWPF.Services
     {
         private NavigationStore navigationStore;
         private Func<ViewModelBase> createViewModel;
-
         public NavigationService(NavigationStore navigationStore, Func<TViewModel> createViewModel) { 
             this.navigationStore = navigationStore;
             this.createViewModel = createViewModel;
         }
-
         public void Navigate()
         {
             navigationStore.CurrentViewModel = createViewModel();
