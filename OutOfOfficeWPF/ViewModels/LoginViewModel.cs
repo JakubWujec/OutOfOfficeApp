@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 
-//TODO dodac dropdown ze wszystkimi uzytkownikami do wyboru. DONE
+//TODO get selected item from combobox, get id of it 
+// and pass it to login command as a parameter to execute?
 
 namespace OutOfOfficeWPF.ViewModels
 {
@@ -25,8 +26,20 @@ namespace OutOfOfficeWPF.ViewModels
             this.authenticator = authenticator;
             this.navigationService = navigationService;
             this.employeeService = employeeService;
-            this.LoginCommand = new LoginCommand(authenticator, navigationService);
+            this.LoginCommand = new LoginCommand(this, authenticator, navigationService);
         }
+
+        private Employee _selectedEmployee;
+        public Employee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                _selectedEmployee = value;
+                //  OnPropertyChanged();
+            }
+        }
+
 
         public IEnumerable<Employee> Employees => employeeService.GetEmployees();
 

@@ -18,4 +18,8 @@
     <ProjectReference Include="..\OutOfOfficeDomain\OutOfOfficeDomain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -10,22 +10,19 @@ namespace OutOfOfficeWPF.Stores
     public class Authenticator : IAuthenticator
     {
         private readonly IAuthStore authStore;
-        public Authenticator(IAuthStore authStore)
+        private readonly EmployeeService employeeService;
+        public Authenticator(IAuthStore authStore, EmployeeService employeeService)
         {
             this.authStore = authStore;
+            this.employeeService = employeeService;
         }
 
         public Employee CurrentEmployee => authStore.CurrentEmployee;
-
-        public void Login()
+        public bool IsLoggedIn => CurrentEmployee != null;
+        public void Login(Guid id)
         {
-            this.authStore.CurrentEmployee = new Employee()
-            {
-                FirstName = "TestName",
-                LastName = "TestLastName",
-                IsActive = true,
-                OutOfOfficeBalance = 26
-            };
+            Employee employee = employeeService.GetEmployeeById(id);
+            authStore.CurrentEmployee = employee;
         }
     }
 }

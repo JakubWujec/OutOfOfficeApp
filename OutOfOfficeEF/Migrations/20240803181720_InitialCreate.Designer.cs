@@ -11,8 +11,8 @@ using OutOfOfficeEF;
 namespace OutOfOfficeEF.Migrations
 {
     [DbContext(typeof(OutOfOfficeContext))]
-    [Migration("20240803115813_Employee")]
-    partial class Employee
+    [Migration("20240803181720_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,9 +22,9 @@ namespace OutOfOfficeEF.Migrations
 
             modelBuilder.Entity("OutOfOfficeDomain.Employee", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -40,7 +40,7 @@ namespace OutOfOfficeEF.Migrations
                     b.Property<int>("OutOfOfficeBalance")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("EmployeeId");
+                    b.HasKey("Id");
 
                     b.ToTable("Employees");
                 });

@@ -1,5 +1,6 @@
 ﻿using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
+using OutOfOfficeWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,18 @@ namespace OutOfOfficeWPF.Commands
     {
         private readonly NavigationService navigationService;
         private readonly IAuthenticator authenticator;
-        public LoginCommand(IAuthenticator authenticator, NavigationService navigationService)
+        private readonly LoginViewModel viewModel;
+        public LoginCommand(LoginViewModel viewModel, IAuthenticator authenticator, NavigationService navigationService)
         {
+            this.viewModel = viewModel;
             this.navigationService = navigationService;
             this.authenticator = authenticator;
         }
         public override void Execute(object? parameter)
         {
-            authenticator.Login();
+            authenticator.Login(
+                viewModel.SelectedEmployee.Id 
+            );
             navigationService.Navigate();
         }
     }

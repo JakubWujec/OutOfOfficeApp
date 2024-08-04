@@ -19,9 +19,9 @@ namespace OutOfOfficeEF.Migrations
 
             modelBuilder.Entity("OutOfOfficeDomain.Employee", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -37,7 +37,7 @@ namespace OutOfOfficeEF.Migrations
                     b.Property<int>("OutOfOfficeBalance")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("EmployeeId");
+                    b.HasKey("Id");
 
                     b.ToTable("Employees");
                 });

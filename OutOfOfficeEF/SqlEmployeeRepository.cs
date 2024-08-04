@@ -22,6 +22,16 @@ namespace OutOfOfficeEF
             this.context.SaveChanges();
         }
 
+        public Employee GetEmployeeById(Guid id)
+        {
+            Employee employee = this.context.Employees.First(x => x.Id == id);
+            if(employee == null)
+            {
+                throw new Exception("Employee does not exist");
+            }
+            return employee;
+        }
+
         public IEnumerable<Employee> GetEmployees()
         {
             return context.Employees.ToList();

@@ -32,18 +32,16 @@ namespace OutOfOfficeWPF
             employeeRepository = new SqlEmployeeRepository(outOfOfficeContext);
             employeeService = new EmployeeService(employeeRepository);
             authStore = new AuthStore();
-            authenticator = new Authenticator(authStore);
+            authenticator = new Authenticator(authStore, employeeService);
         }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            LoginViewModel viewModel = MakeLoginViewModel();
+            navigationStore.CurrentViewModel = MakeLoginViewModel();
 
             MainViewModel mainViewModel = new MainViewModel(navigationStore);
             MainWindow mainWindow = new MainWindow();
-
-            navigationStore.CurrentViewModel = viewModel;
 
             mainWindow.DataContext = mainViewModel;
             mainWindow.Show();      
@@ -66,7 +64,7 @@ namespace OutOfOfficeWPF
             return new HomeViewModel(authStore);
         }
         private LoginViewModel MakeLoginViewModel() {
-            return new LoginViewModel(new NavigationService(navigationStore, MakeEmployeeCreateViewModel), authenticator, employeeService);
+            return new LoginViewModel(new NavigationService(navigationStore, MakeHomeViewModel), authenticator, employeeService);
         }
 
         private EmployeeCreateViewModel MakeEmployeeCreateViewModel()

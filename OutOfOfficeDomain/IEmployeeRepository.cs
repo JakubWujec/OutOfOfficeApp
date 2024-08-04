@@ -10,5 +10,8 @@ namespace OutOfOfficeDomain
     {
         public IEnumerable<Employee> GetEmployees();
         public void CreateEmployee(Employee employee);
+
+        public Employee GetEmployeeById(Guid id);
+
     }
 }

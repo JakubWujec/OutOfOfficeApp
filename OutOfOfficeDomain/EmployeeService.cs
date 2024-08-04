@@ -23,5 +23,10 @@ namespace OutOfOfficeDomain
         {
             _employeeRepository.CreateEmployee(employee);
         }
+
+        public Employee GetEmployeeById(Guid guid)
+        {
+            return _employeeRepository.GetEmployeeById(guid);
+        }
     }
 }

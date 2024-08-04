@@ -10,6 +10,6 @@ namespace OutOfOfficeWPF.Stores
     public interface IAuthenticator
     {
         Employee CurrentEmployee { get; }
-        public void Login();
+        public void Login(Guid id);
     }
 }
