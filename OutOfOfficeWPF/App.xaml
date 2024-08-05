@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:OutOfOfficeWPF"
              >
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <Style TargetType="Button">
+                        <Setter Property="Padding" Value="4, 3"/>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OutOfOfficeDomain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,13 @@ namespace OutOfOfficeDomain
             return repository.GetCurrentLeaveRequests();
         }
 
-        public void CreateLeaveRequest(LeaveRequest request)
+        public void CreateLeaveRequest(LeaveRequest leaveRequest)
         {
-            repository.CreateLeaveRequest(request);
+            if (leaveRequest.StartDate > leaveRequest.EndDate)
+            {
+                throw new InvalidLeaveRequestDateOnlyRangeException(leaveRequest);
+            }
+            repository.CreateLeaveRequest(leaveRequest);
         }
     }
 }
