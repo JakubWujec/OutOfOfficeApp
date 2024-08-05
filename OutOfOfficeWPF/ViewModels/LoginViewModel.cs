@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 
-//TODO get selected item from combobox, get id of it 
-// and pass it to login command as a parameter to execute?
 
 namespace OutOfOfficeWPF.ViewModels
 {

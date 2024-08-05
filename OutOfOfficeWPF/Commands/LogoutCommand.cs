@@ -7,9 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//TODO remove user from auth store
-//TODO navigate to home view
-
 namespace OutOfOfficeWPF.Commands
 {
     public class LogoutCommand : CommandBase
