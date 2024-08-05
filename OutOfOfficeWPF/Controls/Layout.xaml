@@ -12,9 +12,12 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <local:NavigationBar></local:NavigationBar>
+        <local:NavigationBar DataContext="{Binding NavigationBarViewModel}"></local:NavigationBar>
         <Grid Grid.Row="1">
-            <ContentControl Content="{Binding ContentViewModel}" />
+            <StackPanel>
+                <ContentControl Content="{Binding ContentViewModel}" />
+            </StackPanel>
+
         </Grid>
     </Grid>
 </UserControl>

@@ -15,8 +15,8 @@ namespace OutOfOfficeWPF.Commands
     {
         private readonly EmployeeCreateViewModel employeeCreateViewModel;
         private readonly EmployeeService employeeService;
-        private readonly NavigationService<HomeViewModel> navigationService;
-        public EmployeeCreateCommand(EmployeeCreateViewModel employeeCreateViewModel, EmployeeService employeeService, NavigationService<HomeViewModel> navigationService) { 
+        private readonly INavigationService<HomeViewModel> navigationService;
+        public EmployeeCreateCommand(EmployeeCreateViewModel employeeCreateViewModel, EmployeeService employeeService, INavigationService<HomeViewModel> navigationService) { 
             this.navigationService = navigationService;
             this.employeeCreateViewModel = employeeCreateViewModel;
             this.employeeService = employeeService;

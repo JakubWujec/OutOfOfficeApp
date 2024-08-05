@@ -9,11 +9,11 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class MainViewModel: ViewModelBase
     {
-
         private NavigationStore navigationStore;
         public ViewModelBase CurrentViewModel => navigationStore.CurrentViewModel;
-
-        public MainViewModel(NavigationStore navigationStore) {
+    
+        public MainViewModel(NavigationStore navigationStore)
+        {
             this.navigationStore = navigationStore;
             this.navigationStore.CurrentViewModelChanged += NavigationStore_ViewModelChanged;
         }

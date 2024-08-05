@@ -15,8 +15,8 @@ namespace OutOfOfficeWPF.ViewModels
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateMakeLeaveRequestCommand { get; }
         public NavigationBarViewModel(
-            NavigationService<HomeViewModel> homeNavigationService,
-            NavigationService<LeaveRequestCreateViewModel> createLeaveRequestNavigationService
+            INavigationService<HomeViewModel> homeNavigationService,
+            INavigationService<LeaveRequestCreateViewModel> createLeaveRequestNavigationService
         ) {
             this.NavigateHomeCommand = new NavigateCommand<HomeViewModel>(homeNavigationService);
             this.NavigateMakeLeaveRequestCommand = new NavigateCommand<LeaveRequestCreateViewModel>(createLeaveRequestNavigationService);

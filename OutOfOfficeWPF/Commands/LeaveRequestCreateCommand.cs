@@ -12,11 +12,11 @@ namespace OutOfOfficeWPF.Commands
     public class LeaveRequestCreateCommand : CommandBase
     {
         private readonly LeaveRequestCreateViewModel viewModel;
-        private readonly NavigationService<LeaveRequestListViewModel> navigationService;
+        private readonly INavigationService<LeaveRequestListViewModel> leaveRequestListNavigationService;
         private readonly LeaveRequestService leaveRequestService;
-        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, NavigationService<LeaveRequestListViewModel> navigationService, LeaveRequestService leaveRequestService) { 
+        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, INavigationService<LeaveRequestListViewModel> navigationService, LeaveRequestService leaveRequestService) { 
             this.viewModel = viewModel;
-            this.navigationService = navigationService;
+            this.leaveRequestListNavigationService = navigationService;
             this.leaveRequestService = leaveRequestService;
         }
         public override void Execute(object? parameter)
@@ -28,7 +28,7 @@ namespace OutOfOfficeWPF.Commands
                 Comment = "no reason",
             };
             leaveRequestService.CreateLeaveRequest(leaveRequest);
-            navigationService.Navigate();
+            leaveRequestListNavigationService.Navigate();
         }
     }
 }

@@ -8,13 +8,16 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class LayoutViewModel: ViewModelBase
     {
-        public NavigationBarViewModel NavigationBarViewModel;
-        public ViewModelBase ContentViewModel;
+        private NavigationBarViewModel navigationBarViewModel;
+        private ViewModelBase contentViewModel;
 
-        public LayoutViewModel(NavigationBarViewModel navigationBarViewModel, ViewModelBase currentViewModel)
+        public NavigationBarViewModel NavigationBarViewModel => navigationBarViewModel;
+        public ViewModelBase ContentViewModel => contentViewModel;
+
+        public LayoutViewModel(NavigationBarViewModel navigationBarViewModel, ViewModelBase contentViewModel)
         {
-            this.NavigationBarViewModel = navigationBarViewModel;
-            this.ContentViewModel = currentViewModel;
+            this.navigationBarViewModel = navigationBarViewModel;
+            this.contentViewModel = contentViewModel;
         }
     }
 }

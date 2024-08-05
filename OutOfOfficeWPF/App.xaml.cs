@@ -20,7 +20,6 @@ namespace OutOfOfficeWPF
         private OutOfOfficeContext outOfOfficeContext;
         private SqlLeaveRequestRepository leaveRequestRepository;
         private SqlEmployeeRepository employeeRepository;
-        private NavigationBarViewModel navigationBarViewModel;
         private IAuthenticator authenticator;
         private IAuthStore authStore;
 
@@ -32,10 +31,6 @@ namespace OutOfOfficeWPF
             leaveRequestService = new LeaveRequestService(leaveRequestRepository);
             employeeRepository = new SqlEmployeeRepository(outOfOfficeContext);
             employeeService = new EmployeeService(employeeRepository);
-            navigationBarViewModel = new NavigationBarViewModel(
-                new NavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel),
-                new NavigationService<LeaveRequestCreateViewModel>(navigationStore, MakeLeaveRequestCreateViewModel)
-            );
             authStore = new AuthStore();
             authenticator = new Authenticator(authStore, employeeService);
         }
@@ -63,13 +58,13 @@ namespace OutOfOfficeWPF
         }
         private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
         {
-            return new LeaveRequestCreateViewModel(new NavigationService<LeaveRequestListViewModel>(navigationStore, MakeLeaveRequestListViewModel), leaveRequestService);
+            return new LeaveRequestCreateViewModel(MakeLeaveRequestListNavigationService(), leaveRequestService);
         }
         private HomeViewModel MakeHomeViewModel() {
             return new HomeViewModel(authStore);
         }
         private LoginViewModel MakeLoginViewModel() {
-            return new LoginViewModel(new NavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel), authenticator, employeeService);
+            return new LoginViewModel(MakeHomeNavigationService(), authenticator, employeeService);
         }
 
         private EmployeeCreateViewModel MakeEmployeeCreateViewModel()
@@ -77,6 +72,31 @@ namespace OutOfOfficeWPF
             return new EmployeeCreateViewModel(employeeService, new NavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel));
         }
 
+        private INavigationService<HomeViewModel> MakeHomeNavigationService()
+        {
+            return new LayoutNavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel, MakeNavigationBarViewModel);
+        }
+        private INavigationService<LeaveRequestCreateViewModel> MakeLeaveRequestCreateNavigationService()
+        {
+            return new LayoutNavigationService<LeaveRequestCreateViewModel>(navigationStore, MakeLeaveRequestCreateViewModel, MakeNavigationBarViewModel);
+        }
+
+        private INavigationService<LeaveRequestListViewModel> MakeLeaveRequestListNavigationService()
+        {
+            return new LayoutNavigationService<LeaveRequestListViewModel>(
+                navigationStore, 
+                MakeLeaveRequestListViewModel, 
+                MakeNavigationBarViewModel
+            );
+        }
+
+        private NavigationBarViewModel MakeNavigationBarViewModel()
+        {
+            return new NavigationBarViewModel(
+                MakeHomeNavigationService(),
+                MakeLeaveRequestCreateNavigationService()
+            );
+        }
 
     }
 

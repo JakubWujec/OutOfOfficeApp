@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Commands
 {
-    public class LoginCommand : CommandBase
+    public class LoginCommand<TViewModel> : CommandBase where TViewModel : ViewModelBase
     {
-        private readonly NavigationService<HomeViewModel> navigationService;
+        private readonly INavigationService<HomeViewModel> navigationService;
         private readonly IAuthenticator authenticator;
         private readonly LoginViewModel viewModel;
-        public LoginCommand(LoginViewModel viewModel, IAuthenticator authenticator, NavigationService<HomeViewModel> navigationService)
+        public LoginCommand(LoginViewModel viewModel, IAuthenticator authenticator, INavigationService<HomeViewModel> navigationService)
         {
             this.viewModel = viewModel;
             this.navigationService = navigationService;

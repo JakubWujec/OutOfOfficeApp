@@ -12,9 +12,9 @@ namespace OutOfOfficeWPF.Commands
 {
     public class NavigateCommand<TViewModel>: CommandBase where TViewModel : ViewModelBase
     {
-        private NavigationService<TViewModel> navigationService;
+        private INavigationService<TViewModel> navigationService;
 
-        public NavigateCommand(NavigationService<TViewModel> navigationService)
+        public NavigateCommand(INavigationService<TViewModel> navigationService)
         {
             this.navigationService = navigationService;
         }
