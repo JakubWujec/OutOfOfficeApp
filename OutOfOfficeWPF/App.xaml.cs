@@ -6,6 +6,7 @@ using OutOfOfficeWPF.ViewModels;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace OutOfOfficeWPF
 {
@@ -89,12 +90,18 @@ namespace OutOfOfficeWPF
                 MakeNavigationBarViewModel
             );
         }
+        private INavigationService<LoginViewModel> MakeLoginNavigationService()
+        {
+            return new NavigationService<LoginViewModel>(navigationStore, MakeLoginViewModel);
+        }
 
         private NavigationBarViewModel MakeNavigationBarViewModel()
         {
             return new NavigationBarViewModel(
                 MakeHomeNavigationService(),
-                MakeLeaveRequestCreateNavigationService()
+                MakeLeaveRequestCreateNavigationService(),
+                MakeLoginNavigationService(),
+                authStore
             );
         }
 

@@ -14,10 +14,10 @@ namespace OutOfOfficeWPF.ViewModels
         public HomeViewModel(IAuthStore authStore) {
             this.authStore = authStore;
         }
-        public string Name => authStore.CurrentEmployee.FirstName + " " + authStore.CurrentEmployee.LastName;
-        public int Balance => authStore.CurrentEmployee.OutOfOfficeBalance;
+        public string Name => authStore.CurrentEmployee?.FirstName + " " + authStore.CurrentEmployee?.LastName;
+        public int Balance => authStore.CurrentEmployee?.OutOfOfficeBalance ?? 0;
         public bool IsLoggedIn => authStore.CurrentEmployee != null;
-        public string WelcomeInfo => IsLoggedIn ? $"Welcome {authStore.CurrentEmployee.FirstName} {authStore.CurrentEmployee.LastName}" : "Welcome. You are not logged in";
+        public string WelcomeInfo => IsLoggedIn ? $"Welcome {authStore.CurrentEmployee?.FirstName} {authStore.CurrentEmployee?.LastName}" : "Welcome. You are not logged in";
 
     }
 }

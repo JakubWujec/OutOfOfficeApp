@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OutOfOfficeWPF.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="50" d:DesignWidth="800">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <!-- Navigation Button Style -->
         <Style x:Key="NavigationButtonStyle" TargetType="Button">
             <Setter Property="Margin" Value="10"/>
@@ -14,6 +15,8 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
         </Style>
+
+        
     </UserControl.Resources>
     <DockPanel LastChildFill="True" Background="BlueViolet">
         <TextBlock Text="OutOfOffice" FontSize="20" FontWeight="Bold" Foreground="White" 
@@ -22,8 +25,12 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <Button Content="Home" Command="{Binding NavigateHomeCommand}"
                     Style="{StaticResource NavigationButtonStyle}"></Button>
-            <Button x:Name="takeLR" Content="Make leave request" Command="{Binding NavigateMakeLeaveRequestCommand}"
+            <Button Content="Make leave request" Command="{Binding NavigateMakeLeaveRequestCommand}"
                     Style="{StaticResource NavigationButtonStyle}"></Button>
+            <Button  Content="Logout" Command="{Binding LogoutCommand}"
+                Style="{StaticResource NavigationButtonStyle}"
+                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
+            ></Button>
         </StackPanel>
 
 

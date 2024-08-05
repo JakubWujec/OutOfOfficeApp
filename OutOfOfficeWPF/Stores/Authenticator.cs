@@ -16,9 +16,7 @@ namespace OutOfOfficeWPF.Stores
             this.authStore = authStore;
             this.employeeService = employeeService;
         }
-
         public Employee CurrentEmployee => authStore.CurrentEmployee;
-        public bool IsLoggedIn => CurrentEmployee != null;
         public void Login(Guid id)
         {
             Employee employee = employeeService.GetEmployeeById(id);
