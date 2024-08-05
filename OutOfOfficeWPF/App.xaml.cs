@@ -101,6 +101,7 @@ namespace OutOfOfficeWPF
                 MakeHomeNavigationService(),
                 MakeLeaveRequestCreateNavigationService(),
                 MakeLoginNavigationService(),
+                MakeLeaveRequestListNavigationService(),
                 authStore
             );
         }
