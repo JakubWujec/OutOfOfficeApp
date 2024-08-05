@@ -6,10 +6,26 @@
              xmlns:local="clr-namespace:OutOfOfficeWPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="home" Content="Home" Command="{Binding NavigateHomeCommand}"></Button>
-            <Button x:Name="takeLR" Content="Make leave request" Command="{Binding NavigateMakeLeaveRequestCommand}"></Button>
+    <UserControl.Resources>
+        <!-- Navigation Button Style -->
+        <Style x:Key="NavigationButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True" Background="BlueViolet">
+        <TextBlock Text="OutOfOffice" FontSize="20" FontWeight="Bold" Foreground="White" 
+                   VerticalAlignment="Center" Margin="10" DockPanel.Dock="Left"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Content="Home" Command="{Binding NavigateHomeCommand}"
+                    Style="{StaticResource NavigationButtonStyle}"></Button>
+            <Button x:Name="takeLR" Content="Make leave request" Command="{Binding NavigateMakeLeaveRequestCommand}"
+                    Style="{StaticResource NavigationButtonStyle}"></Button>
         </StackPanel>
-    </Grid>
+
+
+    </DockPanel>
 </UserControl>
