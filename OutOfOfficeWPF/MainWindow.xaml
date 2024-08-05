@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:OutOfOfficeWPF"
         xmlns:views="clr-namespace:OutOfOfficeWPF.Views"
         xmlns:viewmodels="clr-namespace:OutOfOfficeWPF.ViewModels" 
-        xmlns:controls="clr-namespace:OutOfOfficeWPF.Controls"
+        xmlns:controls="clr-namespace:OutOfOfficeWPF.Controls" 
+        xmlns:mymodalcontrol="clr-namespace:MyModalControl;assembly=MyModalControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -34,6 +35,11 @@
         <Grid>
             <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" />
         </Grid>
-        
+
+        <mymodalcontrol:Modal Panel.ZIndex="10" IsOpen="True">
+            <ContentControl Content="{Binding CurrentViewModel}" />
+        </mymodalcontrol:Modal>
+
+      
     </Grid>
 </Window>

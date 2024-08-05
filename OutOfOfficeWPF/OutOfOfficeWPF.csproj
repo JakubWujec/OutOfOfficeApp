@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyModalControl\MyModalControl.csproj" />
     <ProjectReference Include="..\OutOfOfficeDomain\OutOfOfficeDomain.csproj" />
     <ProjectReference Include="..\OutOfOfficeEF\OutOfOfficeEF.csproj" />
   </ItemGroup>
