@@ -10,11 +10,11 @@ using System.Windows.Input;
 
 namespace OutOfOfficeWPF.Commands
 {
-    public class NavigateCommand<TViewModel>: CommandBase where TViewModel : ViewModelBase
+    public class NavigateCommand: CommandBase 
     {
-        private INavigationService<TViewModel> navigationService;
+        private INavigationService navigationService;
 
-        public NavigateCommand(INavigationService<TViewModel> navigationService)
+        public NavigateCommand(INavigationService navigationService)
         {
             this.navigationService = navigationService;
         }

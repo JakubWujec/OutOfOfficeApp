@@ -22,17 +22,17 @@ namespace OutOfOfficeWPF.ViewModels
         public bool IsLoggedIn => authStore.IsLoggedIn;
 
         public NavigationBarViewModel(
-            INavigationService<HomeViewModel> homeNavigationService,
-            INavigationService<LeaveRequestCreateViewModel> createLeaveRequestNavigationService,
-            INavigationService<LoginViewModel> loginNavigationService,
-            INavigationService<LeaveRequestListViewModel> leaveRequestListNavigationService,
+            INavigationService homeNavigationService,
+            INavigationService createLeaveRequestNavigationService,
+            INavigationService loginNavigationService,
+            INavigationService leaveRequestListNavigationService,
             IAuthStore authStore
         )
         {
-            this.NavigateHomeCommand = new NavigateCommand<HomeViewModel>(homeNavigationService);
-            this.NavigateMakeLeaveRequestCommand = new NavigateCommand<LeaveRequestCreateViewModel>(createLeaveRequestNavigationService);
-            this.NavigateLoginCommand = new NavigateCommand<LoginViewModel>(loginNavigationService);
-            this.NavigateLeaveRequestListCommand = new NavigateCommand<LeaveRequestListViewModel>(leaveRequestListNavigationService);
+            this.NavigateHomeCommand = new NavigateCommand(homeNavigationService);
+            this.NavigateMakeLeaveRequestCommand = new NavigateCommand(createLeaveRequestNavigationService);
+            this.NavigateLoginCommand = new NavigateCommand(loginNavigationService);
+            this.NavigateLeaveRequestListCommand = new NavigateCommand(leaveRequestListNavigationService);
             this.authStore = authStore;
             this.LogoutCommand = new LogoutCommand(authStore, loginNavigationService);
             

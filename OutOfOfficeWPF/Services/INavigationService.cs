@@ -9,8 +9,7 @@ using System.Windows.Navigation;
 
 namespace OutOfOfficeWPF.Services
 {
-    public interface INavigationService<TViewModel> 
-        where TViewModel : ViewModelBase
+    public interface INavigationService
     {
         public void Navigate();
     }

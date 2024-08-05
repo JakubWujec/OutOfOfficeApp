@@ -1,4 +1,5 @@
-﻿using OutOfOfficeDomain;
+﻿using Microsoft.Extensions.DependencyInjection;
+using OutOfOfficeDomain;
 using OutOfOfficeEF;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
@@ -6,7 +7,7 @@ using OutOfOfficeWPF.ViewModels;
 using System.Configuration;
 using System.Data;
 using System.Windows;
-using System.Windows.Navigation;
+
 
 namespace OutOfOfficeWPF
 {
@@ -18,6 +19,7 @@ namespace OutOfOfficeWPF
         private NavigationStore navigationStore;
         private ModalNavigationStore modalNavigationStore;
         private LeaveRequestService leaveRequestService;
+        private CloseModalNavigationService closeModalNavigationService;
         private EmployeeService employeeService;
         private OutOfOfficeContext outOfOfficeContext;
         private SqlLeaveRequestRepository leaveRequestRepository;
@@ -56,12 +58,21 @@ namespace OutOfOfficeWPF
             return new LeaveRequestListViewModel(
                 from request in requests
                 select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id),
-                new NavigationService<LeaveRequestCreateViewModel>(navigationStore, MakeLeaveRequestCreateViewModel)
+                MakeCreateLeaveRequestNavigationService()
             );
+        }
+
+        private ModalNavigationService<LeaveRequestCreateViewModel> MakeCreateLeaveRequestNavigationService()
+        {
+            return new ModalNavigationService<LeaveRequestCreateViewModel>(modalNavigationStore, MakeLeaveRequestCreateViewModel);
         }
         private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
         {
-            return new LeaveRequestCreateViewModel(MakeLeaveRequestListNavigationService(), leaveRequestService, authStore);
+            CompositeNavigationService navigationService = new CompositeNavigationService(
+                new CloseModalNavigationService(modalNavigationStore),
+                MakeLeaveRequestListNavigationService()
+            );
+            return new LeaveRequestCreateViewModel(navigationService, leaveRequestService, authStore);
         }
         private HomeViewModel MakeHomeViewModel() {
             return new HomeViewModel(authStore);
@@ -72,19 +83,19 @@ namespace OutOfOfficeWPF
 
         private EmployeeCreateViewModel MakeEmployeeCreateViewModel()
         {
-            return new EmployeeCreateViewModel(employeeService, new NavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel));
+            return new EmployeeCreateViewModel(employeeService, new NavigationService(navigationStore, MakeHomeViewModel));
         }
 
-        private INavigationService<HomeViewModel> MakeHomeNavigationService()
+        private INavigationService MakeHomeNavigationService()
         {
             return new LayoutNavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel, MakeNavigationBarViewModel);
         }
-        private INavigationService<LeaveRequestCreateViewModel> MakeLeaveRequestCreateNavigationService()
+        private INavigationService MakeLeaveRequestCreateNavigationService()
         {
             return new LayoutNavigationService<LeaveRequestCreateViewModel>(navigationStore, MakeLeaveRequestCreateViewModel, MakeNavigationBarViewModel);
         }
 
-        private INavigationService<LeaveRequestListViewModel> MakeLeaveRequestListNavigationService()
+        private INavigationService MakeLeaveRequestListNavigationService()
         {
             return new LayoutNavigationService<LeaveRequestListViewModel>(
                 navigationStore, 
@@ -92,9 +103,9 @@ namespace OutOfOfficeWPF
                 MakeNavigationBarViewModel
             );
         }
-        private INavigationService<LoginViewModel> MakeLoginNavigationService()
+        private INavigationService MakeLoginNavigationService()
         {
-            return new NavigationService<LoginViewModel>(navigationStore, MakeLoginViewModel);
+            return new NavigationService(navigationStore, MakeLoginViewModel);
         }
 
         private NavigationBarViewModel MakeNavigationBarViewModel()

@@ -12,8 +12,8 @@ namespace OutOfOfficeWPF.Commands
     public class LogoutCommand : CommandBase
     {
         private readonly IAuthStore _authStore;
-        private readonly INavigationService<LoginViewModel> _navigationService;
-        public LogoutCommand(IAuthStore authStore, INavigationService<LoginViewModel> navigationService)
+        private readonly INavigationService _navigationService;
+        public LogoutCommand(IAuthStore authStore, INavigationService navigationService)
         {
             this._authStore = authStore;
             this._navigationService = navigationService;

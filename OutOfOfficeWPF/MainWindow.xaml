@@ -36,8 +36,8 @@
             <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" />
         </Grid>
 
-        <mymodalcontrol:Modal Panel.ZIndex="10" IsOpen="True">
-            <ContentControl Content="{Binding CurrentViewModel}" />
+        <mymodalcontrol:Modal Panel.ZIndex="10" IsOpen="{Binding IsModalOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}" />
         </mymodalcontrol:Modal>
 
       

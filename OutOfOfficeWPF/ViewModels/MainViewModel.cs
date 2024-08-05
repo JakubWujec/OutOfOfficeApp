@@ -13,7 +13,7 @@ namespace OutOfOfficeWPF.ViewModels
         private readonly ModalNavigationStore _modalNavigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
         public ViewModelBase CurrentModalViewModel => _modalNavigationStore.CurrentViewModel;
-        public bool IsOpen => _modalNavigationStore.IsOpen;
+        public bool IsModalOpen => _modalNavigationStore.IsOpen;
         public MainViewModel(NavigationStore navigationStore, ModalNavigationStore modalNavigationStore)
         {
             _navigationStore = navigationStore;
@@ -31,7 +31,7 @@ namespace OutOfOfficeWPF.ViewModels
         private void OnCurrentModalViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentModalViewModel));
-            OnPropertyChanged(nameof(IsOpen));
+            OnPropertyChanged(nameof(IsModalOpen));
         }
     }
 }
