@@ -13,5 +13,6 @@ namespace OutOfOfficeDomain
         public string LastName { get; set; }
         public bool IsActive { get; set; }
         public int OutOfOfficeBalance { get; set; }
+        public ICollection<LeaveRequest> LeaveRequests { get; } = new List<LeaveRequest>();
     }
 }

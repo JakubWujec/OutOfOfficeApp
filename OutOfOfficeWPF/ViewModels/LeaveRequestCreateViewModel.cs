@@ -1,6 +1,7 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
+using OutOfOfficeWPF.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +42,10 @@ namespace OutOfOfficeWPF.ViewModels
         }
         public ICommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public LeaveRequestCreateViewModel(INavigationService<LeaveRequestListViewModel> leaveRequestListNavigationService, LeaveRequestService leaveRequestService)
+        public LeaveRequestCreateViewModel(INavigationService<LeaveRequestListViewModel> leaveRequestListNavigationService, LeaveRequestService leaveRequestService, IAuthStore authStore)
         {
             this.CancelCommand = new NavigateCommand<LeaveRequestListViewModel>(leaveRequestListNavigationService);
-            this.SubmitCommand = new LeaveRequestCreateCommand(this, leaveRequestListNavigationService, leaveRequestService);
+            this.SubmitCommand = new LeaveRequestCreateCommand(this, leaveRequestListNavigationService, leaveRequestService, authStore);
         }
     }
 }

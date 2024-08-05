@@ -1,5 +1,6 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeWPF.Services;
+using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,24 +12,33 @@ namespace OutOfOfficeWPF.Commands
 {
     public class LeaveRequestCreateCommand : CommandBase
     {
-        private readonly LeaveRequestCreateViewModel viewModel;
-        private readonly INavigationService<LeaveRequestListViewModel> leaveRequestListNavigationService;
-        private readonly LeaveRequestService leaveRequestService;
-        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, INavigationService<LeaveRequestListViewModel> navigationService, LeaveRequestService leaveRequestService) { 
-            this.viewModel = viewModel;
-            this.leaveRequestListNavigationService = navigationService;
-            this.leaveRequestService = leaveRequestService;
+        private readonly LeaveRequestCreateViewModel _viewModel;
+        private readonly INavigationService<LeaveRequestListViewModel> _leaveRequestListNavigationService;
+        private readonly LeaveRequestService _leaveRequestService;
+        private readonly IAuthStore _authStore;
+        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, INavigationService<LeaveRequestListViewModel> navigationService, LeaveRequestService leaveRequestService, IAuthStore authStore) { 
+            this._viewModel = viewModel;
+            this._leaveRequestListNavigationService = navigationService;
+            this._leaveRequestService = leaveRequestService;
+            this._authStore = authStore;
         }
+
         public override void Execute(object? parameter)
         {
+            if (!_authStore.IsLoggedIn)
+            {
+                throw new Exception("Not authorized");
+            }
+
             LeaveRequest leaveRequest = new LeaveRequest()
             {
-                StartDate = DateOnly.FromDateTime(viewModel.StartDate),
-                EndDate = DateOnly.FromDateTime(viewModel.EndDate),
+                StartDate = DateOnly.FromDateTime(_viewModel.StartDate),
+                EndDate = DateOnly.FromDateTime(_viewModel.EndDate),
                 Comment = "no reason",
+                EmployeeId = _authStore.CurrentEmployee.Id
             };
-            leaveRequestService.CreateLeaveRequest(leaveRequest);
-            leaveRequestListNavigationService.Navigate();
+            _leaveRequestService.CreateLeaveRequest(leaveRequest);
+            _leaveRequestListNavigationService.Navigate();
         }
     }
 }
