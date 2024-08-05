@@ -16,6 +16,7 @@ namespace OutOfOfficeWPF
     public partial class App : Application
     {
         private NavigationStore navigationStore;
+        private ModalNavigationStore modalNavigationStore;
         private LeaveRequestService leaveRequestService;
         private EmployeeService employeeService;
         private OutOfOfficeContext outOfOfficeContext;
@@ -27,6 +28,7 @@ namespace OutOfOfficeWPF
         public App()
         {
             navigationStore = new NavigationStore();
+            modalNavigationStore = new ModalNavigationStore();
             outOfOfficeContext = new OutOfOfficeContext();
             leaveRequestRepository = new SqlLeaveRequestRepository(outOfOfficeContext);
             leaveRequestService = new LeaveRequestService(leaveRequestRepository);
@@ -41,7 +43,7 @@ namespace OutOfOfficeWPF
 
             navigationStore.CurrentViewModel = MakeLoginViewModel();
 
-            MainViewModel mainViewModel = new MainViewModel(navigationStore);
+            MainViewModel mainViewModel = new MainViewModel(navigationStore, modalNavigationStore);
             MainWindow mainWindow = new MainWindow();
 
             mainWindow.DataContext = mainViewModel;
