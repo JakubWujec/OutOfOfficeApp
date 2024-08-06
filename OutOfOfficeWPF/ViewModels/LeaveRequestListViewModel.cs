@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+//TODO sort by column click
+
 
 namespace OutOfOfficeWPF.ViewModels
 {
