@@ -64,6 +64,7 @@ namespace OutOfOfficeWPF
         {
             return new ModalNavigationService<LeaveRequestCreateViewModel>(modalNavigationStore, MakeLeaveRequestCreateViewModel);
         }
+
         private LeaveRequestCreateViewModel MakeLeaveRequestCreateViewModel()
         {
             CompositeNavigationService navigationService = new CompositeNavigationService(
@@ -88,10 +89,7 @@ namespace OutOfOfficeWPF
         {
             return new LayoutNavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel, MakeNavigationBarViewModel);
         }
-        private INavigationService MakeLeaveRequestCreateNavigationService()
-        {
-            return new LayoutNavigationService<LeaveRequestCreateViewModel>(navigationStore, MakeLeaveRequestCreateViewModel, MakeNavigationBarViewModel);
-        }
+     
 
         private INavigationService MakeLeaveRequestListNavigationService()
         {
@@ -110,7 +108,7 @@ namespace OutOfOfficeWPF
         {
             return new NavigationBarViewModel(
                 MakeHomeNavigationService(),
-                MakeLeaveRequestCreateNavigationService(),
+                MakeCreateLeaveRequestNavigationService(),
                 MakeLoginNavigationService(),
                 MakeLeaveRequestListNavigationService(),
                 authStore
