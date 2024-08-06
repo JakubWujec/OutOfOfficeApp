@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <Button Content="Create Leave Request" Command="{Binding NavigateToCommand}" HorizontalAlignment="Right"></Button>
+            <Button Content="Create Leave Request" Command="{Binding NavigateCommand}" HorizontalAlignment="Right"></Button>
         </StackPanel>
         
         <ListView Grid.Row="1" Margin="0, 10" ItemsSource="{Binding LeaveRequests}" Name="ProductListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

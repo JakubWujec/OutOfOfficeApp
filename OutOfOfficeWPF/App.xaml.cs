@@ -54,10 +54,8 @@ namespace OutOfOfficeWPF
 
         private LeaveRequestListViewModel MakeLeaveRequestListViewModel()
         {
-            IEnumerable<LeaveRequest> requests = leaveRequestService.GetCurrentLeaveRequests();
             return new LeaveRequestListViewModel(
-                from request in requests
-                select new LeaveRequestItemViewModel(request.Comment, request.StartDate, request.EndDate, request.Id),
+                leaveRequestService,
                 MakeCreateLeaveRequestNavigationService()
             );
         }
