@@ -25,5 +25,10 @@ namespace OutOfOfficeDomain
             }
             repository.CreateLeaveRequest(leaveRequest);
         }
+
+        public void DeleteById(Guid guid)
+        {
+            repository.DeleteById(guid);
+        }
     }
 }

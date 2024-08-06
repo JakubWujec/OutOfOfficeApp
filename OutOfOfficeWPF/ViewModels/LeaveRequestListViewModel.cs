@@ -21,10 +21,23 @@ namespace OutOfOfficeWPF.ViewModels
         private readonly ObservableCollection<LeaveRequestItemViewModel> _leaveRequests;
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests => _leaveRequests;
         public ICommand NavigateCommand { get; }
+        public ICommand DeleteSelectedCommand { get; }
+
+        private LeaveRequestItemViewModel _selectedLeaveRequest = null;
+        public LeaveRequestItemViewModel SelectedLeaveRequest
+        {
+            get => _selectedLeaveRequest;
+            set
+            {
+                _selectedLeaveRequest = value;
+                OnPropertyChanged(nameof(SelectedLeaveRequest));
+            }
+        }
         public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, INavigationService createLeaveRequestNavigationService)
         {
             _leaveRequests = new ObservableCollection<LeaveRequestItemViewModel>();
             NavigateCommand = new NavigateCommand(createLeaveRequestNavigationService);
+            DeleteSelectedCommand = new LeaveRequestDeleteCommand(this, leaveRequestService);
 
             UpdateLeaveRequests(leaveRequestService.GetCurrentLeaveRequests());
         }

@@ -18,7 +18,7 @@ namespace OutOfOfficeWPF.Commands
 
         public abstract void Execute(object? parameter);
 
-        protected void OnCanExecuteChanged(object? parameter)
+        protected void OnCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }

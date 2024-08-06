@@ -10,5 +10,7 @@ namespace OutOfOfficeDomain
     {
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests();
         public void CreateLeaveRequest(LeaveRequest leaveRequest);
+
+        public void DeleteById(Guid id);
     }
 }

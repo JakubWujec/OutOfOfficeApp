@@ -22,7 +22,6 @@ namespace OutOfOfficeWPF.Commands
             this._leaveRequestService = leaveRequestService;
             this._authStore = authStore;
         }
-
         public override void Execute(object? parameter)
         {
             if (!_authStore.IsLoggedIn)

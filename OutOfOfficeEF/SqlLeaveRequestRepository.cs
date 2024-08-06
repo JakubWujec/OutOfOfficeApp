@@ -1,4 +1,5 @@
-﻿using OutOfOfficeDomain;
+﻿using Microsoft.EntityFrameworkCore;
+using OutOfOfficeDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,9 @@ namespace OutOfOfficeEF
             context.SaveChanges(true);
         }
 
-
+        public void DeleteById(Guid id)
+        {
+            context.LeaveRequests.Where(lr => lr.Id == id).ExecuteDelete();
+        }
     }
 }
