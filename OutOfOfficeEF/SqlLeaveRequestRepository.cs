@@ -32,5 +32,10 @@ namespace OutOfOfficeEF
         {
             context.LeaveRequests.Where(lr => lr.Id == id).ExecuteDelete();
         }
+        public LeaveRequest? GetById(Guid id)
+        {
+            return context.LeaveRequests.Find(id);
+        }
+
     }
 }

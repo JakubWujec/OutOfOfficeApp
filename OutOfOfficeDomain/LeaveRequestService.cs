@@ -9,12 +9,12 @@ namespace OutOfOfficeDomain
 {
     public class LeaveRequestService
     {
-        private readonly ILeaveRequestRepository repository; 
+        private readonly ILeaveRequestRepository _leaveRequestRepository; 
         public LeaveRequestService(ILeaveRequestRepository leaveRequestRepository) {
-            repository = leaveRequestRepository;
+            _leaveRequestRepository = leaveRequestRepository;
         }
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests() {
-            return repository.GetCurrentLeaveRequests();
+            return _leaveRequestRepository.GetCurrentLeaveRequests();
         }
 
         public void CreateLeaveRequest(LeaveRequest leaveRequest)
@@ -23,12 +23,22 @@ namespace OutOfOfficeDomain
             {
                 throw new InvalidLeaveRequestDateOnlyRangeException(leaveRequest);
             }
-            repository.CreateLeaveRequest(leaveRequest);
+            _leaveRequestRepository.CreateLeaveRequest(leaveRequest);
         }
 
         public void DeleteById(Guid guid)
         {
-            repository.DeleteById(guid);
+            _leaveRequestRepository.DeleteById(guid);
+        }
+
+        public void Submit(Guid guid)
+        {
+            // get leave request
+            // change status to submitted
+            // create new approval request(s)
+            var leaveRequest = _leaveRequestRepository.GetById(guid);
+            
+
         }
     }
 }

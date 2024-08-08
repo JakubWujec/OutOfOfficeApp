@@ -22,5 +22,6 @@ namespace OutOfOfficeEF
 
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<ApprovalRequest> ApprovalRequests { get; set; }
     }
 }

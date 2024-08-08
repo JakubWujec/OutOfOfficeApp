@@ -19,10 +19,12 @@ namespace OutOfOfficeWPF
         private NavigationStore navigationStore;
         private ModalNavigationStore modalNavigationStore;
         private LeaveRequestService leaveRequestService;
+        private ApprovalRequestService approvalRequestService;
         private CloseModalNavigationService closeModalNavigationService;
         private EmployeeService employeeService;
         private OutOfOfficeContext outOfOfficeContext;
         private SqlLeaveRequestRepository leaveRequestRepository;
+        private SqlApprovalRequestRepository approvalRequestRepository;
         private SqlEmployeeRepository employeeRepository;
         private IAuthenticator authenticator;
         private IAuthStore authStore;
@@ -34,6 +36,8 @@ namespace OutOfOfficeWPF
             outOfOfficeContext = new OutOfOfficeContext();
             leaveRequestRepository = new SqlLeaveRequestRepository(outOfOfficeContext);
             leaveRequestService = new LeaveRequestService(leaveRequestRepository);
+            approvalRequestRepository = new SqlApprovalRequestRepository(outOfOfficeContext);
+            approvalRequestService = new ApprovalRequestService(approvalRequestRepository);
             employeeRepository = new SqlEmployeeRepository(outOfOfficeContext);
             employeeService = new EmployeeService(employeeRepository);
             authStore = new AuthStore();
@@ -56,6 +60,7 @@ namespace OutOfOfficeWPF
         {
             return new LeaveRequestListViewModel(
                 leaveRequestService,
+                approvalRequestService,
                 MakeCreateLeaveRequestNavigationService()
             );
         }
@@ -89,7 +94,6 @@ namespace OutOfOfficeWPF
         {
             return new LayoutNavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel, MakeNavigationBarViewModel);
         }
-     
 
         private INavigationService MakeLeaveRequestListNavigationService()
         {
