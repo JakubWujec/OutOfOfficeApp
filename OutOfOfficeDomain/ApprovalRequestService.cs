@@ -21,7 +21,7 @@ namespace OutOfOfficeDomain
             {
                 LeaveRequestId = leaveRequestId
             };
-            this._approvalRequestRepository.Create(request);
+            this._approvalRequestRepository.Save(request);
         }
     }
 }

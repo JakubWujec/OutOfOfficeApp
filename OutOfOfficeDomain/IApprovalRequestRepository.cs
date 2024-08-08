@@ -8,6 +8,6 @@ namespace OutOfOfficeDomain
 {
     public interface IApprovalRequestRepository
     {
-        public void Create(ApprovalRequest approvalRequest);
+        public void Save(ApprovalRequest approvalRequest);
     }
 }

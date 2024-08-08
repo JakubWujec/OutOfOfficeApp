@@ -23,7 +23,7 @@ namespace OutOfOfficeDomain
             {
                 throw new InvalidLeaveRequestDateOnlyRangeException(leaveRequest);
             }
-            _leaveRequestRepository.CreateLeaveRequest(leaveRequest);
+            _leaveRequestRepository.Save(leaveRequest);
         }
 
         public void DeleteById(Guid guid)

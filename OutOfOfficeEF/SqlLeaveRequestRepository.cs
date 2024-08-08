@@ -22,7 +22,7 @@ namespace OutOfOfficeEF
             return result;
         }
 
-        public void CreateLeaveRequest(LeaveRequest leaveRequest)
+        public void Save(LeaveRequest leaveRequest)
         {
             context.LeaveRequests.Add(leaveRequest);
             context.SaveChanges(true);

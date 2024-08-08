@@ -16,7 +16,7 @@ namespace OutOfOfficeEF
             this.context = context;
         }
 
-        public void Create(ApprovalRequest approvalRequest)
+        public void Save(ApprovalRequest approvalRequest)
         {
             context.ApprovalRequests.Add(approvalRequest);
             context.SaveChanges(true);

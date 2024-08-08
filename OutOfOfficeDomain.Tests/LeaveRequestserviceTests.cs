@@ -30,7 +30,7 @@ namespace OutOfOfficeDomain.Tests
         private class StubLeaveRequestRepository : ILeaveRequestRepository
         {
             public List<LeaveRequest> leaveRequests { get; set; } = new List<LeaveRequest>();
-            public void CreateLeaveRequest(LeaveRequest leaveRequest)
+            public void Save(LeaveRequest leaveRequest)
             {
                 this.leaveRequests.Add(leaveRequest);
             }

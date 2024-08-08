@@ -21,7 +21,7 @@ namespace OutOfOfficeDomain
 
         public void CreateEmployee(Employee employee)
         {
-            _employeeRepository.CreateEmployee(employee);
+            _employeeRepository.Save(employee);
         }
 
         public Employee GetEmployeeById(Guid guid)

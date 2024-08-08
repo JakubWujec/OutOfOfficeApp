@@ -16,7 +16,7 @@ namespace OutOfOfficeEF
             this.context = context;
         }
 
-        public void CreateEmployee(Employee employee)
+        public void Save(Employee employee)
         {
             this.context.Employees.Add(employee);
             this.context.SaveChanges();
