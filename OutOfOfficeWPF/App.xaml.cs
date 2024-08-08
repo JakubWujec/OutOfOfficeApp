@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OutOfOfficeDomain;
+using OutOfOfficeDomain.CommandServices;
+using OutOfOfficeDomain.EventHandlers;
 using OutOfOfficeEF;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
@@ -26,9 +28,11 @@ namespace OutOfOfficeWPF
         private SqlLeaveRequestRepository leaveRequestRepository;
         private SqlApprovalRequestRepository approvalRequestRepository;
         private SqlEmployeeRepository employeeRepository;
+        private HRRequestEventHandler hrRequestEventHandler;
+        private SubmitLeaveRequestService submitLeaveRequestService;
         private IAuthenticator authenticator;
         private IAuthStore authStore;
-
+        
         public App()
         {
             navigationStore = new NavigationStore();
@@ -42,6 +46,8 @@ namespace OutOfOfficeWPF
             employeeService = new EmployeeService(employeeRepository);
             authStore = new AuthStore();
             authenticator = new Authenticator(authStore, employeeService);
+            hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService);
+            submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
         }
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -60,7 +66,7 @@ namespace OutOfOfficeWPF
         {
             return new LeaveRequestListViewModel(
                 leaveRequestService,
-                approvalRequestService,
+                submitLeaveRequestService,
                 MakeCreateLeaveRequestNavigationService()
             );
         }

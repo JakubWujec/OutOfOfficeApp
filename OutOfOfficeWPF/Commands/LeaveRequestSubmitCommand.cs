@@ -1,4 +1,6 @@
 ﻿using OutOfOfficeDomain;
+using OutOfOfficeDomain.Commands;
+using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,20 +13,21 @@ namespace OutOfOfficeWPF.Commands
     public class LeaveRequestSubmitCommand : CommandBase
     {
         private readonly LeaveRequestListViewModel _viewModel;
-        private readonly LeaveRequestService _leaveRequestService;
-        private readonly ApprovalRequestService _approvalRequestService;
-        public LeaveRequestSubmitCommand(LeaveRequestListViewModel viewModel, LeaveRequestService leaveRequestService, ApprovalRequestService approvalRequestService) { 
+        private readonly SubmitLeaveRequestService _submitLeaveRequestService;
+        public LeaveRequestSubmitCommand(LeaveRequestListViewModel viewModel, SubmitLeaveRequestService submitLeaveRequestService) { 
             this._viewModel = viewModel;
-            this._leaveRequestService = leaveRequestService;
-            this._approvalRequestService = approvalRequestService;
+            this._submitLeaveRequestService = submitLeaveRequestService;
 
             _viewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
 
         public override void Execute(object? parameter)
         {
-            this._leaveRequestService.Submit(_viewModel.SelectedLeaveRequest.Id);
-            this._approvalRequestService.CreateApprovalRequestForLeaveRequest(this._viewModel.SelectedLeaveRequest.Id);
+            var command = new SubmitLeaveRequest()
+            {
+                LeaveRequestId = this._viewModel.SelectedLeaveRequest.Id
+            };
+            this._submitLeaveRequestService.Execute(command);
         }
 
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

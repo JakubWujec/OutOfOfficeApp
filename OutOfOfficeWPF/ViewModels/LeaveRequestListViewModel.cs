@@ -1,4 +1,5 @@
 ﻿using OutOfOfficeDomain;
+using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
@@ -35,12 +36,12 @@ namespace OutOfOfficeWPF.ViewModels
                 OnPropertyChanged(nameof(SelectedLeaveRequest));
             }
         }
-        public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, ApprovalRequestService approvalRequestService, INavigationService createLeaveRequestNavigationService)
+        public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, SubmitLeaveRequestService submitLeaveRequestService, INavigationService createLeaveRequestNavigationService)
         {
             _leaveRequests = new ObservableCollection<LeaveRequestItemViewModel>();
             NavigateCommand = new NavigateCommand(createLeaveRequestNavigationService);
             DeleteSelectedCommand = new LeaveRequestDeleteCommand(this, leaveRequestService);
-            SubmitSelectedCommand = new LeaveRequestSubmitCommand(this, leaveRequestService, approvalRequestService);
+            SubmitSelectedCommand = new LeaveRequestSubmitCommand(this, submitLeaveRequestService);
 
             UpdateLeaveRequests(leaveRequestService.GetCurrentLeaveRequests());
         }
