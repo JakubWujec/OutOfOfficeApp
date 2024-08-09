@@ -22,9 +22,17 @@ namespace OutOfOfficeEF
             return context.ApprovalRequests.Include(x => x.LeaveRequest).ToList();
         }
 
+        public ApprovalRequest? GetById(Guid id)
+        {
+            return context.ApprovalRequests.Find(id);
+        }
+
         public void Save(ApprovalRequest approvalRequest)
         {
-            context.ApprovalRequests.Add(approvalRequest);
+            if (this.context.IsNew(approvalRequest))
+            {
+                this.context.ApprovalRequests.Add(approvalRequest);
+            }
             context.SaveChanges(true);
         }
         

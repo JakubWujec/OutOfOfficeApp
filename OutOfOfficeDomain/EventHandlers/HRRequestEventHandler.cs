@@ -1,4 +1,5 @@
-﻿using OutOfOfficeDomain.Events;
+﻿using OutOfOfficeDomain.Commands;
+using OutOfOfficeDomain.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

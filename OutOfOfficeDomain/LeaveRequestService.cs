@@ -30,15 +30,5 @@ namespace OutOfOfficeDomain
         {
             _leaveRequestRepository.DeleteById(guid);
         }
-
-        public void Submit(Guid guid)
-        {
-            // get leave request
-            // change status to submitted
-            // create new approval request(s)
-            var leaveRequest = _leaveRequestRepository.GetById(guid);
-            
-
-        }
     }
 }

@@ -28,6 +28,7 @@ namespace OutOfOfficeWPF
         private EmployeeService employeeService;
 
         private SubmitLeaveRequestService submitLeaveRequestService;
+        private AcceptApprovalRequestService acceptApprovalRequestService;
 
         private SqlLeaveRequestRepository leaveRequestRepository;
         private SqlApprovalRequestRepository approvalRequestRepository;
@@ -53,6 +54,7 @@ namespace OutOfOfficeWPF
             authenticator = new Authenticator(authStore, employeeService);
             hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService);
             submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
+            acceptApprovalRequestService = new AcceptApprovalRequestService(approvalRequestRepository);
         }
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -99,7 +101,8 @@ namespace OutOfOfficeWPF
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
         {
             return new ApprovalRequestListViewModel(
-                approvalRequestService
+                approvalRequestService,
+                acceptApprovalRequestService
             );
         }
 

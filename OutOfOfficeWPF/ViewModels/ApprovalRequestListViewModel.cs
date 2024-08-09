@@ -1,4 +1,5 @@
 ﻿using OutOfOfficeDomain;
+using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.Commands;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace OutOfOfficeWPF.ViewModels
@@ -26,9 +28,13 @@ namespace OutOfOfficeWPF.ViewModels
             }
         }
 
-        public ApprovalRequestListViewModel(ApprovalRequestService approvalRequestService)
+        public ICommand ApprovalRequestAcceptCommand { get; }
+        public ApprovalRequestListViewModel(ApprovalRequestService approvalRequestService, AcceptApprovalRequestService acceptApprovalRequestService)
         {
             _approvalRequests = new ObservableCollection<ApprovalRequestItemViewModel>();
+
+            ApprovalRequestAcceptCommand = new ApprovalRequestAcceptCommand(this, acceptApprovalRequestService);
+
             UpdateList(approvalRequestService.GetApprovalRequests());
         }
 
