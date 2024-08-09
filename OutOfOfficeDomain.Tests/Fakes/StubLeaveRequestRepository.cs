@@ -23,7 +23,7 @@
             return this.leaveRequests.First(lr => lr.Id == id);
         }
 
-        public IEnumerable<LeaveRequest> GetCurrentLeaveRequests() => this.leaveRequests.AsEnumerable();
+        public IEnumerable<LeaveRequest> GetAll() => this.leaveRequests.AsEnumerable();
 
 
     }

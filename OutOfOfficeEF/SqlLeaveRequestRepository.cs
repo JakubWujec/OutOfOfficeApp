@@ -16,7 +16,7 @@ namespace OutOfOfficeEF
         {
             this.context = context;
         }
-        public IEnumerable<LeaveRequest> GetCurrentLeaveRequests()
+        public IEnumerable<LeaveRequest> GetAll()
         {
             var result = context.LeaveRequests.ToList();
             return result;

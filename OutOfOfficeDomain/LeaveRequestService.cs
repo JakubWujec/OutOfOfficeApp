@@ -14,7 +14,7 @@ namespace OutOfOfficeDomain
             _leaveRequestRepository = leaveRequestRepository;
         }
         public IEnumerable<LeaveRequest> GetCurrentLeaveRequests() {
-            return _leaveRequestRepository.GetCurrentLeaveRequests();
+            return _leaveRequestRepository.GetAll();
         }
 
         public void CreateLeaveRequest(LeaveRequest leaveRequest)
