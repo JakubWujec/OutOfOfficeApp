@@ -27,9 +27,13 @@
             <DataTemplate DataType="{x:Type viewmodels:EmployeeCreateViewModel}">
                 <views:EmployeeCreateView></views:EmployeeCreateView>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ApprovalRequestListViewModel}">
+                <views:ApprovalRequestListView></views:ApprovalRequestListView>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LayoutViewModel}">
                 <controls:Layout></controls:Layout>
             </DataTemplate>
+            
         </Grid.Resources>
 
         <Grid>

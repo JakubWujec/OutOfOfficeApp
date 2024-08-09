@@ -18,18 +18,23 @@ namespace OutOfOfficeWPF
     /// </summary>
     public partial class App : Application
     {
+        private OutOfOfficeContext outOfOfficeContext;
+
         private NavigationStore navigationStore;
         private ModalNavigationStore modalNavigationStore;
+
         private LeaveRequestService leaveRequestService;
         private ApprovalRequestService approvalRequestService;
-        private CloseModalNavigationService closeModalNavigationService;
         private EmployeeService employeeService;
-        private OutOfOfficeContext outOfOfficeContext;
+
+        private SubmitLeaveRequestService submitLeaveRequestService;
+
         private SqlLeaveRequestRepository leaveRequestRepository;
         private SqlApprovalRequestRepository approvalRequestRepository;
         private SqlEmployeeRepository employeeRepository;
+
         private HRRequestEventHandler hrRequestEventHandler;
-        private SubmitLeaveRequestService submitLeaveRequestService;
+
         private IAuthenticator authenticator;
         private IAuthStore authStore;
         
@@ -91,6 +96,11 @@ namespace OutOfOfficeWPF
             return new LoginViewModel(MakeHomeNavigationService(), authenticator, employeeService);
         }
 
+        private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
+        {
+            return new ApprovalRequestListViewModel();
+        }
+
         private EmployeeCreateViewModel MakeEmployeeCreateViewModel()
         {
             return new EmployeeCreateViewModel(employeeService, new NavigationService(navigationStore, MakeHomeViewModel));
@@ -109,6 +119,16 @@ namespace OutOfOfficeWPF
                 MakeNavigationBarViewModel
             );
         }
+
+        private INavigationService MakeApprovalRequestListNavigationService()
+        {
+            return new LayoutNavigationService<ApprovalRequestListViewModel>(
+                navigationStore,
+                MakeApprovalRequestListViewModel,
+                MakeNavigationBarViewModel
+            );
+        }
+
         private INavigationService MakeLoginNavigationService()
         {
             return new NavigationService(navigationStore, MakeLoginViewModel);
@@ -121,6 +141,7 @@ namespace OutOfOfficeWPF
                 MakeCreateLeaveRequestNavigationService(),
                 MakeLoginNavigationService(),
                 MakeLeaveRequestListNavigationService(),
+                MakeApprovalRequestListNavigationService(),
                 authStore
             );
         }

@@ -29,6 +29,8 @@
                     Style="{StaticResource NavigationButtonStyle}"></Button>
             <Button Content="Leave requests" Command="{Binding NavigateLeaveRequestListCommand}"
                     Style="{StaticResource NavigationButtonStyle}"></Button>
+            <Button Content="Approval requests" Command="{Binding NavigateApprovalRequestListCommand}"
+                Style="{StaticResource NavigationButtonStyle}"></Button>
             <Button  Content="Logout" Command="{Binding LogoutCommand}"
                 Style="{StaticResource NavigationButtonStyle}"
                 Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"

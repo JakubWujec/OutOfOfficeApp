@@ -19,6 +19,8 @@ namespace OutOfOfficeWPF.ViewModels
         public ICommand NavigateLoginCommand { get; }
         public ICommand NavigateLeaveRequestListCommand { get; }
         public ICommand LogoutCommand { get; }
+
+        public ICommand NavigateApprovalRequestListCommand { get; }
         public bool IsLoggedIn => authStore.IsLoggedIn;
 
         public NavigationBarViewModel(
@@ -26,6 +28,7 @@ namespace OutOfOfficeWPF.ViewModels
             INavigationService createLeaveRequestNavigationService,
             INavigationService loginNavigationService,
             INavigationService leaveRequestListNavigationService,
+            INavigationService approvalRequestListNavigationService,
             IAuthStore authStore
         )
         {
@@ -33,6 +36,7 @@ namespace OutOfOfficeWPF.ViewModels
             this.NavigateMakeLeaveRequestCommand = new NavigateCommand(createLeaveRequestNavigationService);
             this.NavigateLoginCommand = new NavigateCommand(loginNavigationService);
             this.NavigateLeaveRequestListCommand = new NavigateCommand(leaveRequestListNavigationService);
+            this.NavigateApprovalRequestListCommand = new NavigateCommand(approvalRequestListNavigationService);
             this.authStore = authStore;
             this.LogoutCommand = new LogoutCommand(authStore, loginNavigationService);
             
