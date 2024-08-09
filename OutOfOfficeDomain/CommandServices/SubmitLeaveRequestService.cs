@@ -10,21 +10,23 @@ namespace OutOfOfficeDomain.CommandServices
 {
     public class SubmitLeaveRequestService : ICommandService<SubmitLeaveRequest>
     {
-        private readonly ILeaveRequestRepository _leaveRequestRepository;
+        private readonly ILeaveRequestRepository _repository;
         private readonly IEventHandler<LeaveRequestSubmitted> _handler;
-        public SubmitLeaveRequestService(ILeaveRequestRepository leaveRequestRepository, IEventHandler<LeaveRequestSubmitted> handler)
+        public SubmitLeaveRequestService(ILeaveRequestRepository repository, IEventHandler<LeaveRequestSubmitted> handler)
         {
-            this._leaveRequestRepository = leaveRequestRepository;
-            this._handler = handler;
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
 
+            this._repository = repository;
+            this._handler = handler;
         }
         public void Execute(SubmitLeaveRequest command)
         {
-            var request = this._leaveRequestRepository.GetById(command.LeaveRequestId);
-            if (request == null)
-            {
-                throw new ArgumentException();
-            }
+            var request = this._repository.GetById(command.LeaveRequestId);
+
+            request.Submit();
+            this._repository.Save(request);
+            
             this._handler.Handle(new LeaveRequestSubmitted(request.Id));
         }
     }

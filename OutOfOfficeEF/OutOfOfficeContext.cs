@@ -20,6 +20,11 @@ namespace OutOfOfficeEF
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={DbPath}");
 
+        public bool IsNew<TEntity>(TEntity entity) where TEntity : class
+        {
+            return !this.Set<TEntity>().Local.Any(e => e == entity);
+        }
+
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<ApprovalRequest> ApprovalRequests { get; set; }

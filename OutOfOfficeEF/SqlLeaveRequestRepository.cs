@@ -24,8 +24,11 @@ namespace OutOfOfficeEF
 
         public void Save(LeaveRequest leaveRequest)
         {
-            context.LeaveRequests.Add(leaveRequest);
-            context.SaveChanges(true);
+            if (this.context.IsNew(leaveRequest))
+            {
+                this.context.LeaveRequests.Add(leaveRequest);
+            }
+            this.context.SaveChanges();
         }
 
         public void DeleteById(Guid id)
