@@ -5,13 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OutOfOfficeWPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="400" d:DesignWidth="800" MaxHeight="450">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="50,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -20,23 +27,30 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Employee"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="When"></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Reason"></TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Comment"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Employee:"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="When:"></TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Reason:"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Comment:"></TextBlock>
 
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Jane Doe"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="2024-01-01 - 2024-01-01"></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Reasonable reason"></TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="Meaningful comment"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Jane Doe"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="2024-01-01 - 2024-01-01"></TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Reasonable reason"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="Meaningful comment Meaningful comment akfskdfkls klfksdk dklfgklfdkg dkfl gkldfgkl dklfg dkl kl"></TextBlock>
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Padding="10" Content="✔️"></Button>
-            <Button Padding="10" Content="❌" Margin="20,0,0,0"></Button>
+        <StackPanel Grid.Row="1" Margin="10">
+            <Label Content="Add a comment" FontSize="24"></Label>
+            <TextBox Text="" FontSize="20" MinHeight="50" MaxHeight="100"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Padding="10" Content="Approve"></Button>
+            <Button Padding="10" Content="Reject" Margin="20,0,0,0"></Button>
+            <Button Padding="10" Content="Cancel" Margin="20,0,0,0"></Button>
         </StackPanel>
 
     </Grid>

@@ -1,6 +1,7 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.Commands;
+using OutOfOfficeWPF.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,6 @@ namespace OutOfOfficeWPF.ViewModels
     {
         private readonly ObservableCollection<ApprovalRequestItemViewModel> _approvalRequests;
         public ObservableCollection<ApprovalRequestItemViewModel> ApprovalRequests => _approvalRequests;
-
         private ApprovalRequestItemViewModel _selectedRequest = null;
         public ApprovalRequestItemViewModel SelectedRequest
         {
@@ -29,11 +29,16 @@ namespace OutOfOfficeWPF.ViewModels
         }
 
         public ICommand ApprovalRequestAcceptCommand { get; }
-        public ApprovalRequestListViewModel(ApprovalRequestService approvalRequestService, AcceptApprovalRequestService acceptApprovalRequestService)
+        public ICommand NavigateCommand { get; }
+        public ApprovalRequestListViewModel(
+            ApprovalRequestService approvalRequestService, 
+            AcceptApprovalRequestService acceptApprovalRequestService,
+            INavigationService navigateToShowViewNavigationService)
         {
             _approvalRequests = new ObservableCollection<ApprovalRequestItemViewModel>();
 
             ApprovalRequestAcceptCommand = new ApprovalRequestAcceptCommand(this, acceptApprovalRequestService);
+            NavigateCommand = new NavigateCommand(navigateToShowViewNavigationService);
 
             UpdateList(approvalRequestService.GetApprovalRequests());
         }

@@ -9,7 +9,7 @@
         xmlns:controls="clr-namespace:OutOfOfficeWPF.Controls" 
         xmlns:mymodalcontrol="clr-namespace:MyModalControl;assembly=MyModalControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:LeaveRequestListViewModel}">
@@ -29,6 +29,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:ApprovalRequestListViewModel}">
                 <views:ApprovalRequestListView></views:ApprovalRequestListView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ApprovalRequestShowViewModel}">
+                <views:ApprovalRequestShowView></views:ApprovalRequestShowView>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LayoutViewModel}">
                 <controls:Layout></controls:Layout>
