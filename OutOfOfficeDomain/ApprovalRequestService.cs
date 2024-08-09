@@ -15,6 +15,11 @@ namespace OutOfOfficeDomain
             this._approvalRequestRepository = approvalRequestRepository;
         }
 
+        public IEnumerable<ApprovalRequest> GetApprovalRequests()
+        {
+            return _approvalRequestRepository.GetAll();
+        }
+
         public void CreateApprovalRequestForLeaveRequest(Guid leaveRequestId)
         {
             var request = new ApprovalRequest()

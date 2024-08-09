@@ -98,7 +98,9 @@ namespace OutOfOfficeWPF
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
         {
-            return new ApprovalRequestListViewModel();
+            return new ApprovalRequestListViewModel(
+                approvalRequestService
+            );
         }
 
         private EmployeeCreateViewModel MakeEmployeeCreateViewModel()

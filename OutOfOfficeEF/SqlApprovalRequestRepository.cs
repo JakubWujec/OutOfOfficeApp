@@ -1,4 +1,5 @@
-﻿using OutOfOfficeDomain;
+﻿using Microsoft.EntityFrameworkCore;
+using OutOfOfficeDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,16 @@ namespace OutOfOfficeEF
             this.context = context;
         }
 
+        public IEnumerable<ApprovalRequest> GetAll()
+        {
+            return context.ApprovalRequests.Include(x => x.LeaveRequest).ToList();
+        }
+
         public void Save(ApprovalRequest approvalRequest)
         {
             context.ApprovalRequests.Add(approvalRequest);
             context.SaveChanges(true);
         }
+        
     }
 }

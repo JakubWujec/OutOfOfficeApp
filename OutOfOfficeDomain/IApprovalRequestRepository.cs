@@ -9,5 +9,6 @@ namespace OutOfOfficeDomain
     public interface IApprovalRequestRepository
     {
         public void Save(ApprovalRequest approvalRequest);
+        public IEnumerable<ApprovalRequest> GetAll();
     }
 }
