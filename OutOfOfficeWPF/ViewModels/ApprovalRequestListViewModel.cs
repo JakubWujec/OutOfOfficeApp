@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace OutOfOfficeWPF.ViewModels
 {
@@ -39,7 +40,8 @@ namespace OutOfOfficeWPF.ViewModels
                 _approvalRequests.Add(new ApprovalRequestItemViewModel(
                     request.LeaveRequest.StartDate,
                     request.LeaveRequest.EndDate,
-                    request.Id
+                    request.Id,
+                    status: request.Status.ToString()
                 ));
             }
         }

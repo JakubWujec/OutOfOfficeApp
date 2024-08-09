@@ -11,11 +11,14 @@ namespace OutOfOfficeWPF.ViewModels
         public Guid Id { get; set; }
         public DateOnly StartDate { get; set; }
         public DateOnly EndDate { get; set; }
+
+        public string Status { get; set; }
     
-        public ApprovalRequestItemViewModel(DateOnly startDate, DateOnly endDate, Guid id ) { 
+        public ApprovalRequestItemViewModel(DateOnly startDate, DateOnly endDate, Guid id, string status ) { 
             this.StartDate = startDate;
             this.EndDate = endDate;
             this.Id = id;
+            this.Status = status;
         }
 
         public override string ToString()
