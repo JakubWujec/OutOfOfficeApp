@@ -98,19 +98,22 @@ namespace OutOfOfficeWPF
             return new LoginViewModel(MakeHomeNavigationService(), authenticator, employeeService);
         }
 
-        private ModalNavigationService<ApprovalRequestShowViewModel> MakeApprovalRequestShowNavigationService()
+        private ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel> MakeApprovalRequestShowNavigationService()
         {
 
-            return new ModalNavigationService<ApprovalRequestShowViewModel>(modalNavigationStore, MakeApprovalRequestShowViewModel);
+            return new ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel>(
+                modalNavigationStore,
+                MakeApprovalRequestShowViewModel
+            );
         }
 
-        private ApprovalRequestShowViewModel MakeApprovalRequestShowViewModel()
+        private ApprovalRequestShowViewModel MakeApprovalRequestShowViewModel(ApprovalRequest approvalRequest)
         {
             CompositeNavigationService navigationService = new CompositeNavigationService(
                new CloseModalNavigationService(modalNavigationStore),
                MakeApprovalRequestListNavigationService()
             );
-            return new ApprovalRequestShowViewModel(navigationService);
+            return new ApprovalRequestShowViewModel(navigationService, approvalRequest);
         }
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()

@@ -36,7 +36,7 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Reason:"></TextBlock>
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Comment:"></TextBlock>
 
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="Jane Doe"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding FullName}"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="2024-01-01 - 2024-01-01"></TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="2" Text="Reasonable reason"></TextBlock>
             <TextBlock Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="Meaningful comment Meaningful comment akfskdfkls klfksdk dklfgklfdkg dkfl gkldfgkl dklfg dkl kl"></TextBlock>

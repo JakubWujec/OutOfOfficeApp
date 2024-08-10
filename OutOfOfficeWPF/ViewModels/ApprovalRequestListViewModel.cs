@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -16,6 +17,7 @@ namespace OutOfOfficeWPF.ViewModels
     public class ApprovalRequestListViewModel : ViewModelBase
     {
         private readonly ObservableCollection<ApprovalRequestItemViewModel> _approvalRequests;
+        private readonly ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel> _showViewModalNavigation;
         public ObservableCollection<ApprovalRequestItemViewModel> ApprovalRequests => _approvalRequests;
         private ApprovalRequestItemViewModel _selectedRequest = null;
         public ApprovalRequestItemViewModel SelectedRequest
@@ -33,15 +35,17 @@ namespace OutOfOfficeWPF.ViewModels
         public ApprovalRequestListViewModel(
             ApprovalRequestService approvalRequestService, 
             AcceptApprovalRequestService acceptApprovalRequestService,
-            INavigationService navigateToShowViewNavigationService)
+            ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel> showViewModalNavigationService)
         {
             _approvalRequests = new ObservableCollection<ApprovalRequestItemViewModel>();
+            _showViewModalNavigation = showViewModalNavigationService;
 
             ApprovalRequestAcceptCommand = new ApprovalRequestAcceptCommand(this, acceptApprovalRequestService);
-            NavigateCommand = new NavigateCommand(navigateToShowViewNavigationService);
-
+            this.NavigateCommand = new ParameterNavigateCommand<ApprovalRequest, ApprovalRequestShowViewModel>(_showViewModalNavigation);
             UpdateList(approvalRequestService.GetApprovalRequests());
         }
+
+  
 
         public void UpdateList(IEnumerable<ApprovalRequest> requests)
         {
