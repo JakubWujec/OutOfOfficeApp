@@ -17,8 +17,8 @@ namespace OutOfOfficeWPF.ViewModels
     public class ApprovalRequestListViewModel : ViewModelBase
     {
         private readonly ObservableCollection<ApprovalRequestItemViewModel> _approvalRequests;
-        private readonly ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel> _showViewModalNavigation;
         public ObservableCollection<ApprovalRequestItemViewModel> ApprovalRequests => _approvalRequests;
+        
         private ApprovalRequestItemViewModel _selectedRequest = null;
         public ApprovalRequestItemViewModel SelectedRequest
         {
@@ -35,9 +35,8 @@ namespace OutOfOfficeWPF.ViewModels
             ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel> showViewModalNavigationService)
         {
             _approvalRequests = new ObservableCollection<ApprovalRequestItemViewModel>();
-            _showViewModalNavigation = showViewModalNavigationService;
+            NavigateCommand = new ParameterModalNavigateCommand<ApprovalRequest, ApprovalRequestShowViewModel>(showViewModalNavigationService);
 
-            this.NavigateCommand = new ParameterModalNavigateCommand<ApprovalRequest, ApprovalRequestShowViewModel>(_showViewModalNavigation);
             UpdateList(approvalRequestService.GetApprovalRequests());
         }
 

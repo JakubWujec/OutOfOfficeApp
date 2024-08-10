@@ -29,6 +29,7 @@ namespace OutOfOfficeWPF
 
         private SubmitLeaveRequestService submitLeaveRequestService;
         private AcceptApprovalRequestService acceptApprovalRequestService;
+        private RejectApprovalRequestService rejectApprovalRequestService;
 
         private SqlLeaveRequestRepository leaveRequestRepository;
         private SqlApprovalRequestRepository approvalRequestRepository;
@@ -55,6 +56,7 @@ namespace OutOfOfficeWPF
             hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService);
             submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
             acceptApprovalRequestService = new AcceptApprovalRequestService(approvalRequestRepository);
+            rejectApprovalRequestService = new RejectApprovalRequestService(approvalRequestRepository);
         }
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -113,7 +115,7 @@ namespace OutOfOfficeWPF
                new CloseModalNavigationService(modalNavigationStore),
                MakeApprovalRequestListNavigationService()
             );
-            return new ApprovalRequestShowViewModel(navigationService, acceptApprovalRequestService, approvalRequest);
+            return new ApprovalRequestShowViewModel(navigationService, acceptApprovalRequestService, rejectApprovalRequestService, approvalRequest);
         }
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
