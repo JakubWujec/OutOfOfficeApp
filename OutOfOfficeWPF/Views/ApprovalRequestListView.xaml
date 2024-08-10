@@ -14,7 +14,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="OpenSelectedButton" Command="{Binding NavigateCommand}" CommandParameter="{Binding SelectedRequest.request}" Content="Open selected" HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
+            <Button x:Name="OpenSelectedButton" 
+                    Command="{Binding NavigateCommand}" 
+                    CommandParameter="{Binding SelectedRequest.request}" 
+                    IsEnabled="{Binding CanOpenModal}"
+                    Content="Open selected" HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
         </StackPanel>
 
         <ListView Grid.Row="1" Margin="0, 10" Name="ApprovalsListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"

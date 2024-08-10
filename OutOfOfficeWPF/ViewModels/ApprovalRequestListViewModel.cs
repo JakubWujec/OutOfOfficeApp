@@ -19,8 +19,12 @@ namespace OutOfOfficeWPF.ViewModels
             {
                 _selectedRequest = value;
                 OnPropertyChanged(nameof(SelectedRequest));
+                OnPropertyChanged(nameof(CanOpenModal));
             }
         }
+
+        public bool CanOpenModal => _selectedRequest != null;
+
         public ICommand NavigateCommand { get; }
         public ApprovalRequestListViewModel(
             ApprovalRequestService approvalRequestService,
