@@ -12,9 +12,9 @@ namespace OutOfOfficeWPF.Commands
 {
     public class ApprovalRequestAcceptCommand : CommandBase
     {
-        private readonly ApprovalRequestListViewModel _viewModel;
+        private readonly ApprovalRequestShowViewModel _viewModel;
         private readonly AcceptApprovalRequestService _acceptApprovalService;
-        public ApprovalRequestAcceptCommand(ApprovalRequestListViewModel viewModel, AcceptApprovalRequestService acceptApprovalService) { 
+        public ApprovalRequestAcceptCommand(ApprovalRequestShowViewModel viewModel, AcceptApprovalRequestService acceptApprovalService) { 
             this._viewModel = viewModel;
             this._acceptApprovalService = acceptApprovalService;
 

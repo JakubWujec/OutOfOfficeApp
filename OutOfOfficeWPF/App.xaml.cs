@@ -113,14 +113,13 @@ namespace OutOfOfficeWPF
                new CloseModalNavigationService(modalNavigationStore),
                MakeApprovalRequestListNavigationService()
             );
-            return new ApprovalRequestShowViewModel(navigationService, approvalRequest);
+            return new ApprovalRequestShowViewModel(navigationService, acceptApprovalRequestService, approvalRequest);
         }
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
         {
             return new ApprovalRequestListViewModel(
                 approvalRequestService,
-                acceptApprovalRequestService,
                 MakeApprovalRequestShowNavigationService()
             );
         }

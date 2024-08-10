@@ -29,23 +29,17 @@ namespace OutOfOfficeWPF.ViewModels
                 OnPropertyChanged(nameof(SelectedRequest));
             }
         }
-
-        public ICommand ApprovalRequestAcceptCommand { get; }
         public ICommand NavigateCommand { get; }
         public ApprovalRequestListViewModel(
             ApprovalRequestService approvalRequestService, 
-            AcceptApprovalRequestService acceptApprovalRequestService,
             ParameterModalNavigationService<ApprovalRequest, ApprovalRequestShowViewModel> showViewModalNavigationService)
         {
             _approvalRequests = new ObservableCollection<ApprovalRequestItemViewModel>();
             _showViewModalNavigation = showViewModalNavigationService;
 
-            ApprovalRequestAcceptCommand = new ApprovalRequestAcceptCommand(this, acceptApprovalRequestService);
             this.NavigateCommand = new ParameterModalNavigateCommand<ApprovalRequest, ApprovalRequestShowViewModel>(_showViewModalNavigation);
             UpdateList(approvalRequestService.GetApprovalRequests());
         }
-
-  
 
         public void UpdateList(IEnumerable<ApprovalRequest> requests)
         {
