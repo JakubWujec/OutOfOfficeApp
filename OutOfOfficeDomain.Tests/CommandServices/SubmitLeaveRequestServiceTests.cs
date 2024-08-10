@@ -2,11 +2,6 @@
 using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeDomain.Events;
 using OutOfOfficeDomain.Tests.Fakes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeDomain.Tests.CommandServices
 {

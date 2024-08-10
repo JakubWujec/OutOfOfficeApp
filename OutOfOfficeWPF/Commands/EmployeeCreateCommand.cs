@@ -1,12 +1,6 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 
 namespace OutOfOfficeWPF.Commands
@@ -16,7 +10,8 @@ namespace OutOfOfficeWPF.Commands
         private readonly EmployeeCreateViewModel employeeCreateViewModel;
         private readonly EmployeeService employeeService;
         private readonly INavigationService navigationService;
-        public EmployeeCreateCommand(EmployeeCreateViewModel employeeCreateViewModel, EmployeeService employeeService, INavigationService navigationService) { 
+        public EmployeeCreateCommand(EmployeeCreateViewModel employeeCreateViewModel, EmployeeService employeeService, INavigationService navigationService)
+        {
             this.navigationService = navigationService;
             this.employeeCreateViewModel = employeeCreateViewModel;
             this.employeeService = employeeService;

@@ -1,13 +1,8 @@
 ﻿using OutOfOfficeDomain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class ApprovalRequestItemViewModel: ViewModelBase
+    public class ApprovalRequestItemViewModel : ViewModelBase
     {
         public ApprovalRequest request { get; private set; }
 
@@ -15,7 +10,8 @@ namespace OutOfOfficeWPF.ViewModels
         public DateOnly StartDate => this.request.LeaveRequest.StartDate;
         public DateOnly EndDate => this.request.LeaveRequest.EndDate;
         public ApprovalRequestStatus Status => this.request.Status;
-        public ApprovalRequestItemViewModel(ApprovalRequest request) {
+        public ApprovalRequestItemViewModel(ApprovalRequest request)
+        {
             this.request = request;
         }
 

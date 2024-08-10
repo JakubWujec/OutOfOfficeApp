@@ -1,10 +1,10 @@
 ﻿// //source https://thomaslevesque.com/2009/08/04/wpf-automatically-sort-a-gridview-continued/
-using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace OutOfOfficeWPF.Utils
 {

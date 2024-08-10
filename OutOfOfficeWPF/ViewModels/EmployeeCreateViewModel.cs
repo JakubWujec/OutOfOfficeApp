@@ -1,29 +1,25 @@
 ﻿using OutOfOfficeDomain;
 using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class EmployeeCreateViewModel: ViewModelBase
+    public class EmployeeCreateViewModel : ViewModelBase
     {
         private readonly EmployeeService employeeService;
         private readonly INavigationService navigationService;
-        public EmployeeCreateViewModel(EmployeeService employeeService, INavigationService homeNavigationService) {
+        public EmployeeCreateViewModel(EmployeeService employeeService, INavigationService homeNavigationService)
+        {
             this.employeeService = employeeService;
             this.navigationService = homeNavigationService;
             this.SubmitCommand = new EmployeeCreateCommand(this, employeeService, homeNavigationService);
             this.CancelCommand = new NavigateCommand(homeNavigationService);
         }
 
-        public ICommand SubmitCommand { get;}
-        public ICommand CancelCommand { get;}
+        public ICommand SubmitCommand { get; }
+        public ICommand CancelCommand { get; }
 
         private string firstName = string.Empty;
         public string FirstName
@@ -38,7 +34,8 @@ namespace OutOfOfficeWPF.ViewModels
         public string LastName
         {
             get { return lastName; }
-            set {
+            set
+            {
                 lastName = value; OnPropertyChanged(nameof(LastName));
             }
         }

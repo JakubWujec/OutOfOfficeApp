@@ -1,6 +1,6 @@
 ﻿namespace OutOfOfficeDomain.Tests
 {
-   
+
     public class StubLeaveRequestRepository : ILeaveRequestRepository
     {
         public List<LeaveRequest> leaveRequests { get; set; } = new List<LeaveRequest>();
@@ -27,5 +27,5 @@
 
 
     }
-    
+
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OutOfOfficeWPF.ViewModels
+﻿namespace OutOfOfficeWPF.ViewModels
 {
-    public class LayoutViewModel: ViewModelBase
+    public class LayoutViewModel : ViewModelBase
     {
         private NavigationBarViewModel navigationBarViewModel;
         private ViewModelBase contentViewModel;

@@ -1,12 +1,4 @@
-﻿using OutOfOfficeDomain.Commands;
-using OutOfOfficeDomain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OutOfOfficeDomain
+﻿namespace OutOfOfficeDomain
 {
     public class ApprovalRequestService
     {

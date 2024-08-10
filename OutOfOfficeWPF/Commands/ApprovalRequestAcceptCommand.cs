@@ -1,12 +1,6 @@
-﻿using OutOfOfficeDomain;
-using OutOfOfficeDomain.Commands;
+﻿using OutOfOfficeDomain.Commands;
 using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Commands
 {
@@ -14,7 +8,8 @@ namespace OutOfOfficeWPF.Commands
     {
         private readonly ApprovalRequestShowViewModel _viewModel;
         private readonly AcceptApprovalRequestService _acceptApprovalService;
-        public ApprovalRequestAcceptCommand(ApprovalRequestShowViewModel viewModel, AcceptApprovalRequestService acceptApprovalService) { 
+        public ApprovalRequestAcceptCommand(ApprovalRequestShowViewModel viewModel, AcceptApprovalRequestService acceptApprovalService)
+        {
             this._viewModel = viewModel;
             this._acceptApprovalService = acceptApprovalService;
 

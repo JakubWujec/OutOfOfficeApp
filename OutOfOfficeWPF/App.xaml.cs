@@ -1,13 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using OutOfOfficeDomain;
+﻿using OutOfOfficeDomain;
 using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeDomain.EventHandlers;
 using OutOfOfficeEF;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 
@@ -39,7 +36,7 @@ namespace OutOfOfficeWPF
 
         private IAuthenticator authenticator;
         private IAuthStore authStore;
-        
+
         public App()
         {
             navigationStore = new NavigationStore();
@@ -68,7 +65,7 @@ namespace OutOfOfficeWPF
             MainWindow mainWindow = new MainWindow();
 
             mainWindow.DataContext = mainViewModel;
-            mainWindow.Show();      
+            mainWindow.Show();
         }
 
         private LeaveRequestListViewModel MakeLeaveRequestListViewModel()
@@ -93,10 +90,12 @@ namespace OutOfOfficeWPF
             );
             return new LeaveRequestCreateViewModel(navigationService, leaveRequestService, authStore);
         }
-        private HomeViewModel MakeHomeViewModel() {
+        private HomeViewModel MakeHomeViewModel()
+        {
             return new HomeViewModel(authStore);
         }
-        private LoginViewModel MakeLoginViewModel() {
+        private LoginViewModel MakeLoginViewModel()
+        {
             return new LoginViewModel(MakeHomeNavigationService(), authenticator, employeeService);
         }
 
@@ -139,8 +138,8 @@ namespace OutOfOfficeWPF
         private INavigationService MakeLeaveRequestListNavigationService()
         {
             return new LayoutNavigationService<LeaveRequestListViewModel>(
-                navigationStore, 
-                MakeLeaveRequestListViewModel, 
+                navigationStore,
+                MakeLeaveRequestListViewModel,
                 MakeNavigationBarViewModel
             );
         }
@@ -173,5 +172,4 @@ namespace OutOfOfficeWPF
 
     }
 
-} 
- 
+}

@@ -1,10 +1,5 @@
 ﻿using OutOfOfficeDomain.Commands;
 using OutOfOfficeDomain.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeDomain.CommandServices
 {
@@ -26,7 +21,7 @@ namespace OutOfOfficeDomain.CommandServices
 
             request.Submit();
             this._repository.Save(request);
-            
+
             this._handler.Handle(new LeaveRequestSubmitted(request.Id));
         }
     }

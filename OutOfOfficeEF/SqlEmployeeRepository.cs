@@ -1,9 +1,4 @@
 ﻿using OutOfOfficeDomain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeEF
 {
@@ -25,7 +20,7 @@ namespace OutOfOfficeEF
         public Employee GetEmployeeById(Guid id)
         {
             Employee employee = this.context.Employees.First(x => x.Id == id);
-            if(employee == null)
+            if (employee == null)
             {
                 throw new Exception("Employee does not exist");
             }

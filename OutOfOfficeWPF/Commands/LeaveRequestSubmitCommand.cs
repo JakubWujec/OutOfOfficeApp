@@ -1,12 +1,6 @@
-﻿using OutOfOfficeDomain;
-using OutOfOfficeDomain.Commands;
+﻿using OutOfOfficeDomain.Commands;
 using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Commands
 {
@@ -14,7 +8,8 @@ namespace OutOfOfficeWPF.Commands
     {
         private readonly LeaveRequestListViewModel _viewModel;
         private readonly SubmitLeaveRequestService _submitLeaveRequestService;
-        public LeaveRequestSubmitCommand(LeaveRequestListViewModel viewModel, SubmitLeaveRequestService submitLeaveRequestService) { 
+        public LeaveRequestSubmitCommand(LeaveRequestListViewModel viewModel, SubmitLeaveRequestService submitLeaveRequestService)
+        {
             this._viewModel = viewModel;
             this._submitLeaveRequestService = submitLeaveRequestService;
 

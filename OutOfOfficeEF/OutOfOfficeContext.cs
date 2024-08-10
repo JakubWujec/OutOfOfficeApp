@@ -1,17 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OutOfOfficeDomain;
 
 namespace OutOfOfficeEF
 {
-    public class OutOfOfficeContext: DbContext
+    public class OutOfOfficeContext : DbContext
     {
         public string DbPath { get; }
-        public OutOfOfficeContext() {
+        public OutOfOfficeContext()
+        {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = System.IO.Path.Join(path, "out_of_office_app.db");

@@ -2,11 +2,6 @@
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Commands
 {
@@ -16,7 +11,8 @@ namespace OutOfOfficeWPF.Commands
         private readonly INavigationService _leaveRequestListNavigationService;
         private readonly LeaveRequestService _leaveRequestService;
         private readonly IAuthStore _authStore;
-        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, INavigationService navigationService, LeaveRequestService leaveRequestService, IAuthStore authStore) { 
+        public LeaveRequestCreateCommand(LeaveRequestCreateViewModel viewModel, INavigationService navigationService, LeaveRequestService leaveRequestService, IAuthStore authStore)
+        {
             this._viewModel = viewModel;
             this._leaveRequestListNavigationService = navigationService;
             this._leaveRequestService = leaveRequestService;

@@ -1,17 +1,9 @@
 ﻿using OutOfOfficeDomain;
-using OutOfOfficeWPF.Services;
-using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Commands
 {
-    public class LeaveRequestDeleteCommand: CommandBase
+    public class LeaveRequestDeleteCommand : CommandBase
     {
         private readonly LeaveRequestListViewModel _viewModel;
         private readonly LeaveRequestService _leaveRequestService;
@@ -23,7 +15,7 @@ namespace OutOfOfficeWPF.Commands
 
             _viewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
- 
+
         public override bool CanExecute(object? parameter)
         {
             return _viewModel.SelectedLeaveRequest != null && base.CanExecute(parameter);
@@ -38,9 +30,9 @@ namespace OutOfOfficeWPF.Commands
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(_viewModel.SelectedLeaveRequest))
-            { 
+            {
                 OnCanExecuteChanged();
-            } 
+            }
         }
 
     }

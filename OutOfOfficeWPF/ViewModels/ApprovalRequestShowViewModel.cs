@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class ApprovalRequestShowViewModel: ViewModelBase
+    public class ApprovalRequestShowViewModel : ViewModelBase
     {
         public ICommand CancelCommand { get; }
         private readonly ApprovalRequest _approvalRequest;
@@ -17,7 +17,7 @@ namespace OutOfOfficeWPF.ViewModels
         public ICommand ApprovalRequestRejectCommand { get; }
 
         public ApprovalRequestShowViewModel(
-            INavigationService cancelNavigationService, 
+            INavigationService cancelNavigationService,
             AcceptApprovalRequestService acceptApprovalRequestService,
             RejectApprovalRequestService rejectApprovalRequestService,
             ApprovalRequest approvalRequest)

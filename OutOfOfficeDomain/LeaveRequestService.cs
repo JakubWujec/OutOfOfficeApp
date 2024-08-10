@@ -1,19 +1,16 @@
 ﻿using OutOfOfficeDomain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeDomain
 {
     public class LeaveRequestService
     {
-        private readonly ILeaveRequestRepository _leaveRequestRepository; 
-        public LeaveRequestService(ILeaveRequestRepository leaveRequestRepository) {
+        private readonly ILeaveRequestRepository _leaveRequestRepository;
+        public LeaveRequestService(ILeaveRequestRepository leaveRequestRepository)
+        {
             _leaveRequestRepository = leaveRequestRepository;
         }
-        public IEnumerable<LeaveRequest> GetCurrentLeaveRequests() {
+        public IEnumerable<LeaveRequest> GetCurrentLeaveRequests()
+        {
             return _leaveRequestRepository.GetAll();
         }
 

@@ -2,17 +2,12 @@
 using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class LeaveRequestCreateViewModel: ViewModelBase
+    public class LeaveRequestCreateViewModel : ViewModelBase
     {
         private DateTime startDate = DateTime.Now;
         public DateTime StartDate

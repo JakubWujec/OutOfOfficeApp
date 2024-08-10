@@ -2,14 +2,7 @@
 using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
-using OutOfOfficeWPF.Stores;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 //TODO sort by column click
@@ -17,7 +10,7 @@ using System.Windows.Input;
 
 namespace OutOfOfficeWPF.ViewModels
 {
-    public class LeaveRequestListViewModel: ViewModelBase
+    public class LeaveRequestListViewModel : ViewModelBase
     {
         private readonly ObservableCollection<LeaveRequestItemViewModel> _leaveRequests;
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests => _leaveRequests;

@@ -1,13 +1,7 @@
 ﻿using OutOfOfficeWPF.Commands;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace OutOfOfficeWPF.ViewModels
 {
@@ -39,7 +33,7 @@ namespace OutOfOfficeWPF.ViewModels
             this.NavigateApprovalRequestListCommand = new NavigateCommand(approvalRequestListNavigationService);
             this.authStore = authStore;
             this.LogoutCommand = new LogoutCommand(authStore, loginNavigationService);
-            
+
         }
     }
 }
