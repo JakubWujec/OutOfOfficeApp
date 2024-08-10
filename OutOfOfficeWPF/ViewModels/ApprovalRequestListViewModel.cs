@@ -41,7 +41,7 @@ namespace OutOfOfficeWPF.ViewModels
             _showViewModalNavigation = showViewModalNavigationService;
 
             ApprovalRequestAcceptCommand = new ApprovalRequestAcceptCommand(this, acceptApprovalRequestService);
-            this.NavigateCommand = new ParameterNavigateCommand<ApprovalRequest, ApprovalRequestShowViewModel>(_showViewModalNavigation);
+            this.NavigateCommand = new ParameterModalNavigateCommand<ApprovalRequest, ApprovalRequestShowViewModel>(_showViewModalNavigation);
             UpdateList(approvalRequestService.GetApprovalRequests());
         }
 

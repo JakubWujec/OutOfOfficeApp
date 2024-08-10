@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeWPF.Commands
 {
-    public class ParameterNavigateCommand<TParameter, TViewModel> : CommandBase
+    public class ParameterModalNavigateCommand<TParameter, TViewModel> : CommandBase
         where TViewModel : ViewModelBase
     {
         private ParameterModalNavigationService<TParameter, TViewModel> navigationService;
-        public ParameterNavigateCommand(ParameterModalNavigationService<TParameter, TViewModel> navigationService)
+        public ParameterModalNavigateCommand(ParameterModalNavigationService<TParameter, TViewModel> navigationService)
         {
             this.navigationService = navigationService;
         }
         public override void Execute(object? parameter)
         {
-            if(parameter != null)
+            if (parameter is TParameter _parameter)
             {
-                navigationService.Navigate((TParameter)parameter);
+                navigationService.Navigate(_parameter);
             }
-    
         }
     }
 }
