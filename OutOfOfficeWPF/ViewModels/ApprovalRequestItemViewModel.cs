@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OutOfOfficeDomain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,14 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class ApprovalRequestItemViewModel: ViewModelBase
     {
-        public Guid Id { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        private readonly ApprovalRequest _request;
 
-        public string Status { get; set; }
-    
-        public ApprovalRequestItemViewModel(DateOnly startDate, DateOnly endDate, Guid id, string status ) { 
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.Id = id;
-            this.Status = status;
+        public Guid Id => this._request.Id;
+        public DateOnly StartDate => this._request.LeaveRequest.StartDate;
+        public DateOnly EndDate => this._request.LeaveRequest.EndDate;
+        public ApprovalRequestStatus Status => this._request.Status;
+        public ApprovalRequestItemViewModel(ApprovalRequest request) {
+            this._request = request;
         }
 
         public override string ToString()

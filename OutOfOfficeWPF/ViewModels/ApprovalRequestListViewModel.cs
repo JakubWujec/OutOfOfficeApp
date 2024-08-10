@@ -49,10 +49,7 @@ namespace OutOfOfficeWPF.ViewModels
             foreach (var request in requests)
             {
                 _approvalRequests.Add(new ApprovalRequestItemViewModel(
-                    request.LeaveRequest.StartDate,
-                    request.LeaveRequest.EndDate,
-                    request.Id,
-                    status: request.Status.ToString()
+                   request
                 ));
             }
         }
