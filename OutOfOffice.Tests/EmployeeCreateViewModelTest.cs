@@ -40,10 +40,10 @@ namespace OutOfOfficeDomain.Tests
             var employeeService = new EmployeeService(employeeRepository);
             var navigationStore = new NavigationStore();
             var authStore = new AuthStore();
-            var MakeHomeViewModel = () => new HomeViewModel(authStore);
-            var mockNavigationService = new NavigationService(navigationStore, MakeHomeViewModel);
-            var MakeNavigationBarViewModel = () => new NavigationBarViewModel(mockNavigationService, mockNavigationService, mockNavigationService, mockNavigationService, mockNavigationService, authStore);
-            var homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel, MakeNavigationBarViewModel);
+            var makeHomeViewModel = () => new HomeViewModel(authStore);
+            var mockNavigationService = new NavigationService(navigationStore, makeHomeViewModel);
+            var makeNavigationBarViewModel = () => new NavigationBarViewModel(mockNavigationService, mockNavigationService, mockNavigationService, mockNavigationService, mockNavigationService, mockNavigationService, authStore);
+            var homeNavigationService = new NavigationService(navigationStore, makeHomeViewModel);
             return new EmployeeCreateViewModel(employeeService, homeNavigationService); 
         }
 
