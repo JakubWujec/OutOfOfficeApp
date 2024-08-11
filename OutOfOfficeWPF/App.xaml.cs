@@ -39,12 +39,7 @@ namespace OutOfOfficeWPF
 
         public App()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            var DbPath = System.IO.Path.Join(path, "out_of_office_app.db");
-            var connectionString = $"Data Source={DbPath}";
-
-            OutOfOfficeDbContextFactory contextFactory = new OutOfOfficeDbContextFactory(connectionString);
+            OutOfOfficeDbContextFactory contextFactory = new OutOfOfficeDbContextFactory(GetConnectionString());
             outOfOfficeContext = contextFactory.CreateDbContext();
             navigationStore = new NavigationStore();
             modalNavigationStore = new ModalNavigationStore();
@@ -60,6 +55,15 @@ namespace OutOfOfficeWPF
             submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
             acceptApprovalRequestService = new AcceptApprovalRequestService(approvalRequestRepository);
             rejectApprovalRequestService = new RejectApprovalRequestService(approvalRequestRepository);
+        }
+
+        private string GetConnectionString()
+        {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            var DbPath = System.IO.Path.Join(path, "out_of_office_app.db");
+            var connectionString = $"Data Source={DbPath}";
+            return connectionString;
         }
         protected override void OnStartup(StartupEventArgs e)
         {
