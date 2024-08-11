@@ -31,6 +31,7 @@ namespace OutOfOfficeWPF.ViewModels
             INavigationService loginNavigationService,
             INavigationService leaveRequestListNavigationService,
             INavigationService approvalRequestListNavigationService,
+            INavigationService createEmployeeNavigationService,
             IAuthStore authStore
         )
         {
@@ -40,8 +41,10 @@ namespace OutOfOfficeWPF.ViewModels
                 new NavigationButtonViewModel("Make leave request", new NavigateCommand(createLeaveRequestNavigationService), authStore.IsLoggedIn),
                 new NavigationButtonViewModel("Leave requests", new NavigateCommand(leaveRequestListNavigationService), authStore.IsLoggedIn),
                 new NavigationButtonViewModel("Approval requests", new NavigateCommand(approvalRequestListNavigationService), authStore.IsLoggedIn),
+                new NavigationButtonViewModel("Add new user", new NavigateCommand(createEmployeeNavigationService), authStore.IsLoggedIn),
                 new NavigationButtonViewModel("Logout", new LogoutCommand(authStore, loginNavigationService), authStore.IsLoggedIn)
             };
+
 
             this.authStore = authStore;
             this.authStore.CurrentEmployeeChanged += AuthStore_CurrentEmployeeChanged;

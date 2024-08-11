@@ -173,6 +173,15 @@ namespace OutOfOfficeWPF
             );
         }
 
+        public INavigationService MakeEmployeeCreateNavigationService()
+        {
+            return new LayoutNavigationService<EmployeeCreateViewModel>(
+                navigationStore,
+                MakeEmployeeCreateViewModel,
+                MakeNavigationBarViewModel
+            );
+        }
+
         private NavigationBarViewModel MakeNavigationBarViewModel()
         {
             return new NavigationBarViewModel(
@@ -181,6 +190,7 @@ namespace OutOfOfficeWPF
                 MakeLoginNavigationService(),
                 MakeLeaveRequestListNavigationService(),
                 MakeApprovalRequestListNavigationService(),
+                MakeEmployeeCreateNavigationService(),
                 authStore
             );
         }
