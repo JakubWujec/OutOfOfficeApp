@@ -10,7 +10,7 @@ using OutOfOfficeEF;
 
 namespace OutOfOfficeEF.Migrations
 {
-    [DbContext(typeof(OutOfOfficeContext))]
+    [DbContext(typeof(OutOfOfficeDbContext))]
     [Migration("20240805105917_EmployeeHasLeaveRequests_Relation")]
     partial class EmployeeHasLeaveRequests_Relation
     {

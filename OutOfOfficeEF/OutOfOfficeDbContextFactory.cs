@@ -14,11 +14,11 @@ namespace OutOfOfficeEF
         {
             _connectionString = connectionString;
         }
-        public OutOfOfficeContext CreateDbContext()
+        public OutOfOfficeDbContext CreateDbContext()
         {
             DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(_connectionString).Options;
 
-            return new OutOfOfficeContext(options);
+            return new OutOfOfficeDbContext(options);
         }
     }
 }

@@ -4,9 +4,9 @@ namespace OutOfOfficeEF
 {
     public class SqlEmployeeRepository : IEmployeeRepository
     {
-        private readonly OutOfOfficeContext context;
+        private readonly OutOfOfficeDbContext context;
 
-        public SqlEmployeeRepository(OutOfOfficeContext context)
+        public SqlEmployeeRepository(OutOfOfficeDbContext context)
         {
             this.context = context;
         }

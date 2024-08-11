@@ -10,7 +10,7 @@ using OutOfOfficeEF;
 
 namespace OutOfOfficeEF.Migrations
 {
-    [DbContext(typeof(OutOfOfficeContext))]
+    [DbContext(typeof(OutOfOfficeDbContext))]
     [Migration("20240809100106_AddStatusToApprovalRequestMigration")]
     partial class AddStatusToApprovalRequestMigration
     {

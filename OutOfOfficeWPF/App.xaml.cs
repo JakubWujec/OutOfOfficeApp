@@ -15,7 +15,7 @@ namespace OutOfOfficeWPF
     /// </summary>
     public partial class App : Application
     {
-        private OutOfOfficeContext outOfOfficeContext;
+        private OutOfOfficeDbContext outOfOfficeContext;
 
         private NavigationStore navigationStore;
         private ModalNavigationStore modalNavigationStore;

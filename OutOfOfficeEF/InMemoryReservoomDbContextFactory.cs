@@ -18,11 +18,11 @@ namespace OutOfOfficeEF
             _connection = new SqliteConnection("Data Source=:memory:");
             _connection.Open();
         }
-        public OutOfOfficeContext CreateDbContext()
+        public OutOfOfficeDbContext CreateDbContext()
         {
             DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(_connection).Options;
 
-            return new OutOfOfficeContext(options);
+            return new OutOfOfficeDbContext(options);
         }
     }
 }

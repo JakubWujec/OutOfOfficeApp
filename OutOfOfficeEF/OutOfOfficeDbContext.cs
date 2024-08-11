@@ -1,14 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OutOfOfficeDomain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutOfOfficeEF
 {
-    public class OutOfOfficeDbContext: DbContext
+    public class OutOfOfficeDbContext : DbContext
     {
         public OutOfOfficeDbContext(DbContextOptions options) : base(options) { }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }

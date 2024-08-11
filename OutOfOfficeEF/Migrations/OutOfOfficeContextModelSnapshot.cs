@@ -9,7 +9,7 @@ using OutOfOfficeEF;
 
 namespace OutOfOfficeEF.Migrations
 {
-    [DbContext(typeof(OutOfOfficeContext))]
+    [DbContext(typeof(OutOfOfficeDbContext))]
     partial class OutOfOfficeContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

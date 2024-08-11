@@ -5,9 +5,9 @@ namespace OutOfOfficeEF
 {
     public class SqlLeaveRequestRepository : ILeaveRequestRepository
     {
-        private readonly OutOfOfficeContext context;
+        private readonly OutOfOfficeDbContext context;
 
-        public SqlLeaveRequestRepository(OutOfOfficeContext context)
+        public SqlLeaveRequestRepository(OutOfOfficeDbContext context)
         {
             this.context = context;
         }

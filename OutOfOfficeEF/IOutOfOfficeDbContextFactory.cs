@@ -8,6 +8,6 @@ namespace OutOfOfficeEF
 {
     public interface IOutOfOfficeContextFactory
     {
-        OutOfOfficeContext CreateDbContext();
+        OutOfOfficeDbContext CreateDbContext();
     }
 }

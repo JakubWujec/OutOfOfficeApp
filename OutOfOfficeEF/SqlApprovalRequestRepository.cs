@@ -5,9 +5,9 @@ namespace OutOfOfficeEF
 {
     public class SqlApprovalRequestRepository : IApprovalRequestRepository
     {
-        private readonly OutOfOfficeContext context;
+        private readonly OutOfOfficeDbContext context;
 
-        public SqlApprovalRequestRepository(OutOfOfficeContext context)
+        public SqlApprovalRequestRepository(OutOfOfficeDbContext context)
         {
             this.context = context;
         }
