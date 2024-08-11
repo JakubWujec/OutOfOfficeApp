@@ -22,20 +22,21 @@
         <TextBlock Text="OutOfOffice" FontSize="20" FontWeight="Bold" Foreground="White" 
                    VerticalAlignment="Center" Margin="10" DockPanel.Dock="Left"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button Content="Home" Command="{Binding NavigateHomeCommand}"
-                    Style="{StaticResource NavigationButtonStyle}"></Button>
-            <Button Content="Make leave request" Command="{Binding NavigateMakeLeaveRequestCommand}"
-                    Style="{StaticResource NavigationButtonStyle}"></Button>
-            <Button Content="Leave requests" Command="{Binding NavigateLeaveRequestListCommand}"
-                    Style="{StaticResource NavigationButtonStyle}"></Button>
-            <Button Content="Approval requests" Command="{Binding NavigateApprovalRequestListCommand}"
-                Style="{StaticResource NavigationButtonStyle}"></Button>
-            <Button  Content="Logout" Command="{Binding LogoutCommand}"
-                Style="{StaticResource NavigationButtonStyle}"
-                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
-            ></Button>
-        </StackPanel>
+        <ItemsControl ItemsSource="{Binding NavigationButtons}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Content}" 
+                            Command="{Binding Command}" 
+                            Style="{StaticResource NavigationButtonStyle}" 
+                            Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
 
     </DockPanel>

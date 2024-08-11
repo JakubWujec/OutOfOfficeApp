@@ -19,6 +19,7 @@ namespace OutOfOfficeWPF.ViewModels
             this.homeNavigationService = homeNavigationService;
             this.employeeService = employeeService;
             this.LoginCommand = new LoginCommand(this, authenticator, homeNavigationService);
+            this._selectedEmployee = authenticator.CurrentEmployee;
         }
 
         private Employee _selectedEmployee;

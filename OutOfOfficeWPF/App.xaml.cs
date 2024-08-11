@@ -69,7 +69,8 @@ namespace OutOfOfficeWPF
         {
             base.OnStartup(e);
 
-            navigationStore.CurrentViewModel = MakeLoginViewModel();
+            var loginNavigationService = MakeLoginNavigationService();
+            loginNavigationService.Navigate();
 
             MainViewModel mainViewModel = new MainViewModel(navigationStore, modalNavigationStore);
             MainWindow mainWindow = new MainWindow();
@@ -165,7 +166,11 @@ namespace OutOfOfficeWPF
 
         private INavigationService MakeLoginNavigationService()
         {
-            return new NavigationService(navigationStore, MakeLoginViewModel);
+            return new LayoutNavigationService<LoginViewModel>(
+                navigationStore,
+                MakeLoginViewModel,
+                MakeNavigationBarViewModel
+            );
         }
 
         private NavigationBarViewModel MakeNavigationBarViewModel()
