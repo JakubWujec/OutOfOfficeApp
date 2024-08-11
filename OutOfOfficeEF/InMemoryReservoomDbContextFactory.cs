@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeEF
 {
-    public class InMemoryReservoomDbContextFactory : IOutOfOfficeDbContextFactory
+    public class InMemoryReservoomDbContextFactory : IOutOfOfficeContextFactory
     {
         private readonly SqliteConnection _connection;
 
@@ -18,11 +18,11 @@ namespace OutOfOfficeEF
             _connection = new SqliteConnection("Data Source=:memory:");
             _connection.Open();
         }
-        public OutOfOfficeDbContext CreateDbContext()
+        public OutOfOfficeContext CreateDbContext()
         {
             DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(_connection).Options;
 
-            return new OutOfOfficeDbContext(options);
+            return new OutOfOfficeContext(options);
         }
     }
 }

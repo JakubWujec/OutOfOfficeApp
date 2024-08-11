@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeEF
 {
-    public interface IOutOfOfficeDbContextFactory
+    public interface IOutOfOfficeContextFactory
     {
-        OutOfOfficeDbContext CreateDbContext();
+        OutOfOfficeContext CreateDbContext();
     }
 }
