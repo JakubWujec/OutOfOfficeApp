@@ -18,6 +18,7 @@
             <Button Content="Delete selected" Command="{Binding DeleteSelectedCommand}" HorizontalAlignment="Right"></Button>
             <Button Content="Submit selected" Command="{Binding SubmitSelectedCommand}" HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
             <Button Content="Create Leave Request" Command="{Binding NavigateCommand}" HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
+            <Button Content="Open selected" Command="{Binding OpenSelectedCommand}" CommandParameter="{Binding SelectedLeaveRequest.LeaveRequest}"  HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
         </StackPanel>
 
         <ListView Grid.Row="1" Margin="0, 10" Name="ProductListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"

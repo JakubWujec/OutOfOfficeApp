@@ -84,8 +84,8 @@ namespace OutOfOfficeWPF
             return new LeaveRequestListViewModel(
                 leaveRequestService,
                 submitLeaveRequestService,
-                MakeCreateLeaveRequestNavigationService()
-                // MakeLeaveRequestShowNavigationService()
+                MakeCreateLeaveRequestNavigationService(),
+                MakeLeaveRequestShowNavigationService()
             );
         }
 

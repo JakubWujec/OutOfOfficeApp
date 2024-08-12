@@ -15,8 +15,8 @@ namespace OutOfOfficeWPF.ViewModels
         private readonly ObservableCollection<LeaveRequestItemViewModel> _leaveRequests;
         public ObservableCollection<LeaveRequestItemViewModel> LeaveRequests => _leaveRequests;
         public ICommand NavigateCommand { get; }
+        public ICommand OpenSelectedCommand {get;}
         public ICommand DeleteSelectedCommand { get; }
-
         public ICommand SubmitSelectedCommand { get; }
 
         private LeaveRequestItemViewModel _selectedLeaveRequest = null;
@@ -29,10 +29,12 @@ namespace OutOfOfficeWPF.ViewModels
                 OnPropertyChanged(nameof(SelectedLeaveRequest));
             }
         }
-        public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, SubmitLeaveRequestService submitLeaveRequestService, INavigationService createLeaveRequestNavigationService)
+        public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, SubmitLeaveRequestService submitLeaveRequestService, INavigationService createLeaveRequestNavigationService, 
+            ParameterModalNavigationService<LeaveRequest, LeaveRequestShowViewModel> showViewModalNavigationService)
         {
             _leaveRequests = new ObservableCollection<LeaveRequestItemViewModel>();
             NavigateCommand = new NavigateCommand(createLeaveRequestNavigationService);
+            OpenSelectedCommand = new ParameterModalNavigateCommand<LeaveRequest, LeaveRequestShowViewModel>(showViewModalNavigationService);
             DeleteSelectedCommand = new LeaveRequestDeleteCommand(this, leaveRequestService);
             SubmitSelectedCommand = new LeaveRequestSubmitCommand(this, submitLeaveRequestService);
 
