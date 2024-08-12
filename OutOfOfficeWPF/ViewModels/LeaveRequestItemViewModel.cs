@@ -1,18 +1,19 @@
-﻿namespace OutOfOfficeWPF.ViewModels
+﻿using OutOfOfficeDomain;
+
+namespace OutOfOfficeWPF.ViewModels
 {
     public class LeaveRequestItemViewModel : ViewModelBase
     {
-        public string Comment { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
-        public Guid Id { get; set; }
+        public string Comment => _leaveRequest.Comment;
+        public DateOnly StartDate => _leaveRequest.StartDate;
+        public DateOnly EndDate => _leaveRequest.EndDate;
+        public Guid Id => _leaveRequest.Id;
 
-        public LeaveRequestItemViewModel(string comment, DateOnly startDate, DateOnly endDate, Guid id)
+        private LeaveRequest _leaveRequest { get; init; }
+
+        public LeaveRequestItemViewModel(LeaveRequest leaveRequest)
         {
-            this.Comment = comment;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.Id = id;
+            this._leaveRequest = leaveRequest;
         }
 
         public override string ToString()

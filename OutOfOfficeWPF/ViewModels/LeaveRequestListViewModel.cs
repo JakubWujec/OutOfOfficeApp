@@ -45,10 +45,7 @@ namespace OutOfOfficeWPF.ViewModels
             foreach (var item in leaveRequests)
             {
                 LeaveRequests.Add(new LeaveRequestItemViewModel(
-                    item.Comment,
-                    item.StartDate,
-                    item.EndDate,
-                    item.Id
+                   item
                 ));
             }
         }
