@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OutOfOfficeEF;
 
@@ -10,9 +11,11 @@ using OutOfOfficeEF;
 namespace OutOfOfficeEF.Migrations
 {
     [DbContext(typeof(OutOfOfficeDbContext))]
-    partial class OutOfOfficeContextModelSnapshot : ModelSnapshot
+    [Migration("20240812090535_AddRoleModelMigration")]
+    partial class AddRoleModelMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
@@ -67,7 +70,7 @@ namespace OutOfOfficeEF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dfe5dc88-8ad5-46be-96e0-1822a30e2094"),
+                            Id = new Guid("0248c07c-cf9f-40c9-9a25-0a306f1f38df"),
                             FirstName = "Admin",
                             IsActive = true,
                             LastName = "Admin",
@@ -127,12 +130,12 @@ namespace OutOfOfficeEF.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "HR Manager"
+                            Name = "Manager"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Member"
+                            Name = "User"
                         });
                 });
 
