@@ -30,9 +30,8 @@ namespace OutOfOfficeWPF.Commands
                 StartDate = DateOnly.FromDateTime(_viewModel.StartDate),
                 EndDate = DateOnly.FromDateTime(_viewModel.EndDate),
                 Comment = "no reason",
-                EmployeeId = _authStore.CurrentEmployee.Id
             };
-            _leaveRequestService.CreateLeaveRequest(leaveRequest);
+            _leaveRequestService.CreateLeaveRequest(_authStore.CurrentEmployee, leaveRequest);
             _leaveRequestListNavigationService.Navigate();
         }
     }

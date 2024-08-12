@@ -9,13 +9,13 @@
 
 
         [Test]
-        public void GetCurrentLeaveRequestsWillReturnInstance()
+        public void GetAllWillReturnInstance()
         {
             // Arrange
             var service = new LeaveRequestService(new StubLeaveRequestRepository());
 
             // Act
-            var result = service.GetCurrentLeaveRequests();
+            var result = service.GetAll();
 
             // Assert
             Assert.NotNull(result);

@@ -24,14 +24,36 @@ namespace OutOfOfficeDomain.Tests
 
             var viewmodel = PrepareViewModel(dbContext);
 
+            viewmodel.FirstName = "Test1111";
+            viewmodel.LastName = "Test2222";
+
+            viewmodel.SubmitCommand.Execute(viewmodel);
+
+            Employee createdEmployee = dbContext.Employees.Where(e => e.FirstName == viewmodel.FirstName).First();
+
+            Assert.That(createdEmployee, Is.Not.Null);
+        }
+
+        [Test]
+        public void ExecuteSubmitCommand_WithValidEmployeeDataWithoutRole_CreatesMemberEmployee()
+        {
+            var dbContext = new InMemoryReservoomDbContextFactory().CreateDbContext();
+            dbContext.Database.Migrate();
+
+            var viewmodel = PrepareViewModel(dbContext);
+
             viewmodel.FirstName = "Test1";
             viewmodel.LastName = "Test2";
 
             viewmodel.SubmitCommand.Execute(viewmodel);
 
-            Employee createdEmployee = dbContext.Employees.First();
+            Employee createdEmployee = dbContext.Employees
+                .Include(e => e.Role)
+                .Where(e => e.FirstName == viewmodel.FirstName)
+                .First();
 
-            Assert.That(createdEmployee, Is.Not.Null);
+            Assert.That(createdEmployee.Role, Is.Not.Null);
+            Assert.That(createdEmployee.Role.Name, Is.EqualTo("Member"));
         }
 
         private EmployeeCreateViewModel PrepareViewModel(OutOfOfficeDbContext dbContext)

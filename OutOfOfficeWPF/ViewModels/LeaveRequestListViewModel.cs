@@ -36,7 +36,7 @@ namespace OutOfOfficeWPF.ViewModels
             DeleteSelectedCommand = new LeaveRequestDeleteCommand(this, leaveRequestService);
             SubmitSelectedCommand = new LeaveRequestSubmitCommand(this, submitLeaveRequestService);
 
-            UpdateLeaveRequests(leaveRequestService.GetCurrentLeaveRequests());
+            UpdateLeaveRequests(leaveRequestService.GetAll());
         }
 
         public void UpdateLeaveRequests(IEnumerable<LeaveRequest> leaveRequests)

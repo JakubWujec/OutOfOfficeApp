@@ -16,6 +16,7 @@
         public Employee Employee { get; set; } = null!; // Required reference navigation to principal
         public LeaveRequestStatus Status { get; private set; } = LeaveRequestStatus.NEW;
 
+        public int DurationInDays => EndDate.DayNumber - StartDate.DayNumber;
 
         public void Cancel()
         {

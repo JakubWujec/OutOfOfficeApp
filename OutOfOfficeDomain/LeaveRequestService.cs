@@ -9,17 +9,25 @@ namespace OutOfOfficeDomain
         {
             _leaveRequestRepository = leaveRequestRepository;
         }
-        public IEnumerable<LeaveRequest> GetCurrentLeaveRequests()
+        public IEnumerable<LeaveRequest> GetAll()
         {
             return _leaveRequestRepository.GetAll();
         }
 
-        public void CreateLeaveRequest(LeaveRequest leaveRequest)
+        public void CreateLeaveRequest(Employee employee, LeaveRequest leaveRequest)
         {
+            leaveRequest.Employee = employee;
+
             if (leaveRequest.StartDate > leaveRequest.EndDate)
             {
                 throw new InvalidLeaveRequestDateOnlyRangeException(leaveRequest);
             }
+
+            if(leaveRequest.DurationInDays > leaveRequest.Employee.OutOfOfficeBalance)
+            {
+                throw new InsufficientBalanceException();
+            }
+
             _leaveRequestRepository.Save(leaveRequest);
         }
 
