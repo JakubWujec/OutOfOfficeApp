@@ -85,6 +85,7 @@ namespace OutOfOfficeWPF
                 leaveRequestService,
                 submitLeaveRequestService,
                 MakeCreateLeaveRequestNavigationService()
+                // MakeLeaveRequestShowNavigationService()
             );
         }
 
@@ -119,6 +120,15 @@ namespace OutOfOfficeWPF
             );
         }
 
+        private ParameterModalNavigationService<LeaveRequest, LeaveRequestShowViewModel> MakeLeaveRequestShowNavigationService()
+        {
+
+            return new ParameterModalNavigationService<LeaveRequest, LeaveRequestShowViewModel>(
+                modalNavigationStore,
+                MakeLeaveRequestShowViewModel
+            );
+        }
+
         private ApprovalRequestShowViewModel MakeApprovalRequestShowViewModel(ApprovalRequest approvalRequest)
         {
             CompositeNavigationService navigationService = new CompositeNavigationService(
@@ -126,6 +136,15 @@ namespace OutOfOfficeWPF
                MakeApprovalRequestListNavigationService()
             );
             return new ApprovalRequestShowViewModel(navigationService, acceptApprovalRequestService, rejectApprovalRequestService, approvalRequest);
+        }
+
+        private LeaveRequestShowViewModel MakeLeaveRequestShowViewModel(LeaveRequest leaveRequest)
+        {
+            CompositeNavigationService navigationService = new CompositeNavigationService(
+               new CloseModalNavigationService(modalNavigationStore),
+               MakeLeaveRequestListNavigationService()
+            );
+            return new LeaveRequestShowViewModel(navigationService, leaveRequest);
         }
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
