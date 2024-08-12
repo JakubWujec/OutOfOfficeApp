@@ -20,14 +20,17 @@ namespace OutOfOfficeWPF.ViewModels
         public DateOnly EndDate => _leaveRequest.EndDate;
         public LeaveRequest SelectedRequest => _leaveRequest;
         public ICommand SubmitCommand { get; }
+        public ICommand DeleteCommand { get; }
         public LeaveRequestShowViewModel(
             INavigationService cancelNavigationService,
             LeaveRequest leaveRequest,
-            SubmitLeaveRequestService submitLeaveRequestService
+            SubmitLeaveRequestService submitLeaveRequestService,
+            DeleteLeaveRequestService deleteLeaveRequestService
             )
         {
             this.CancelCommand = new NavigateCommand(cancelNavigationService);
             this.SubmitCommand = new LeaveRequestSubmitCommand(this, submitLeaveRequestService);
+            this.DeleteCommand = new LeaveRequestDeleteCommand(this, deleteLeaveRequestService);
             this._leaveRequest = leaveRequest;
         }
     }

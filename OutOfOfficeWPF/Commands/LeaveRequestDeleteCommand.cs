@@ -1,35 +1,41 @@
 ﻿using OutOfOfficeDomain;
+using OutOfOfficeDomain.Commands;
+using OutOfOfficeDomain.CommandServices;
 using OutOfOfficeWPF.ViewModels;
 
 namespace OutOfOfficeWPF.Commands
 {
     public class LeaveRequestDeleteCommand : CommandBase
     {
-        private readonly LeaveRequestListViewModel _viewModel;
-        private readonly LeaveRequestService _leaveRequestService;
+        private readonly LeaveRequestShowViewModel _viewModel;
+        private readonly DeleteLeaveRequestService _deleteLeaveRequestService;
 
-        public LeaveRequestDeleteCommand(LeaveRequestListViewModel viewModel, LeaveRequestService leaveRequestService)
+        public LeaveRequestDeleteCommand(LeaveRequestShowViewModel viewModel, DeleteLeaveRequestService deleteLeaveRequestService)
         {
             this._viewModel = viewModel;
-            this._leaveRequestService = leaveRequestService;
+            this._deleteLeaveRequestService = deleteLeaveRequestService;
 
             _viewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
 
         public override bool CanExecute(object? parameter)
         {
-            return _viewModel.SelectedLeaveRequest != null && base.CanExecute(parameter);
+            
+            return _viewModel.SelectedRequest != null && base.CanExecute(parameter);
         }
 
         public override void Execute(object? parameter)
         {
-            _leaveRequestService.DeleteById(_viewModel.SelectedLeaveRequest.Id);
-            _viewModel.LeaveRequests.Remove(_viewModel.SelectedLeaveRequest);
+            var command = new DeleteLeaveRequest()
+            {
+                LeaveRequestId = this._viewModel.SelectedRequest.Id
+            };
+            this._deleteLeaveRequestService.Execute(command);
         }
 
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(_viewModel.SelectedLeaveRequest))
+            if (e.PropertyName == nameof(_viewModel.SelectedRequest))
             {
                 OnCanExecuteChanged();
             }

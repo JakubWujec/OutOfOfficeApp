@@ -15,8 +15,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Delete selected" Command="{Binding DeleteSelectedCommand}" HorizontalAlignment="Right"></Button>
-            <Button Content="Submit selected" Command="{Binding SubmitSelectedCommand}" HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
             <Button Content="Create Leave Request" Command="{Binding NavigateCommand}" HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
             <Button Content="Open selected" Command="{Binding OpenSelectedCommand}" CommandParameter="{Binding SelectedLeaveRequest.LeaveRequest}"  HorizontalAlignment="Right" Margin="10,0,0,0"></Button>
         </StackPanel>

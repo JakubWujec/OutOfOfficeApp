@@ -27,6 +27,7 @@ namespace OutOfOfficeWPF
         private SubmitLeaveRequestService submitLeaveRequestService;
         private AcceptApprovalRequestService acceptApprovalRequestService;
         private RejectApprovalRequestService rejectApprovalRequestService;
+        private DeleteLeaveRequestService deleteLeaveRequestService;
 
         private SqlLeaveRequestRepository leaveRequestRepository;
         private SqlApprovalRequestRepository approvalRequestRepository;
@@ -52,9 +53,11 @@ namespace OutOfOfficeWPF
             authStore = new AuthStore();
             authenticator = new Authenticator(authStore, employeeService);
             hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService);
+
             submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
             acceptApprovalRequestService = new AcceptApprovalRequestService(approvalRequestRepository);
             rejectApprovalRequestService = new RejectApprovalRequestService(approvalRequestRepository);
+            deleteLeaveRequestService = new DeleteLeaveRequestService(leaveRequestRepository);
         }
 
         private string GetConnectionString()
@@ -143,7 +146,7 @@ namespace OutOfOfficeWPF
                new CloseModalNavigationService(modalNavigationStore),
                MakeLeaveRequestListNavigationService()
             );
-            return new LeaveRequestShowViewModel(navigationService, leaveRequest, submitLeaveRequestService);
+            return new LeaveRequestShowViewModel(navigationService, leaveRequest, submitLeaveRequestService, deleteLeaveRequestService);
         }
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
