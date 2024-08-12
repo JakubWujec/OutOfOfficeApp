@@ -16,9 +16,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\user_avatar.png" />
+    <None Remove="Views\user_avatar2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MyModalControl\MyModalControl.csproj" />
     <ProjectReference Include="..\OutOfOfficeDomain\OutOfOfficeDomain.csproj" />
     <ProjectReference Include="..\OutOfOfficeEF\OutOfOfficeEF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\user_avatar.png" />
+    <Resource Include="Views\user_avatar2.png" />
   </ItemGroup>
 
 </Project>

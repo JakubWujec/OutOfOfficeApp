@@ -6,16 +6,26 @@
              xmlns:local="clr-namespace:OutOfOfficeWPF.Views" xmlns:controls="clr-namespace:OutOfOfficeWPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Home" FontSize="20"></TextBlock>
-        <TextBlock Grid.Row="1" Text="{Binding WelcomeInfo}"></TextBlock>
-        <TextBlock Grid.Row="2" Text="{Binding Name}" FontSize="20"></TextBlock>
-        <TextBlock Grid.Row="3" Text="{Binding Balance}" FontSize="20"></TextBlock>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="0,0,20,0">
+            <Image Grid.Row="2" Width="160" Height="160" Source="/Views/user_avatar2.png"></Image>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding FullName}" FontSize="24"></TextBlock>
+            <TextBlock Grid.Row="1" Text="Admin" FontSize="20"></TextBlock>
+            <TextBlock Grid.Row="2" Text="{Binding Balance}" FontSize="20"></TextBlock>
+        </Grid>
+       
     </Grid>
 </UserControl>
