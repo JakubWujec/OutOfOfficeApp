@@ -29,14 +29,14 @@ namespace OutOfOfficeWPF.ViewModels
                 OnPropertyChanged(nameof(SelectedLeaveRequest));
             }
         }
-        public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, SubmitLeaveRequestService submitLeaveRequestService, INavigationService createLeaveRequestNavigationService, 
+        public LeaveRequestListViewModel(LeaveRequestService leaveRequestService, INavigationService createLeaveRequestNavigationService, 
             ParameterModalNavigationService<LeaveRequest, LeaveRequestShowViewModel> showViewModalNavigationService)
         {
             _leaveRequests = new ObservableCollection<LeaveRequestItemViewModel>();
             NavigateCommand = new NavigateCommand(createLeaveRequestNavigationService);
             OpenSelectedCommand = new ParameterModalNavigateCommand<LeaveRequest, LeaveRequestShowViewModel>(showViewModalNavigationService);
             DeleteSelectedCommand = new LeaveRequestDeleteCommand(this, leaveRequestService);
-            SubmitSelectedCommand = new LeaveRequestSubmitCommand(this, submitLeaveRequestService);
+         
 
             UpdateLeaveRequests(leaveRequestService.GetAll());
         }

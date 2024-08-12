@@ -83,7 +83,6 @@ namespace OutOfOfficeWPF
         {
             return new LeaveRequestListViewModel(
                 leaveRequestService,
-                submitLeaveRequestService,
                 MakeCreateLeaveRequestNavigationService(),
                 MakeLeaveRequestShowNavigationService()
             );
@@ -144,7 +143,7 @@ namespace OutOfOfficeWPF
                new CloseModalNavigationService(modalNavigationStore),
                MakeLeaveRequestListNavigationService()
             );
-            return new LeaveRequestShowViewModel(navigationService, leaveRequest);
+            return new LeaveRequestShowViewModel(navigationService, leaveRequest, submitLeaveRequestService);
         }
 
         private ApprovalRequestListViewModel MakeApprovalRequestListViewModel()
