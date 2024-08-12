@@ -3,20 +3,28 @@ using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using OutOfOfficeDomain;
 
 namespace OutOfOfficeWPF.ViewModels
 {
     public class NavigationButtonViewModel
     {
+   
         public string Content { get; }
         public ICommand Command { get; }
-        public bool IsVisible { get; set; } 
+        public bool IsVisible { get; } = false;
+        public Func<bool> CanNavigate { get; }
 
-        public NavigationButtonViewModel(string content, ICommand command, bool isVisible = true)
+        public NavigationButtonViewModel(string content, ICommand command, Func<bool> canNavigate)
         {
             Content = content;
             Command = command;
-            IsVisible = isVisible;
+            CanNavigate = canNavigate;
+            IsVisible = canNavigate();
+        }
+        public NavigationButtonViewModel Copy()
+        {
+            return new NavigationButtonViewModel(Content, Command, CanNavigate);
         }
     }
     public class NavigationBarViewModel
@@ -35,37 +43,39 @@ namespace OutOfOfficeWPF.ViewModels
             IAuthStore authStore
         )
         {
-            NavigationButtons = new ObservableCollection<NavigationButtonViewModel>
-            {
-                new NavigationButtonViewModel("Home", new NavigateCommand(homeNavigationService), authStore.IsLoggedIn),
-                new NavigationButtonViewModel("Make leave request", new NavigateCommand(createLeaveRequestNavigationService), authStore.IsLoggedIn),
-                new NavigationButtonViewModel("Leave requests", new NavigateCommand(leaveRequestListNavigationService), authStore.IsLoggedIn),
-                new NavigationButtonViewModel("Approval requests", new NavigateCommand(approvalRequestListNavigationService), authStore.IsLoggedIn),
-                new NavigationButtonViewModel("Add new user", new NavigateCommand(createEmployeeNavigationService), authStore.IsLoggedIn),
-                new NavigationButtonViewModel("Logout", new LogoutCommand(authStore, loginNavigationService), authStore.IsLoggedIn)
-            };
-
-
             this.authStore = authStore;
             this.authStore.CurrentEmployeeChanged += AuthStore_CurrentEmployeeChanged;
+
+            var forLoggedIn = () => authStore.IsLoggedIn;
+            var forAdminOrHr = () => authStore.IsInPosition(Position.HRManager) || authStore.IsInPosition(Position.Admin);
+
+            NavigationButtons = new ObservableCollection<NavigationButtonViewModel>
+            {
+                // logged in
+                new NavigationButtonViewModel("Home", new NavigateCommand(homeNavigationService), forLoggedIn),
+                new NavigationButtonViewModel("Make leave request", new NavigateCommand(createLeaveRequestNavigationService), forLoggedIn),
+            
+                new NavigationButtonViewModel("Leave requests", new NavigateCommand(leaveRequestListNavigationService), forAdminOrHr),
+                new NavigationButtonViewModel("Approval requests", new NavigateCommand(approvalRequestListNavigationService), forAdminOrHr),
+                new NavigationButtonViewModel("Add new user", new NavigateCommand(createEmployeeNavigationService), forAdminOrHr),
+
+                new NavigationButtonViewModel("Logout", new LogoutCommand(authStore, loginNavigationService), forLoggedIn),
+            };
         }
 
         private void ConfigureNavigationButtons()
         {
-            if (!authStore.IsLoggedIn)
+            var tmp = new ObservableCollection<NavigationButtonViewModel>(NavigationButtons);
+            NavigationButtons.Clear();
+
+            foreach(var button in tmp)
             {
-                foreach (var item in NavigationButtons)
-                {
-                    item.IsVisible = false;
-                }
-            } else
-            {
-                foreach (var item in NavigationButtons)
-                {
-                    item.IsVisible = true;
-                }
+                NavigationButtons.Add(button.Copy());
             }
+            
+            tmp.Clear();
         }
+
         private void AuthStore_CurrentEmployeeChanged()
         {
             ConfigureNavigationButtons();

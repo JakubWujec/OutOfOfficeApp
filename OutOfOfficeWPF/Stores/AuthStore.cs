@@ -19,10 +19,16 @@ namespace OutOfOfficeWPF.Stores
         }
         public bool IsLoggedIn => CurrentEmployee != null;
 
-        public event Action CurrentEmployeeChanged;
+        public event Action? CurrentEmployeeChanged;
         public void Logout()
         {
             CurrentEmployee = null;
+        }
+
+        public bool IsInPosition(Position position)
+        {
+            if (CurrentEmployee == null) return false;
+            return CurrentEmployee.Position == position;
         }
     }
 }

@@ -10,5 +10,7 @@ namespace OutOfOfficeWPF.Stores
         public void Logout();
 
         public bool IsLoggedIn { get; }
+
+        public bool IsInPosition(Position position);
     }
 }
