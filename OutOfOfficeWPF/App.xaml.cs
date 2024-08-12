@@ -186,7 +186,6 @@ namespace OutOfOfficeWPF
         {
             return new NavigationBarViewModel(
                 MakeHomeNavigationService(),
-                MakeCreateLeaveRequestNavigationService(),
                 MakeLoginNavigationService(),
                 MakeLeaveRequestListNavigationService(),
                 MakeApprovalRequestListNavigationService(),

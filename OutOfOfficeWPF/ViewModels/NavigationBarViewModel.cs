@@ -9,7 +9,6 @@ namespace OutOfOfficeWPF.ViewModels
 {
     public class NavigationButtonViewModel
     {
-   
         public string Content { get; }
         public ICommand Command { get; }
         public bool IsVisible { get; } = false;
@@ -35,7 +34,6 @@ namespace OutOfOfficeWPF.ViewModels
 
         public NavigationBarViewModel(
             INavigationService homeNavigationService,
-            INavigationService createLeaveRequestNavigationService,
             INavigationService loginNavigationService,
             INavigationService leaveRequestListNavigationService,
             INavigationService approvalRequestListNavigationService,
@@ -53,9 +51,8 @@ namespace OutOfOfficeWPF.ViewModels
             {
                 // logged in
                 new NavigationButtonViewModel("Home", new NavigateCommand(homeNavigationService), forLoggedIn),
-                new NavigationButtonViewModel("Make leave request", new NavigateCommand(createLeaveRequestNavigationService), forLoggedIn),
-            
-                new NavigationButtonViewModel("Leave requests", new NavigateCommand(leaveRequestListNavigationService), forAdminOrHr),
+                new NavigationButtonViewModel("Leave requests", new NavigateCommand(leaveRequestListNavigationService), forLoggedIn),
+
                 new NavigationButtonViewModel("Approval requests", new NavigateCommand(approvalRequestListNavigationService), forAdminOrHr),
                 new NavigationButtonViewModel("Add new user", new NavigateCommand(createEmployeeNavigationService), forAdminOrHr),
 
