@@ -28,8 +28,13 @@ namespace OutOfOfficeEF
                 new Role { Id = 3, Name = "Member" }
             );
 
+            modelBuilder.Entity<Employee>()
+            .Property(e => e.RoleId)
+            .HasDefaultValue(3);  // 3 corresponds to the "Member" role
+
+
             modelBuilder.Entity<Employee>().HasData(
-                new Employee { Id = Guid.NewGuid(), FirstName = "Admin", LastName="Admin", IsActive=true, OutOfOfficeBalance = 26 }
+                new Employee { Id = Guid.NewGuid(), FirstName = "Admin", LastName = "Admin", IsActive = true, OutOfOfficeBalance = 26, RoleId = 1 }
             );
 
         }
