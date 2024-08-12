@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace OutOfOfficeDomain
 {
-    public class Role
+    public enum Position
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        Member,
+        HRManager,
+        Admin
     }
 }

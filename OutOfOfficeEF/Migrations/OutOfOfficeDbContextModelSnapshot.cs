@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OutOfOfficeEF;
 
@@ -11,11 +10,9 @@ using OutOfOfficeEF;
 namespace OutOfOfficeEF.Migrations
 {
     [DbContext(typeof(OutOfOfficeDbContext))]
-    [Migration("20240812090719_AddRoleModelMigration2")]
-    partial class AddRoleModelMigration2
+    partial class OutOfOfficeDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
@@ -63,6 +60,9 @@ namespace OutOfOfficeEF.Migrations
                     b.Property<int>("OutOfOfficeBalance")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
@@ -70,11 +70,12 @@ namespace OutOfOfficeEF.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dfe5dc88-8ad5-46be-96e0-1822a30e2094"),
+                            Id = new Guid("5b61cabf-7181-4b78-8d8c-ef25343bd82b"),
                             FirstName = "Admin",
                             IsActive = true,
                             LastName = "Admin",
-                            OutOfOfficeBalance = 26
+                            OutOfOfficeBalance = 26,
+                            Position = 2
                         });
                 });
 
@@ -105,38 +106,6 @@ namespace OutOfOfficeEF.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("LeaveRequests");
-                });
-
-            modelBuilder.Entity("OutOfOfficeDomain.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "HR Manager"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Member"
-                        });
                 });
 
             modelBuilder.Entity("OutOfOfficeDomain.ApprovalRequest", b =>

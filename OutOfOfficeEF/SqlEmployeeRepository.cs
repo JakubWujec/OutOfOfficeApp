@@ -20,7 +20,7 @@ namespace OutOfOfficeEF
 
         public Employee GetEmployeeById(Guid id)
         {
-            Employee employee = this.context.Employees.Include(e => e.Role).First(x => x.Id == id);
+            Employee employee = this.context.Employees.First(x => x.Id == id);
             if (employee == null)
             {
                 throw new Exception("Employee does not exist");
@@ -30,7 +30,7 @@ namespace OutOfOfficeEF
 
         public IEnumerable<Employee> GetEmployees()
         {
-            return context.Employees.Include(e => e.Role).ToList();
+            return context.Employees.ToList();
         }
 
 

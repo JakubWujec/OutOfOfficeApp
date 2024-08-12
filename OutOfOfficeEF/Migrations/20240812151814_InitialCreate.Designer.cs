@@ -11,8 +11,8 @@ using OutOfOfficeEF;
 namespace OutOfOfficeEF.Migrations
 {
     [DbContext(typeof(OutOfOfficeDbContext))]
-    [Migration("20240808204747_LeaveRequestStatusMigration")]
-    partial class LeaveRequestStatusMigration
+    [Migration("20240812151814_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace OutOfOfficeEF.Migrations
 
                     b.Property<Guid>("LeaveRequestId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -60,9 +63,23 @@ namespace OutOfOfficeEF.Migrations
                     b.Property<int>("OutOfOfficeBalance")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5b61cabf-7181-4b78-8d8c-ef25343bd82b"),
+                            FirstName = "Admin",
+                            IsActive = true,
+                            LastName = "Admin",
+                            OutOfOfficeBalance = 26,
+                            Position = 2
+                        });
                 });
 
             modelBuilder.Entity("OutOfOfficeDomain.LeaveRequest", b =>

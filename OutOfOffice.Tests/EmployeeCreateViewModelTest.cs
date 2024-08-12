@@ -35,7 +35,7 @@ namespace OutOfOfficeDomain.Tests
         }
 
         [Test]
-        public void ExecuteSubmitCommand_WithValidEmployeeDataWithoutRole_CreatesMemberEmployee()
+        public void ExecuteSubmitCommand_WithValidEmployeeDataWithoutPosition_CreatesMemberEmployee()
         {
             var dbContext = new InMemoryReservoomDbContextFactory().CreateDbContext();
             dbContext.Database.Migrate();
@@ -48,12 +48,10 @@ namespace OutOfOfficeDomain.Tests
             viewmodel.SubmitCommand.Execute(viewmodel);
 
             Employee createdEmployee = dbContext.Employees
-                .Include(e => e.Role)
                 .Where(e => e.FirstName == viewmodel.FirstName)
                 .First();
 
-            Assert.That(createdEmployee.Role, Is.Not.Null);
-            Assert.That(createdEmployee.Role.Name, Is.EqualTo("Member"));
+            Assert.That(createdEmployee.Position, Is.EqualTo(Position.Member));
         }
 
         private EmployeeCreateViewModel PrepareViewModel(OutOfOfficeDbContext dbContext)

@@ -13,7 +13,7 @@ namespace OutOfOfficeWPF.ViewModels
         public string Name => authStore.CurrentEmployee?.FirstName + " " + authStore.CurrentEmployee?.LastName;
         public int Balance => authStore.CurrentEmployee?.OutOfOfficeBalance ?? 0;
         public bool IsLoggedIn => authStore.CurrentEmployee != null;
-        public String Role => authStore.CurrentEmployee.Role.Name;
+        public String Position => authStore.CurrentEmployee.Position.ToString();
         public String FullName => authStore.CurrentEmployee.FullName;
     }
 }

@@ -6,8 +6,6 @@ namespace OutOfOfficeEF
     public class OutOfOfficeDbContext : DbContext
     {
         public OutOfOfficeDbContext(DbContextOptions options) : base(options) { }
-
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<ApprovalRequest> ApprovalRequests { get; set; }
@@ -21,20 +19,8 @@ namespace OutOfOfficeEF
         {
             base.OnModelCreating(modelBuilder);
 
-            // Seed roles into the database
-            modelBuilder.Entity<Role>().HasData(
-                new Role { Id = 1, Name = "Admin" },
-                new Role { Id = 2, Name = "HR Manager" },
-                new Role { Id = 3, Name = "Member" }
-            );
-
-            modelBuilder.Entity<Employee>()
-            .Property(e => e.RoleId)
-            .HasDefaultValue(3);  // 3 corresponds to the "Member" role
-
-
             modelBuilder.Entity<Employee>().HasData(
-                new Employee { Id = Guid.NewGuid(), FirstName = "Admin", LastName = "Admin", IsActive = true, OutOfOfficeBalance = 26, RoleId = 1 }
+                new Employee { Id = Guid.NewGuid(), FirstName = "Admin", LastName = "Admin", IsActive = true, OutOfOfficeBalance = 26, Position=Position.Admin }
             );
 
         }
