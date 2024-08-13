@@ -16,14 +16,31 @@ namespace OutOfOfficeWPF.ViewModels
         private readonly EmployeeService employeeService;
         private readonly ObservableCollection<EmployeeListItemViewModel> _employees;
         public ObservableCollection<EmployeeListItemViewModel> Employees => _employees;
+
+        private EmployeeListItemViewModel _selected = null;
+        public EmployeeListItemViewModel Selected
+        {
+            get => _selected;
+            set
+            {
+                _selected = value;
+                OnPropertyChanged(nameof(Selected));
+                OnPropertyChanged(nameof(CanOpenSelected));
+            }
+        }
+
+        public bool CanOpenSelected => _selected != null;
         public ICommand NavigateCommand { get; }
+        public ICommand OpenSelectedCommand {  get; }
         public EmployeeListViewModel(
             EmployeeService employeeService,
-            INavigationService createEmployeeNavigationService
+            INavigationService createEmployeeNavigationService,
+            ParameterModalNavigationService<Employee, EmployeeShowViewModel> showViewModalNavigationService
         ) { 
             this.employeeService = employeeService;
             this._employees = new ObservableCollection<EmployeeListItemViewModel>();
             this.NavigateCommand = new NavigateCommand(createEmployeeNavigationService);
+            this.OpenSelectedCommand = new ParameterModalNavigateCommand<Employee, EmployeeShowViewModel>(showViewModalNavigationService);
 
             var employees = employeeService.GetEmployees();
             UpdateList(employees);

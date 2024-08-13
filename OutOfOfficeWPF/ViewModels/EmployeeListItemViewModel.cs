@@ -15,6 +15,8 @@ namespace OutOfOfficeWPF.ViewModels
             _employee = employee;
         }
 
+        public Employee Employee => _employee;
+
         public Guid Id => _employee.Id;
         public String FullName => _employee.FullName;
         public bool IsActive => _employee.IsActive;

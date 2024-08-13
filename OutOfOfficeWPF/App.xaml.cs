@@ -190,7 +190,7 @@ namespace OutOfOfficeWPF
 
         private EmployeeListViewModel MakeEmployeeListViewModel()
         {
-            return new EmployeeListViewModel(employeeService, MakeCreateEmployeeNavigationService());
+            return new EmployeeListViewModel(employeeService, MakeCreateEmployeeNavigationService(), MakeEmployeeShowNavigationService());
         }
 
         private INavigationService MakeHomeNavigationService()
