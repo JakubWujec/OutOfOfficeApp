@@ -146,7 +146,11 @@ namespace OutOfOfficeWPF
 
         public EmployeeShowViewModel MakeEmployeeShowViewModel(Employee employee)
         {
-            return new EmployeeShowViewModel(employee);
+            CompositeNavigationService navigationService = new CompositeNavigationService(
+              new CloseModalNavigationService(modalNavigationStore),
+              MakeEmployeeListNavigationService()
+            );
+            return new EmployeeShowViewModel(navigationService, employee);
         }
 
         private ApprovalRequestShowViewModel MakeApprovalRequestShowViewModel(ApprovalRequest approvalRequest)
@@ -157,7 +161,7 @@ namespace OutOfOfficeWPF
             );
             return new ApprovalRequestShowViewModel(navigationService, acceptApprovalRequestService, rejectApprovalRequestService, approvalRequest);
         }
-
+        
         private LeaveRequestShowViewModel MakeLeaveRequestShowViewModel(LeaveRequest leaveRequest)
         {
             CompositeNavigationService navigationService = new CompositeNavigationService(
@@ -177,7 +181,11 @@ namespace OutOfOfficeWPF
 
         private EmployeeCreateViewModel MakeEmployeeCreateViewModel()
         {
-            return new EmployeeCreateViewModel(employeeService, new NavigationService(navigationStore, MakeHomeViewModel));
+            CompositeNavigationService navigationService = new CompositeNavigationService(
+                new CloseModalNavigationService(modalNavigationStore),
+                MakeEmployeeListNavigationService()
+            );
+            return new EmployeeCreateViewModel(employeeService, navigationService);
         }
 
         private EmployeeListViewModel MakeEmployeeListViewModel()
