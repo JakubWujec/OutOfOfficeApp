@@ -18,7 +18,7 @@ namespace OutOfOfficeWPF.ViewModels
         public String FullName => _leaveRequest.Employee.FullName;
         public DateOnly StartDate => _leaveRequest.StartDate;
         public DateOnly EndDate => _leaveRequest.EndDate;
-        public LeaveRequest SelectedRequest => _leaveRequest;
+        public Guid Id => _leaveRequest.Id;
         public ICommand SubmitCommand { get; }
         public ICommand DeleteCommand { get; }
         public LeaveRequestShowViewModel(

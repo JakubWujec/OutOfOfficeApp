@@ -17,25 +17,18 @@ namespace OutOfOfficeWPF.Commands
 
             _viewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
-
-        public override bool CanExecute(object? parameter)
-        {
-            
-            return _viewModel.SelectedRequest != null && base.CanExecute(parameter);
-        }
-
         public override void Execute(object? parameter)
         {
             var command = new DeleteLeaveRequest()
             {
-                LeaveRequestId = this._viewModel.SelectedRequest.Id
+                LeaveRequestId = this._viewModel.Id
             };
             this._deleteLeaveRequestService.Execute(command);
         }
 
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(_viewModel.SelectedRequest))
+            if (e.PropertyName == nameof(_viewModel.Id))
             {
                 OnCanExecuteChanged();
             }

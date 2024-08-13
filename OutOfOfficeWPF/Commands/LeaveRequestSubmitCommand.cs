@@ -20,14 +20,14 @@ namespace OutOfOfficeWPF.Commands
         {
             var command = new SubmitLeaveRequest()
             {
-                LeaveRequestId = this._viewModel.SelectedRequest.Id
+                LeaveRequestId = this._viewModel.Id
             };
             this._submitLeaveRequestService.Execute(command);
         }
 
         private void OnViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(_viewModel.SelectedRequest))
+            if (e.PropertyName == nameof(_viewModel.Id))
             {
                 OnCanExecuteChanged();
             }

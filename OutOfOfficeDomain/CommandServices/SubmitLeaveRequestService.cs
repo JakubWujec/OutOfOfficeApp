@@ -18,6 +18,10 @@ namespace OutOfOfficeDomain.CommandServices
         public void Execute(SubmitLeaveRequest command)
         {
             var request = this._repository.GetById(command.LeaveRequestId);
+            if (request == null)
+            {
+                throw new NullReferenceException();
+            }
 
             request.Submit();
             this._repository.Save(request);

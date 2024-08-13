@@ -13,8 +13,8 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="10" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="{Binding FullName}"></TextBlock>
-            <TextBlock Text="{Binding SelectedRequest.StartDate}"></TextBlock>
-            <TextBlock Text="{Binding SelectedRequest.EndDate}"></TextBlock>
+            <TextBlock Text="{Binding StartDate}"></TextBlock>
+            <TextBlock Text="{Binding EndDate}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Padding="10" Content="Submit" Command="{Binding SubmitCommand}" ></Button>
