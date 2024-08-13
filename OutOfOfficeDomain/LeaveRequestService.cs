@@ -1,4 +1,5 @@
 ﻿using OutOfOfficeDomain.Exceptions;
+using System.Data;
 
 namespace OutOfOfficeDomain
 {
@@ -12,6 +13,11 @@ namespace OutOfOfficeDomain
         public IEnumerable<LeaveRequest> GetAll()
         {
             return _leaveRequestRepository.GetAll();
+        }
+
+        public LeaveRequest GetById (Guid id)
+        {
+            return _leaveRequestRepository.GetById(id);
         }
 
         public void CreateLeaveRequest(Employee employee, LeaveRequest leaveRequest)
@@ -28,6 +34,12 @@ namespace OutOfOfficeDomain
                 throw new InsufficientBalanceException();
             }
 
+            _leaveRequestRepository.Save(leaveRequest);
+        }
+
+        public void UpdateStatus(LeaveRequest leaveRequest, LeaveRequestStatus status)
+        {
+            leaveRequest.Status = status;
             _leaveRequestRepository.Save(leaveRequest);
         }
 

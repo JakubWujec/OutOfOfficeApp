@@ -1,16 +1,19 @@
 ﻿using OutOfOfficeDomain.Commands;
+using OutOfOfficeDomain.Events;
 
 namespace OutOfOfficeDomain.CommandServices
 {
     public class AcceptApprovalRequestService : ICommandService<AcceptApprovalRequest>
     {
         private readonly IApprovalRequestRepository _repository;
+        private readonly IEventHandler<ApprovalRequestAccepted> _handler;
 
-
-        public AcceptApprovalRequestService(IApprovalRequestRepository repository)
+        public AcceptApprovalRequestService(IApprovalRequestRepository repository, IEventHandler<ApprovalRequestAccepted> handler)
         {
             if (repository == null) throw new ArgumentNullException(nameof(repository));
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
 
+            this._handler = handler;
             this._repository = repository;
         }
 
@@ -21,7 +24,7 @@ namespace OutOfOfficeDomain.CommandServices
             request.Accept();
             this._repository.Save(request);
 
-            // this._handler.Handle(new LeaveRequestSubmitted(request.Id));
+            this._handler.Handle(new ApprovalRequestAccepted(request.Id));
         }
     }
 }

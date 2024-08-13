@@ -52,10 +52,10 @@ namespace OutOfOfficeWPF
             employeeService = new EmployeeService(employeeRepository);
             authStore = new AuthStore();
             authenticator = new Authenticator(authStore, employeeService);
-            hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService);
+            hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService, leaveRequestService);
 
             submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
-            acceptApprovalRequestService = new AcceptApprovalRequestService(approvalRequestRepository);
+            acceptApprovalRequestService = new AcceptApprovalRequestService(approvalRequestRepository, hrRequestEventHandler);
             rejectApprovalRequestService = new RejectApprovalRequestService(approvalRequestRepository);
             deleteLeaveRequestService = new DeleteLeaveRequestService(leaveRequestRepository);
         }

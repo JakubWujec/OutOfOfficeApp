@@ -13,6 +13,11 @@
             return _approvalRequestRepository.GetAll();
         }
 
+        public ApprovalRequest GetById(Guid id)
+        {
+            return _approvalRequestRepository.GetById(id);
+        }
+
         public void CreateApprovalRequestForLeaveRequest(Guid leaveRequestId)
         {
             var request = new ApprovalRequest()

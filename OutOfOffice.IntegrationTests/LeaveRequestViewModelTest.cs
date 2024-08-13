@@ -64,7 +64,7 @@ namespace OutOfOffice.IntegrationTests
             var approvalRequestRepository = new SqlApprovalRequestRepository(dbContext);
             var leaveRequestService = new LeaveRequestService(leaveRequestRepository);
             var approvalRequestService = new ApprovalRequestService(approvalRequestRepository);
-            var hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService);
+            var hrRequestEventHandler = new HRRequestEventHandler(approvalRequestService, leaveRequestService);
             var submitLeaveRequestService = new SubmitLeaveRequestService(leaveRequestRepository, hrRequestEventHandler);
             var deleteLeaveRequestService = new DeleteLeaveRequestService(leaveRequestRepository);
             var navigationStore = new NavigationStore();
