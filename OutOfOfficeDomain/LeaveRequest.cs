@@ -19,25 +19,5 @@
         public LeaveRequestStatus Status { get;  set; } = LeaveRequestStatus.NEW;
 
         public int DurationInDays => EndDate.DayNumber - StartDate.DayNumber;
-
-        public void Cancel()
-        {
-            this.Status = LeaveRequestStatus.CANCELLED;
-        }
-
-        public void Submit()
-        {
-            this.Status = LeaveRequestStatus.SUBMITTED;
-        }
-
-        public void MarkApproved()
-        {
-            this.Status = LeaveRequestStatus.APPROVED;
-        }
-
-        public void MarkRejected()
-        {
-            this.Status = LeaveRequestStatus.REJECTED;
-        }
     }
 }

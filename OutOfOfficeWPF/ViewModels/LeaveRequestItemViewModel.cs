@@ -8,6 +8,7 @@ namespace OutOfOfficeWPF.ViewModels
         public DateOnly StartDate => _leaveRequest.StartDate;
         public DateOnly EndDate => _leaveRequest.EndDate;
         public Guid Id => _leaveRequest.Id;
+        public LeaveRequestStatus Status => _leaveRequest.Status;
         public LeaveRequest _leaveRequest { get; init; }
         public LeaveRequest LeaveRequest => _leaveRequest;
 

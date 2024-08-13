@@ -22,8 +22,7 @@ namespace OutOfOfficeDomain.CommandServices
             {
                 throw new NullReferenceException();
             }
-
-            request.Submit();
+            request.Status = LeaveRequestStatus.SUBMITTED;
             this._repository.Save(request);
 
             this._handler.Handle(new LeaveRequestSubmitted(request.Id));

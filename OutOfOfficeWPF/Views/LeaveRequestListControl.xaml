@@ -29,7 +29,8 @@
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" util:GridViewSort.PropertyName="Id" Width="20"/>
                     <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding Comment}" util:GridViewSort.PropertyName="Comment" Width="150"/>
                     <GridViewColumn Header="StartDate" DisplayMemberBinding="{Binding StartDate}" util:GridViewSort.PropertyName="StartDate" Width="70"/>
-                    <GridViewColumn Header="EndDate" DisplayMemberBinding="{Binding EndDate}" util:GridViewSort.PropertyName="EndDate" Width="70"/>
+                    <GridViewColumn Header="EndDate" DisplayMemberBinding="{Binding EndDate}" util:GridViewSort.PropertyName="EndDate" Width="70"/> 
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" util:GridViewSort.PropertyName="Status" Width="70"/>
                 </GridView>
             </ListView.View>
         </ListView>
