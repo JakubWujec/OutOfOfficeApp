@@ -162,6 +162,11 @@ namespace OutOfOfficeWPF
             return new EmployeeCreateViewModel(employeeService, new NavigationService(navigationStore, MakeHomeViewModel));
         }
 
+        private EmployeeListViewModel MakeEmployeeListViewModel()
+        {
+            return new EmployeeListViewModel(employeeService);
+        }
+
         private INavigationService MakeHomeNavigationService()
         {
             return new LayoutNavigationService<HomeViewModel>(navigationStore, MakeHomeViewModel, MakeNavigationBarViewModel);
@@ -194,11 +199,11 @@ namespace OutOfOfficeWPF
             );
         }
 
-        public INavigationService MakeEmployeeCreateNavigationService()
+        public INavigationService MakeEmployeeListNavigationService()
         {
-            return new LayoutNavigationService<EmployeeCreateViewModel>(
+            return new LayoutNavigationService<EmployeeListViewModel>(
                 navigationStore,
-                MakeEmployeeCreateViewModel,
+                MakeEmployeeListViewModel,
                 MakeNavigationBarViewModel
             );
         }
@@ -210,7 +215,7 @@ namespace OutOfOfficeWPF
                 MakeLoginNavigationService(),
                 MakeLeaveRequestListNavigationService(),
                 MakeApprovalRequestListNavigationService(),
-                MakeEmployeeCreateNavigationService(),
+                MakeEmployeeListNavigationService(),
                 authStore
             );
         }
