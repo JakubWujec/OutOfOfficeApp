@@ -10,8 +10,9 @@ using OutOfOfficeWPF;
 using OutOfOfficeWPF.Services;
 using OutOfOfficeWPF.Stores;
 using OutOfOfficeWPF.ViewModels;
+using OutOfOfficeDomain;
 
-namespace OutOfOfficeDomain.Tests
+namespace OutOfOffice.IntegrationTests
 {
     public class EmployeeCreateViewModelTest
     {

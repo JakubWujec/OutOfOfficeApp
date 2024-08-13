@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyModalControl", "MyModalCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutOfOfficeDomain.Tests", "OutOfOfficeDomain.Tests\OutOfOfficeDomain.Tests.csproj", "{03DD0370-1CEC-45E6-9E29-4AC2BD305167}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutOfOffice.IntegrationTests", "OutOfOffice.Tests\OutOfOffice.IntegrationTests.csproj", "{A1C9CE5F-6CB8-4208-925E-FDFD335228A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutOfOffice.IntegrationTests", "OutOfOffice.IntegrationTests\OutOfOffice.IntegrationTests.csproj", "{CA5DCD77-6A28-45AD-BD59-422DE56151B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{03DD0370-1CEC-45E6-9E29-4AC2BD305167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03DD0370-1CEC-45E6-9E29-4AC2BD305167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03DD0370-1CEC-45E6-9E29-4AC2BD305167}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1C9CE5F-6CB8-4208-925E-FDFD335228A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1C9CE5F-6CB8-4208-925E-FDFD335228A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1C9CE5F-6CB8-4208-925E-FDFD335228A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1C9CE5F-6CB8-4208-925E-FDFD335228A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5DCD77-6A28-45AD-BD59-422DE56151B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5DCD77-6A28-45AD-BD59-422DE56151B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5DCD77-6A28-45AD-BD59-422DE56151B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5DCD77-6A28-45AD-BD59-422DE56151B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

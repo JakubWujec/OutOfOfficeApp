@@ -1,4 +1,4 @@
-namespace OutOfOffice.Tests
+namespace OutOfOffice.IntegrationTests
 {
     public class Tests
     {
