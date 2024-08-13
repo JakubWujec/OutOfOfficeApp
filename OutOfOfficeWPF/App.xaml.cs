@@ -131,6 +131,24 @@ namespace OutOfOfficeWPF
             );
         }
 
+        private ModalNavigationService<EmployeeCreateViewModel> MakeCreateEmployeeNavigationService()
+        {
+            return new ModalNavigationService<EmployeeCreateViewModel>(modalNavigationStore, MakeEmployeeCreateViewModel);
+        }
+
+        private ParameterModalNavigationService<Employee, EmployeeShowViewModel> MakeEmployeeShowNavigationService()
+        {
+            return new ParameterModalNavigationService<Employee, EmployeeShowViewModel>(
+                modalNavigationStore,
+                MakeEmployeeShowViewModel
+            );
+        }
+
+        public EmployeeShowViewModel MakeEmployeeShowViewModel(Employee employee)
+        {
+            return new EmployeeShowViewModel(employee);
+        }
+
         private ApprovalRequestShowViewModel MakeApprovalRequestShowViewModel(ApprovalRequest approvalRequest)
         {
             CompositeNavigationService navigationService = new CompositeNavigationService(
@@ -164,7 +182,7 @@ namespace OutOfOfficeWPF
 
         private EmployeeListViewModel MakeEmployeeListViewModel()
         {
-            return new EmployeeListViewModel(employeeService);
+            return new EmployeeListViewModel(employeeService, MakeCreateEmployeeNavigationService());
         }
 
         private INavigationService MakeHomeNavigationService()

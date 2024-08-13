@@ -30,6 +30,9 @@
             <DataTemplate DataType="{x:Type viewmodels:EmployeeCreateViewModel}">
                 <views:EmployeeCreateView></views:EmployeeCreateView>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:EmployeeShowViewModel}">
+                <views:EmployeeShowView></views:EmployeeShowView>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:ApprovalRequestListViewModel}">
                 <views:ApprovalRequestListView></views:ApprovalRequestListView>
             </DataTemplate>
