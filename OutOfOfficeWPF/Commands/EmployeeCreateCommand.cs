@@ -24,6 +24,7 @@ namespace OutOfOfficeWPF.Commands
                 LastName = employeeCreateViewModel.LastName,
                 IsActive = employeeCreateViewModel.IsActive,
                 OutOfOfficeBalance = 26,
+                Position = employeeCreateViewModel.SelectedPosition
             };
             employeeService.CreateEmployee(newEmployee);
             this.navigationService.Navigate();

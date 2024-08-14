@@ -34,6 +34,7 @@
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" util:GridViewSort.PropertyName="Id" Width="20"/>
                     <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding FullName}" util:GridViewSort.PropertyName="Id" Width="auto"/>
+                    <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Position}" util:GridViewSort.PropertyName="Id" Width="auto"/>
                     <GridViewColumn Header="Active" DisplayMemberBinding="{Binding IsActive}" util:GridViewSort.PropertyName="Id" Width="auto"/>
                 </GridView>
             </ListView.View>

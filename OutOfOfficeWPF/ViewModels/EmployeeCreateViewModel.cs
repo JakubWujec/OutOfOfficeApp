@@ -16,6 +16,20 @@ namespace OutOfOfficeWPF.ViewModels
             this.CancelCommand = new NavigateCommand(listNavigationService);
         }
 
+        public Array Positions => employeeService.GetPositions();
+
+        private Position _selectedPosition;
+
+        public Position SelectedPosition
+        {
+            get => _selectedPosition;
+            set
+            {
+                _selectedPosition = value;
+                OnPropertyChanged(nameof(SelectedPosition));
+            }
+        }
+
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 

@@ -21,5 +21,6 @@ namespace OutOfOfficeWPF.ViewModels
         public String FullName => _employee.FullName;
         public bool IsActive => _employee.IsActive;
         public int OutOfOfficeBalance => _employee.OutOfOfficeBalance;
+        public Position Position => _employee.Position;
     }
 }

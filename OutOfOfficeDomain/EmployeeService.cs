@@ -22,5 +22,10 @@
         {
             return _employeeRepository.GetEmployeeById(guid);
         }
+
+        public Position[] GetPositions()
+        {
+            return Enum.GetValues(typeof(Position)).Cast<Position>().ToArray();
+        }
     }
 }
